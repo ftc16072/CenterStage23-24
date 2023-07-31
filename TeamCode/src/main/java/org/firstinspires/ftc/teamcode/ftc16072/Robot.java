@@ -6,6 +6,7 @@ import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Gyro;
 
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.MecanumDrive;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Mechanism;
+import org.firstinspires.ftc.teamcode.ftc16072.Util.Navigation;
 
 
 import java.util.Arrays;
@@ -14,10 +15,13 @@ import java.util.List;
 public class Robot {
     List<Mechanism> mechanisms;
     public MecanumDrive mecanumDrive;
+    public Navigation nav;
     Gyro gyro;
+
     public Robot(){
         gyro = new Gyro();
         mecanumDrive = new MecanumDrive();
+        nav = new Navigation(gyro, mecanumDrive);
 
         mechanisms = Arrays.asList(
                         mecanumDrive,
