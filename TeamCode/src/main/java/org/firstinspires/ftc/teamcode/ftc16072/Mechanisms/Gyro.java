@@ -9,7 +9,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
 import org.firstinspires.ftc.teamcode.ftc16072.QQTest.QQtest;
 import org.firstinspires.ftc.teamcode.ftc16072.QQTest.TestGyro;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Gyro implements Mechanism{
@@ -30,9 +30,7 @@ public class Gyro implements Mechanism{
 
     @Override
     public List<QQtest> getTests() {
-        return Arrays.asList(
-                new TestGyro("IMU", gyro)
-        );
+        return Collections.singletonList(new TestGyro("IMU", gyro));
     }
 
     @Override
