@@ -12,14 +12,14 @@ import org.firstinspires.ftc.teamcode.ftc16072.QQTest.TestGyro;
 import java.util.Collections;
 import java.util.List;
 
-public class Gyro implements Mechanism{
+public class Gyro implements Mechanism {
     IMU gyro;
 
     @Override
     public void init(HardwareMap hwMap) {
-        gyro = hwMap.get(IMU.class , "imu");
+        gyro = hwMap.get(IMU.class, "imu");
         RevHubOrientationOnRobot.LogoFacingDirection logoDirection = RevHubOrientationOnRobot.LogoFacingDirection.RIGHT;
-        RevHubOrientationOnRobot.UsbFacingDirection  usbDirection  = RevHubOrientationOnRobot.UsbFacingDirection.FORWARD;
+        RevHubOrientationOnRobot.UsbFacingDirection usbDirection = RevHubOrientationOnRobot.UsbFacingDirection.FORWARD;
 
         RevHubOrientationOnRobot orientationOnRobot = new RevHubOrientationOnRobot(logoDirection, usbDirection);
 
@@ -38,7 +38,7 @@ public class Gyro implements Mechanism{
         return "gyro";
     }
 
-    public double getHeading(AngleUnit angleUnit){
+    public double getHeading(AngleUnit angleUnit) {
         YawPitchRollAngles angles = gyro.getRobotYawPitchRollAngles();
         return angles.getYaw(angleUnit);
     }

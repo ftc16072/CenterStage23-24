@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.hardware.IMU;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
-public class TestGyro extends QQtest{
+public class TestGyro extends QQtest {
     IMU gyro;
 
     public TestGyro(String name, IMU gyro) {

@@ -8,12 +8,13 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import org.firstinspires.ftc.teamcode.ftc16072.Robot;
 
 
-@Autonomous(group="RR")
+@Autonomous(group = "RR")
 public class RR_BackAndForth extends OpMode {
 
     Robot robot = new Robot();
 
     private enum State {BEGIN, AWAY, RETURN}
+
     State state = State.BEGIN;
 
     Trajectory trajectory;
@@ -29,27 +30,27 @@ public class RR_BackAndForth extends OpMode {
         robot.nav.updatePoseEstimate();
         Pose2d currentPose = robot.nav.getPoseEstimate();
 
-        telemetry.addData("STATE",state);
-        telemetry.addData("POSE","x = %.2f y = %.2f h = %.1f", currentPose.getX(),currentPose.getY(),Math.toDegrees(currentPose.getHeading()));
-        switch(state){
+        telemetry.addData("STATE", state);
+        telemetry.addData("POSE", "x = %.2f y = %.2f h = %.1f", currentPose.getX(), currentPose.getY(), Math.toDegrees(currentPose.getHeading()));
+        switch (state) {
             case BEGIN:
                 state = State.AWAY;
-                trajectory = robot.nav.trajectoryBuilder(currentPose,false)
+                trajectory = robot.nav.trajectoryBuilder(currentPose, false)
                         .forward(48)
                         .build();
                 robot.nav.follower.followTrajectory(trajectory);
                 break;
             case AWAY:
-                if (robot.nav.isDoneFollowing(currentPose)){
+                if (robot.nav.isDoneFollowing(currentPose)) {
                     state = State.RETURN;
-                    trajectory = robot.nav.trajectoryBuilder(currentPose,true)
+                    trajectory = robot.nav.trajectoryBuilder(currentPose, true)
                             .back(48)
                             .build();
                     robot.nav.follower.followTrajectory(trajectory);
                 }
                 break;
             case RETURN:
-                if(robot.nav.isDoneFollowing(currentPose)){
+                if (robot.nav.isDoneFollowing(currentPose)) {
                     state = State.BEGIN;
                 }
                 break;

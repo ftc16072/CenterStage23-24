@@ -9,9 +9,9 @@ import java.util.List;
 public interface Mechanism {
     void init(HardwareMap hwMap);
 
-    List <QQtest> getTests();
+    List<QQtest> getTests();
 
-    default String getName(){
+    default String getName() {
         return getClass().getSimpleName();
     }
 }

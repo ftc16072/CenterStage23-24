@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import org.firstinspires.ftc.teamcode.ftc16072.Robot;
 
 
-@Autonomous(group="RR")
+@Autonomous(group = "RR")
 public class RR_LocalizationTest extends OpMode {
     Robot robot = new Robot();
 
@@ -22,7 +22,7 @@ public class RR_LocalizationTest extends OpMode {
         robot.nav.updatePoseEstimate();
         Pose2d currentPose = robot.nav.getPoseEstimate();
 
-        telemetry.addData("POSE","x = %.2f y = %.2f h = %.1f", currentPose.getX(),currentPose.getY(),Math.toDegrees(currentPose.getHeading()));
+        telemetry.addData("POSE", "x = %.2f y = %.2f h = %.1f", currentPose.getX(), currentPose.getY(), Math.toDegrees(currentPose.getHeading()));
 
         robot.nav.setDrivePower(
                 new Pose2d(

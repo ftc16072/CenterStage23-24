@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.hardware.DigitalChannel;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
-public class TestSwitch extends QQtest{
+public class TestSwitch extends QQtest {
     DigitalChannel button;
 
     public TestSwitch(String name, DigitalChannel button) {

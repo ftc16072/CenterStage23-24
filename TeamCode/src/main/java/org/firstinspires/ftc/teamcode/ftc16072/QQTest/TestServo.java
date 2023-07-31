@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
-public class TestServo extends  QQtest{
+public class TestServo extends QQtest {
     double onPosition;
     double offPostion;
     Servo servo;
@@ -19,10 +19,9 @@ public class TestServo extends  QQtest{
 
     @Override
     public void run(boolean on, Telemetry telemetry) {
-        if(on){
+        if (on) {
             servo.setPosition(onPosition);
-        }
-        else{
+        } else {
             servo.setPosition(offPostion);
         }
         telemetry.addData("Current position", this.servo.getPosition());

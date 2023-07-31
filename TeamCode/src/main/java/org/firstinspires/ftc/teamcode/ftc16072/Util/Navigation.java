@@ -22,12 +22,12 @@ import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.MecanumDrive;
 import java.util.Arrays;
 import java.util.List;
 
-public class Navigation extends com.acmerobotics.roadrunner.drive.MecanumDrive{
+public class Navigation extends com.acmerobotics.roadrunner.drive.MecanumDrive {
     Gyro gyro;
     MecanumDrive mecanumDrive;
 
     public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(1, 0, 0);
-    public static PIDCoefficients HEADING_PID = new PIDCoefficients(1,0,0);
+    public static PIDCoefficients HEADING_PID = new PIDCoefficients(1, 0, 0);
     public static double kV = 1.0 / MecanumDrive.MAX_MOTOR_VELOCITY;
     public static double kA = 0.0;
     public static double kStatic = 0;
@@ -40,17 +40,17 @@ public class Navigation extends com.acmerobotics.roadrunner.drive.MecanumDrive{
 
     public TrajectoryFollower follower;
 
-    public Navigation(Gyro gyro, MecanumDrive mecanumDrive){
-        super(kV,kA,kStatic,MecanumDrive.TRACK_WIDTH_IN);
+    public Navigation(Gyro gyro, MecanumDrive mecanumDrive) {
+        super(kV, kA, kStatic, MecanumDrive.TRACK_WIDTH_IN);
 
         this.gyro = gyro;
         this.mecanumDrive = mecanumDrive;
 
-        follower = new HolonomicPIDVAFollower(TRANSLATIONAL_PID, TRANSLATIONAL_PID,HEADING_PID,
-                new Pose2d(0.5,0.5,Math.toRadians(5.0)),0.5);
+        follower = new HolonomicPIDVAFollower(TRANSLATIONAL_PID, TRANSLATIONAL_PID, HEADING_PID,
+                new Pose2d(0.5, 0.5, Math.toRadians(5.0)), 0.5);
     }
 
-    public void fieldRelative(double forward, double right, double rotate){
+    public void fieldRelative(double forward, double right, double rotate) {
         double heading = gyro.getHeading(AngleUnit.RADIANS);
 
         Polar drive = new Polar(right, forward);
@@ -76,13 +76,13 @@ public class Navigation extends com.acmerobotics.roadrunner.drive.MecanumDrive{
         mecanumDrive.setPowers(v, v3, v1, v2);
     }
 
-    public TrajectoryBuilder trajectoryBuilder(Pose2d startPose, Boolean reversed){
+    public TrajectoryBuilder trajectoryBuilder(Pose2d startPose, Boolean reversed) {
         return new TrajectoryBuilder(startPose, reversed, velocityConstraint, accelConstraint);
     }
 
-    public boolean isDoneFollowing(Pose2d currentPose){
+    public boolean isDoneFollowing(Pose2d currentPose) {
         setDriveSignal(follower.update(currentPose));
-        if(!follower.isFollowing()){
+        if (!follower.isFollowing()) {
             setDriveSignal(new DriveSignal());
             return true;
         }

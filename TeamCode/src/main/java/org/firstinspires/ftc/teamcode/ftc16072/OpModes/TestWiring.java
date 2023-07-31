@@ -32,7 +32,7 @@ public class TestWiring extends OpMode {
     public void loop() {
         if (gamepad1.dpad_up && !wasUp) {
             currentMechanism -= 1;
-            if (currentMechanism < 0){
+            if (currentMechanism < 0) {
                 currentMechanism = mechanismList.size() - 1;
             }
             currentTest = 0;
@@ -46,13 +46,13 @@ public class TestWiring extends OpMode {
         testList = mechanismList.get(currentMechanism).getTests();
         if (gamepad1.dpad_right && !wasRight) {
             currentTest += 1;
-            if (currentTest >= testList.size()){
+            if (currentTest >= testList.size()) {
                 currentTest = 0;
             }
         } else if (gamepad1.dpad_left && !wasLeft) {
             currentTest -= 1;
-            if (currentTest < 0){
-                currentTest = testList.size()-1;
+            if (currentTest < 0) {
+                currentTest = testList.size() - 1;
             }
         }
         wasUp = gamepad1.dpad_up;

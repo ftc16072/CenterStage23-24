@@ -15,16 +15,14 @@ public class TestMotor extends QQtest {
     }
 
     @Override
-    public void run(boolean on, Telemetry telemetry){
-        if (on){
+    public void run(boolean on, Telemetry telemetry) {
+        if (on) {
             motor.setPower(speed);
-        }
-        else{
+        } else {
             motor.setPower(0);
         }
         telemetry.addData("Encoder Value", motor.getCurrentPosition());
     }
-
 
 
 }

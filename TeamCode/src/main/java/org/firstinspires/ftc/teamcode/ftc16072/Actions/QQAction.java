@@ -9,15 +9,15 @@ public abstract class QQAction {
 
     public abstract QQAction run(OpMode opMode, Robot robot);
 
-    public QQAction append(QQAction next){
-        if(nextAction != null){
+    public QQAction append(QQAction next) {
+        if (nextAction != null) {
             nextAction.append(next);
-        }
-        else{
+        } else {
             nextAction = next;
         }
         return this;
     }
+
     public abstract String getDebugString();
 
 }
