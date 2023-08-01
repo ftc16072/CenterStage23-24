@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.ftc16072.Util;
 
 import androidx.annotation.NonNull;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.control.PIDCoefficients;
 import com.acmerobotics.roadrunner.drive.DriveSignal;
 import com.acmerobotics.roadrunner.followers.HolonomicPIDVAFollower;
@@ -22,11 +23,12 @@ import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.MecanumDrive;
 import java.util.Arrays;
 import java.util.List;
 
+@Config
 public class Navigation extends com.acmerobotics.roadrunner.drive.MecanumDrive {
     Gyro gyro;
     MecanumDrive mecanumDrive;
 
-    public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(1, 0, 0);
+    public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(2, 0, 0);
     public static PIDCoefficients HEADING_PID = new PIDCoefficients(1, 0, 0);
     public static double kV = 1.0 / MecanumDrive.MAX_MOTOR_VELOCITY;
     public static double kA = 0.0;
