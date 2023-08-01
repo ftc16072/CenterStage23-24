@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.ftc16072.OpModes.RRTests;
 
+import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.acmerobotics.roadrunner.util.NanoClock;
@@ -28,12 +30,23 @@ public class RR_StrafeTest extends OpMode {
         robot.makeDriveOnly();
         robot.init(hardwareMap);
         clock = NanoClock.system();
+        telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
+        telemetry.addData("x", 0);
+        telemetry.addData("y", 0);
+        telemetry.addData("desired y", 48);
     }
+
 
     @Override
     public void loop() {
         robot.nav.updatePoseEstimate();
         Pose2d currentPose = robot.nav.getPoseEstimate();
+        telemetry.addData("x", currentPose.getX());
+        telemetry.addData("y", currentPose.getY());
+        telemetry.addData("desired y", 48);
+
+
+
 
         telemetry.addData("STATE", state);
         telemetry.addData("POSE", "x = %.2f y = %.2f h = %.1f", currentPose.getX(), currentPose.getY(), Math.toDegrees(currentPose.getHeading()));
