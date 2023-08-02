@@ -2,7 +2,7 @@ package org.firstinspires.ftc.teamcode.ftc16072;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Gyro;
+import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.ControlHub;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.MecanumDrive;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Mechanism;
 import org.firstinspires.ftc.teamcode.ftc16072.Util.Navigation;
@@ -14,23 +14,23 @@ public class Robot {
     List<Mechanism> mechanisms;
     public MecanumDrive mecanumDrive;
     public Navigation nav;
-    Gyro gyro;
+    ControlHub controlHub;
 
     public Robot() {
-        gyro = new Gyro();
+        controlHub = new ControlHub();
         mecanumDrive = new MecanumDrive();
-        nav = new Navigation(gyro, mecanumDrive);
+        nav = new Navigation(controlHub, mecanumDrive);
 
         mechanisms = Arrays.asList(
                 mecanumDrive,
-                gyro
+                controlHub
         );
     }
 
     public void makeDriveOnly() {
         mechanisms = Arrays.asList(
                 mecanumDrive,
-                gyro
+                controlHub
         );
     }
 
