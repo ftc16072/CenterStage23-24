@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.ftc16072.Mechanisms;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
+import com.qualcomm.robotcore.hardware.VoltageSensor;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
@@ -12,12 +13,14 @@ import org.firstinspires.ftc.teamcode.ftc16072.QQTest.TestGyro;
 import java.util.Collections;
 import java.util.List;
 
-public class Gyro implements Mechanism {
+public class ControlHub implements Mechanism {
     IMU gyro;
+    public VoltageSensor batteryVoltageSensor;
 
     @Override
     public void init(HardwareMap hwMap) {
         gyro = hwMap.get(IMU.class, "imu");
+        batteryVoltageSensor = hwMap.voltageSensor.iterator().next();
         RevHubOrientationOnRobot.LogoFacingDirection logoDirection = RevHubOrientationOnRobot.LogoFacingDirection.RIGHT;
         RevHubOrientationOnRobot.UsbFacingDirection usbDirection = RevHubOrientationOnRobot.UsbFacingDirection.FORWARD;
 
@@ -35,7 +38,7 @@ public class Gyro implements Mechanism {
 
     @Override
     public String getName() {
-        return "gyro";
+        return "Control Hub";
     }
 
     public double getHeading(AngleUnit angleUnit) {
