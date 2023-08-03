@@ -72,6 +72,7 @@ public class RR_TrackWidthTuner extends OpMode {
                 }
                 break;
             case TURNING:
+                robot.nav.update();
                 if(robot.nav.isBusy()){
                     headingAccumulator += Angle.normDelta(currentPose.getHeading() - lastHeading);
                     lastHeading = currentPose.getHeading();

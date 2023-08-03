@@ -35,6 +35,7 @@ public class RR_TurnTest extends OpMode {
                 robot.nav.turnAsync(Math.toRadians(TURN_ANGLE_DEGREES));
                 break;
             case TURNING:
+                robot.nav.update();
                 if (!robot.nav.isBusy()){
                     state = State.DONE;
                 }
