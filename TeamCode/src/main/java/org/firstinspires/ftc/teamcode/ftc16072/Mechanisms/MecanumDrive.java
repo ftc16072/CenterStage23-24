@@ -34,6 +34,9 @@ public class MecanumDrive implements Mechanism {
     public static double MAX_ANGULAR_VELOCITY = Math.PI;
     public static double MAX_ANGULAR_ACCELERATION = Math.PI;
 
+    //Roadrunner tuning values
+    public static final double LATERAL_MULTIPLIER = 0.92717643;
+
 
     public void init(HardwareMap HwMap) {
         backLeftMotor = HwMap.get(DcMotor.class, "back_left_motor");

@@ -47,7 +47,7 @@ public class RR_StraightTest extends OpMode {
         telemetry.addData("POSE", "x = %.2f y = %.2f h = %.1f", currentPose.getX(), currentPose.getY(), Math.toDegrees(currentPose.getHeading()));
         telemetry.addData("x", currentPose.getX());
         telemetry.addData("y", currentPose.getY());
-        telemetry.addData("desired y", 48);
+        telemetry.addData("desired x", 48);
 
         switch (state) {
             case BEGIN:

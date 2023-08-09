@@ -33,7 +33,7 @@ public class Navigation extends com.acmerobotics.roadrunner.drive.MecanumDrive {
     ControlHub controlHub;
     MecanumDrive mecanumDrive;
 
-    public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(2, 0, 0);
+    public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(1, 0, 0);
     public static PIDCoefficients HEADING_PID = new PIDCoefficients(1, 0, 0);
     public static double kV = 1.0 / MecanumDrive.MAX_MOTOR_VELOCITY;
     public static double kA = 0.0;
@@ -47,7 +47,7 @@ public class Navigation extends com.acmerobotics.roadrunner.drive.MecanumDrive {
     ));
     public TrajectoryAccelerationConstraint accelConstraint = new ProfileAccelerationConstraint(MecanumDrive.MAX_ACCELERATION);
 
-    public TrajectoryFollower follower;
+    public TrajectoryFollower follower; 
 
     public Navigation(ControlHub controlHub, MecanumDrive mecanumDrive) {
         super(kV, kA, kStatic, MecanumDrive.TRACK_WIDTH_IN);
