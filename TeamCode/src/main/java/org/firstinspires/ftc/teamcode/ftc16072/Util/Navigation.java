@@ -33,6 +33,7 @@ public class Navigation extends com.acmerobotics.roadrunner.drive.MecanumDrive {
     public static double kV = 1.0 / MecanumDrive.MAX_MOTOR_VELOCITY;
     public static double kA = 0.0;
     public static double kStatic = 0;
+    public static double lateralMultiplier = 1.13;
 
     public TrajectoryVelocityConstraint velocityConstraint = new MinVelocityConstraint(Arrays.asList(
             new AngularVelocityConstraint(MecanumDrive.MAX_ANGULAR_VELOCITY),
@@ -43,7 +44,7 @@ public class Navigation extends com.acmerobotics.roadrunner.drive.MecanumDrive {
     public TrajectoryFollower follower; 
 
     public Navigation(Gyro gyro, MecanumDrive mecanumDrive) {
-        super(kV, kA, kStatic, MecanumDrive.TRACK_WIDTH_IN);
+        super(kV, kA, kStatic, MecanumDrive.TRACK_WIDTH_IN,MecanumDrive.TRACK_WIDTH_IN,lateralMultiplier);
 
         this.gyro = gyro;
         this.mecanumDrive = mecanumDrive;
