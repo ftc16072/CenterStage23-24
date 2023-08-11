@@ -35,7 +35,7 @@ public class MecanumDrive implements Mechanism {
     public static double MAX_ANGULAR_ACCELERATION = Math.PI;
 
     //Roadrunner tuning values
-    public static final double LATERAL_MULTIPLIER = 0.92717643;
+    //public static final double LATERAL_MULTIPLIER = 0.92717643;
 
 
     public void init(HardwareMap HwMap) {
