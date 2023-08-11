@@ -33,7 +33,7 @@ public class Navigation extends com.acmerobotics.roadrunner.drive.MecanumDrive {
     ControlHub controlHub;
     MecanumDrive mecanumDrive;
 
-    public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(1, 0, 0);
+    public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(1.7, 0.176, 0);
     public static PIDCoefficients HEADING_PID = new PIDCoefficients(1, 0, 0);
     public static double kV = 1.0 / MecanumDrive.MAX_MOTOR_VELOCITY;
     public static double kA = 0.0;
@@ -86,6 +86,7 @@ public class Navigation extends com.acmerobotics.roadrunner.drive.MecanumDrive {
     @Override
     public void setMotorPowers(double v, double v1, double v2, double v3) {
         mecanumDrive.setPowers(v, v3, v1, v2);
+
     }
 
     public TrajectoryBuilder trajectoryBuilder(Pose2d startPose, Boolean reversed) {
