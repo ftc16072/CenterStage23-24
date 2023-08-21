@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.ftc16072.Mechanisms;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Config
 public class MecanumDrive implements Mechanism {
     DcMotor backLeftMotor;
     DcMotor backRightMotor;
@@ -18,18 +20,22 @@ public class MecanumDrive implements Mechanism {
     DcMotor frontLeftMotor;
 
     public static final double SECS_PER_MIN = 60.0;
+    public static final double MM_PER_IN = 25.4;
 
     // depending on drive motor
-    public static final double TICKS_PER_REV = 1120;
-    public static final double MAX_RPM = 133.9;
-    public static final double WHEEL_DIAM_IN = 4;
-    public static final double TRACK_WIDTH_IN = 12;  // TODO: FOR SIMULATOR
+    public static final double TICKS_PER_REV = 537.7; // for gobilda 5203 312 rpm motors
+    public static final double MAX_RPM = 312;
+    public static final double WHEEL_DIAM_IN = 96 / MM_PER_IN;
+    public static final double TRACK_WIDTH_IN = 16.5;  // measured on strafer chassis
     public static final double MAX_MOTOR_VELOCITY = MAX_RPM * Math.PI * WHEEL_DIAM_IN / SECS_PER_MIN;
 
     public static double MAX_VELOCITY = 30;
     public static double MAX_ACCELERATION = 60;
     public static double MAX_ANGULAR_VELOCITY = Math.PI;
     public static double MAX_ANGULAR_ACCELERATION = Math.PI;
+
+    //Roadrunner tuning values
+    //public static final double LATERAL_MULTIPLIER = 0.92717643;
 
 
     public void init(HardwareMap HwMap) {
@@ -103,6 +109,8 @@ public class MecanumDrive implements Mechanism {
         wheelPositions.add(ticksToInches(frontRightMotor.getCurrentPosition()));
         return wheelPositions;
     }
+
+
 
 
 }

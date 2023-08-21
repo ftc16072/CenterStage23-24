@@ -5,6 +5,7 @@ import static org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.MecanumDrive.MA
 
 import androidx.annotation.NonNull;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.control.PIDCoefficients;
 import com.acmerobotics.roadrunner.drive.DriveSignal;
 import com.acmerobotics.roadrunner.followers.HolonomicPIDVAFollower;
@@ -27,12 +28,13 @@ import org.firstinspires.ftc.teamcode.rr_trajectorysequence.TrajectorySequenceRu
 import java.util.Arrays;
 import java.util.List;
 
+@Config
 public class Navigation extends com.acmerobotics.roadrunner.drive.MecanumDrive {
     ControlHub controlHub;
     MecanumDrive mecanumDrive;
 
-    public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(1, 0, 0);
-    public static PIDCoefficients HEADING_PID = new PIDCoefficients(1, 0, 0);
+    public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(1.7, 0.176, 0);
+    public static PIDCoefficients HEADING_PID = new PIDCoefficients(1.3, 0, 0);
     public static double kV = 1.0 / MecanumDrive.MAX_MOTOR_VELOCITY;
     public static double kA = 0.0;
     public static double kStatic = 0;
@@ -45,7 +47,7 @@ public class Navigation extends com.acmerobotics.roadrunner.drive.MecanumDrive {
     ));
     public TrajectoryAccelerationConstraint accelConstraint = new ProfileAccelerationConstraint(MecanumDrive.MAX_ACCELERATION);
 
-    public TrajectoryFollower follower;
+    public TrajectoryFollower follower; 
 
     public Navigation(ControlHub controlHub, MecanumDrive mecanumDrive) {
         super(kV, kA, kStatic, MecanumDrive.TRACK_WIDTH_IN);
@@ -84,6 +86,7 @@ public class Navigation extends com.acmerobotics.roadrunner.drive.MecanumDrive {
     @Override
     public void setMotorPowers(double v, double v1, double v2, double v3) {
         mecanumDrive.setPowers(v, v3, v1, v2);
+
     }
 
     public TrajectoryBuilder trajectoryBuilder(Pose2d startPose, Boolean reversed) {

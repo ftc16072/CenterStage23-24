@@ -14,7 +14,7 @@ public class Robot {
     List<Mechanism> mechanisms;
     public MecanumDrive mecanumDrive;
     public Navigation nav;
-    ControlHub controlHub;
+    public ControlHub controlHub;
 
     public Robot() {
         controlHub = new ControlHub();
