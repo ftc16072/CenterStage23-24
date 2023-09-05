@@ -86,7 +86,6 @@ public class RR_TrackWidthTuner extends OpMode {
                 trackWidthStats.add(trackWidth);
                 trial++;
                 if(trial < NUM_TRIALS){
-                    trial++;
                     state = State.BEGIN;
                     nextTurnTime = getRuntime() + DELAY_SEC;
                 }

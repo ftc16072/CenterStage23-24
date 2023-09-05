@@ -26,7 +26,7 @@ public class MecanumDrive implements Mechanism {
     public static final double TICKS_PER_REV = 537.7; // for gobilda 5203 312 rpm motors
     public static final double MAX_RPM = 312;
     public static final double WHEEL_DIAM_IN = 96 / MM_PER_IN;
-    public static final double TRACK_WIDTH_IN = 16.5;  // measured on strafer chassis
+    public static double TRACK_WIDTH_IN = 16.65;  // from TrackWidthTuner
     public static final double MAX_MOTOR_VELOCITY = MAX_RPM * Math.PI * WHEEL_DIAM_IN / SECS_PER_MIN;
 
     public static double MAX_VELOCITY = 30;
