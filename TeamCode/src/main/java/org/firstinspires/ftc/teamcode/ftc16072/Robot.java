@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.ftc16072;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.ControlHub;
+import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.LineDetector;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.MecanumDrive;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Mechanism;
 import org.firstinspires.ftc.teamcode.ftc16072.Util.Navigation;
@@ -15,15 +16,18 @@ public class Robot {
     public MecanumDrive mecanumDrive;
     public Navigation nav;
     public ControlHub controlHub;
+    public LineDetector lineDetector;
 
     public Robot() {
         controlHub = new ControlHub();
         mecanumDrive = new MecanumDrive();
+        lineDetector = new LineDetector();
         nav = new Navigation(controlHub, mecanumDrive);
 
         mechanisms = Arrays.asList(
                 mecanumDrive,
-                controlHub
+                controlHub,
+                lineDetector
         );
     }
 
