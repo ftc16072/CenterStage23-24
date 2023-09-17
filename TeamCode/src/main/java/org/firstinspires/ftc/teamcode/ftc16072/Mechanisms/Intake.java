@@ -21,16 +21,16 @@ public class Intake implements Mechanism{
 
     }
     public void Run_intake(){
-        intakeRight.setPower(-1.0);
-        intakeLeft.setPower(1.0);
+        intakeRight.setPower(1.0);
+        intakeLeft.setPower(-1.0);
     }
     public void Stop_intake(){
         intakeRight.setPower(0);
         intakeLeft.setPower(0);
     }
     public void Eject_intake(){
-        intakeRight.setPower(0.5);
-        intakeLeft.setPower(-0.5);
+        intakeRight.setPower(-0.5);
+        intakeLeft.setPower(0.5);
     }
 
     @Override
