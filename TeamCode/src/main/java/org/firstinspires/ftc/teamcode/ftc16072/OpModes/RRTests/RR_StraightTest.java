@@ -1,17 +1,17 @@
 package org.firstinspires.ftc.teamcode.ftc16072.OpModes.RRTests;
 
 import com.acmerobotics.dashboard.FtcDashboard;
-import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.acmerobotics.roadrunner.util.NanoClock;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.teamcode.ftc16072.Robot;
-@Config
 
+@Disabled
 @Autonomous(group = "RR")
 public class RR_StraightTest extends OpMode {
     Robot robot = new Robot();
