@@ -1,11 +1,11 @@
 package org.firstinspires.ftc.teamcode.ftc16072.OpModes.RRTests;
 
 import com.acmerobotics.dashboard.FtcDashboard;
-import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.util.Angle;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.util.MovingStatistics;
 
@@ -13,7 +13,7 @@ import org.firstinspires.ftc.robotcore.internal.system.Misc;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.MecanumDrive;
 import org.firstinspires.ftc.teamcode.ftc16072.Robot;
 
-@Config
+@Disabled
 @Autonomous(group = "RR")
 public class RR_TrackWidthTuner extends OpMode {
     public static double TURN_ANGLE_DEGREES = 180;

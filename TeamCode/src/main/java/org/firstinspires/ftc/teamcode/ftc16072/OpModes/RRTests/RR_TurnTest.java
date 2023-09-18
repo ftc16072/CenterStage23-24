@@ -1,16 +1,16 @@
 package org.firstinspires.ftc.teamcode.ftc16072.OpModes.RRTests;
 
 import com.acmerobotics.dashboard.FtcDashboard;
-import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.ftc16072.Robot;
 
-@Config
+@Disabled
 @Autonomous(group = "RR")
 public class RR_TurnTest extends OpMode {
     public static int TURN_ANGLE_DEGREES = 180;
