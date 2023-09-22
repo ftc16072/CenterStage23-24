@@ -19,10 +19,11 @@ public class Arm implements Mechanism{
     public void init(HardwareMap hwMap) {
         arm = hwMap.get(DcMotorEx.class, "arm");
         wrist = hwMap.get(Servo.class, "wrist");
-
+        arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
     public boolean goToTop(){
-        return false;
+
+        return goTo(40);
     }
 
     public boolean goToBottom(){
@@ -35,6 +36,30 @@ public class Arm implements Mechanism{
 
     public boolean manualDown(){
         return false;
+    }
+
+
+    public boolean goTo(int position){
+        moveMotor(position);
+        moveServo(position);
+        return true;
+
+
+    }
+    public void moveMotor(int position){
+        arm.setTargetPosition(convertToMotorTicks(position));
+        wrist.setPosition(convertToServoPosition(position));
+
+    }
+    public void moveServo(int position){
+
+
+    }
+    public int convertToMotorTicks(int angle){
+        return angle*223;
+    }
+    public int convertToServoPosition(int angle){
+        return angle/300;
     }
 
 
