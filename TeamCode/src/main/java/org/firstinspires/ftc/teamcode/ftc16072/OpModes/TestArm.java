@@ -28,6 +28,12 @@ public class TestArm extends OpMode {
         else if(gamepad1.a) {
             robot.arm.findServoLocation();
         }
+        else if(gamepad1.x){
+            robot.arm.setWristPlacingPos();
+        }
+        else if(gamepad1.b){
+            robot.arm.setWristIntakePos();
+        }
         robot.arm.update(telemetry);
     }
 }
