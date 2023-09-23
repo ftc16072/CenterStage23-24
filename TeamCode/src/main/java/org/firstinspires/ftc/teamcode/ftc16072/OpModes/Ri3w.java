@@ -82,13 +82,13 @@ public class Ri3w extends OpMode {
     */
     public void manipulatorControl(){
         if (gamepad2.y || gamepad1.y) {
-            robot.arm.goToTop();
+            robot.arm.goToPlacementPos();
         } else if (gamepad2.a || gamepad1.a) {
-            robot.arm.goToBottom();
+            robot.arm.goToIntakePos();
         } else if (gamepad2.dpad_up || gamepad1.b) {
-            robot.arm.manualUp();
+            //robot.arm.manualUp();
         } else if (gamepad2.dpad_down || gamepad1.x) {
-            robot.arm.manualDown();
+            //robot.arm.manualDown();
         }
 
         if (gamepad2.right_trigger > TRIGGER_THRESHOLD) {
@@ -97,5 +97,6 @@ public class Ri3w extends OpMode {
         else {
             manipulatorEject = false;
         }
+        robot.arm.update(telemetry);
     }
 }

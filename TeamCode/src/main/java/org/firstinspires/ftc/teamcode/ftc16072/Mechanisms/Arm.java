@@ -1,74 +1,88 @@
 package org.firstinspires.ftc.teamcode.ftc16072.Mechanisms;
 
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.ftc16072.QQTest.QQtest;
-import org.firstinspires.ftc.teamcode.ftc16072.QQTest.TestMotor;
 import org.firstinspires.ftc.teamcode.ftc16072.QQTest.TestServo;
 
 import java.util.Arrays;
 import java.util.List;
 
+@Config
 public class Arm implements Mechanism{
-    DcMotorEx arm;
-    Servo wrist;
+    public static double WRIST_INTAKE_POS = 0.0;
+    public static double WRIST_PLACING_POS = 0.8;
+    public static double WRIST_TESTING_POS = 0.2;
+    public static double ARM_INTAKE_POS = 0.8;
+    public static double ARM_PLACING_POS = 0.0;
+    public static double ARM_TESTING_POS = 0.2;
+    public static double MAX_ARM_CHANGE = 0.02;
+
+    double desiredArmPosition = ARM_INTAKE_POS;
+    Servo armServo;
+    Servo wristServo;
+
     @Override
     public void init(HardwareMap hwMap) {
-        arm = hwMap.get(DcMotorEx.class, "arm");
-        wrist = hwMap.get(Servo.class, "wrist");
-        arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        armServo = hwMap.get(Servo.class, "arm");
+        wristServo = hwMap.get(Servo.class, "wrist");
     }
-    public boolean goToTop(){
-
-        return goTo(40);
+    public void findServoLocation(){
+        wristServo.setPosition(WRIST_INTAKE_POS);
     }
 
-    public boolean goToBottom(){
-        return false;
+    public void setWristIntakePos(){
+        wristServo.setPosition(WRIST_INTAKE_POS);
+    }
+    public void setWristPlacingPos(){
+        wristServo.setPosition(WRIST_PLACING_POS);
+    }
+    public void goToPlacementPos(){
+        desiredArmPosition = ARM_PLACING_POS;
     }
 
-    public boolean manualUp(){
-        return false;
+    public void goToIntakePos(){
+        desiredArmPosition = ARM_INTAKE_POS;
     }
 
-    public boolean manualDown(){
-        return false;
+    public void update(Telemetry telemetry){
+        double armServoPosition = armServo.getPosition();
+
+        wristServo.setPosition(getDesiredWristPosition(armServoPosition));
+
+        double changeAmount = desiredArmPosition - armServoPosition;
+
+        changeAmount = Math.min(MAX_ARM_CHANGE, Math.abs(changeAmount)) * Math.signum(changeAmount);
+
+        armServo.setPosition(armServoPosition + changeAmount);
+
+        telemetry.addData("Desired Pos", desiredArmPosition);
+        telemetry.addData("Actual Pos", armServoPosition);
     }
 
+    public double getDesiredWristPosition(double armTicks){
+        double wristRange = WRIST_PLACING_POS - WRIST_INTAKE_POS;
+        double armRange  = ARM_PLACING_POS - ARM_INTAKE_POS;
 
-    public boolean goTo(int position){
-        moveMotor(position);
-        moveServo(position);
-        return true;
+        double armOffset = armTicks - ARM_INTAKE_POS;
+        double wristOffset = armOffset * (wristRange / armRange);
 
-
+        double wristPos = wristOffset + WRIST_INTAKE_POS;
+        if(wristPos < WRIST_INTAKE_POS){
+            return WRIST_INTAKE_POS;
+        }else if (wristPos > WRIST_PLACING_POS){
+            return WRIST_PLACING_POS;
+        }
+        return wristPos;
     }
-    public void moveMotor(int position){
-        arm.setTargetPosition(convertToMotorTicks(position));
-        wrist.setPosition(convertToServoPosition(position));
-
-    }
-    public void moveServo(int position){
-
-
-    }
-    public int convertToMotorTicks(int angle){
-        return angle*223;
-    }
-    public int convertToServoPosition(int angle){
-        return angle/300;
-    }
-
 
     @Override
     public List<QQtest> getTests() {
         return Arrays.asList(
-                new TestMotor("Arm", 0.2, arm),
-                new TestServo("Wrist", 0, 0.5, wrist));
+                new TestServo("Arm", ARM_TESTING_POS, ARM_INTAKE_POS, armServo),
+                new TestServo("Wrist", WRIST_TESTING_POS, WRIST_INTAKE_POS, wristServo));
     }
-
-
 }
