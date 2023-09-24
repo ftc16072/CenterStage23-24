@@ -40,13 +40,12 @@ public class Arm implements Mechanism{
     public void setWristPlacingPos(){
         wristServo.setPosition(WRIST_PLACING_POS);
     }
-    public void goToPlacementPos(){
-        desiredArmPosition = ARM_PLACING_POS;
-    }
-
-    public void goToIntakePos(){
+    public void setArmPlacingPos(){desiredArmPosition = ARM_PLACING_POS;}
+    public void setArmIntakePos(){
         desiredArmPosition = ARM_INTAKE_POS;
     }
+    public void goToPlacingPos(){setArmPlacingPos(); setWristPlacingPos();}
+    public void goToIntakePos(){setArmIntakePos();setWristIntakePos();}
 
     public void update(Telemetry telemetry){
         double armServoPosition = armServo.getPosition();

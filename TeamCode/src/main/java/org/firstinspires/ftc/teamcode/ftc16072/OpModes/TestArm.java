@@ -20,10 +20,10 @@ public class TestArm extends OpMode {
     @Override
     public void loop() {
         if(gamepad1.left_bumper){
-            robot.arm.goToIntakePos();
+            robot.arm.setArmIntakePos();
         }
         else if(gamepad1.right_bumper){
-            robot.arm.goToPlacementPos();
+            robot.arm.setArmPlacingPos();
         }
         else if(gamepad1.a) {
             robot.arm.findServoLocation();
