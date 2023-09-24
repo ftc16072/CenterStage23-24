@@ -26,7 +26,7 @@ public class TestArm extends OpMode {
             robot.arm.setArmPlacingPos();
         }
         else if(gamepad1.a) {
-            robot.arm.findServoLocation();
+            robot.arm.setWristIntakePos();
         }
         else if(gamepad1.x){
             robot.arm.setWristPlacingPos();
