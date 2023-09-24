@@ -85,6 +85,8 @@ public class Ri3w extends OpMode {
             robot.arm.goToPlacingPos();
         } else if (gamepad2.a || gamepad1.a) {
             robot.arm.goToIntakePos();
+        }else if(gamepad2.b || gamepad1.b){
+            robot.arm.goToDrivingPos();
         } else if (gamepad2.dpad_up || gamepad1.b) {
             //robot.arm.manualUp();
         } else if (gamepad2.dpad_down || gamepad1.x) {

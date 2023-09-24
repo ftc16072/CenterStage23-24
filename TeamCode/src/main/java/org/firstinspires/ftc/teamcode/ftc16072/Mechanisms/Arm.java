@@ -15,13 +15,15 @@ import java.util.List;
 public class Arm implements Mechanism{
     public static double WRIST_INTAKE_POS = 0.0;
     public static double WRIST_PLACING_POS = 0.8;
+    public static double WRIST_DRIVING_POS = 0.2;
     public static double WRIST_TESTING_POS = 0.2;
     public static double ARM_INTAKE_POS = 0.8;
     public static double ARM_PLACING_POS = 0.0;
+    public static double ARM_DRIVING_POS = 0.7;
     public static double ARM_TESTING_POS = 0.2;
     public static double MAX_ARM_CHANGE = 0.02;
 
-    double desiredArmPosition = ARM_INTAKE_POS;
+    double desiredArmPosition = ARM_DRIVING_POS;
     Servo armServo;
     Servo wristServo;
 
@@ -30,22 +32,18 @@ public class Arm implements Mechanism{
         armServo = hwMap.get(Servo.class, "arm");
         wristServo = hwMap.get(Servo.class, "wrist");
     }
-    public void findServoLocation(){
-        wristServo.setPosition(WRIST_INTAKE_POS);
-    }
+    public double findWristLocation(){return  wristServo.getPosition();}
+    public double findArmLocation(){return armServo.getPosition();}
 
-    public void setWristIntakePos(){
-        wristServo.setPosition(WRIST_INTAKE_POS);
-    }
-    public void setWristPlacingPos(){
-        wristServo.setPosition(WRIST_PLACING_POS);
-    }
+    public void setWristIntakePos(){wristServo.setPosition(WRIST_INTAKE_POS);}
+    public void setWristPlacingPos(){wristServo.setPosition(WRIST_PLACING_POS);}
+    public void setWristDrivingPos(){wristServo.setPosition(WRIST_DRIVING_POS);}
     public void setArmPlacingPos(){desiredArmPosition = ARM_PLACING_POS;}
-    public void setArmIntakePos(){
-        desiredArmPosition = ARM_INTAKE_POS;
-    }
+    public void setArmIntakePos(){desiredArmPosition = ARM_INTAKE_POS;}
+    public void setArmDrivingPos(){desiredArmPosition = ARM_DRIVING_POS;}
     public void goToPlacingPos(){setArmPlacingPos(); setWristPlacingPos();}
     public void goToIntakePos(){setArmIntakePos();setWristIntakePos();}
+    public void goToDrivingPos(){setArmDrivingPos();setWristDrivingPos();}
 
     public void update(Telemetry telemetry){
         double armServoPosition = armServo.getPosition();
