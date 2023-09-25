@@ -5,7 +5,9 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.teamcode.ftc16072.Util.TeamPropDetector;
 import org.firstinspires.ftc.vision.VisionPortal;
+import org.firstinspires.ftc.vision.VisionProcessor;
 import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 
@@ -15,19 +17,35 @@ import java.util.List;
 public class VisionBase extends OpMode{
 
     public static double y_multiplier = 1.2;
-    private AprilTagProcessor aprilTag;
+    //private AprilTagProcessor aprilTag;
+
+    TeamPropDetector teamPropDetector = new TeamPropDetector();
+
+
     private VisionPortal visionPortal;
 
     @Override
     public void init() {
-        aprilTag = AprilTagProcessor.easyCreateWithDefaults();
+        WebcamName webcamName= hardwareMap.get(WebcamName.class,"Webcam 1");
+        visionPortal = VisionPortal.easyCreateWithDefaults(webcamName,teamPropDetector);
+        /*aprilTag = AprilTagProcessor.easyCreateWithDefaults();
 
         visionPortal = visionPortal.easyCreateWithDefaults(
                 hardwareMap.get(WebcamName.class, "Webcam"), aprilTag);
-    }
 
+         */
+    }
+    public void init_loop(){
+        int parkingZone = teamPropDetector.getParkingZone();
+        telemetry.addData("parking zone", parkingZone);
+    }
+    public void start(){
+        visionPortal.resumeStreaming();
+    }
     @Override
     public void loop() {
+
+        /*
         telemetry.addData("Hello","World");
 
         List<AprilTagDetection> currentDetections = aprilTag.getDetections();
@@ -41,6 +59,8 @@ public class VisionBase extends OpMode{
                 telemetry.addData("id: ", detection.id);
             //}
         }
+
+         */
 
     }
 }
