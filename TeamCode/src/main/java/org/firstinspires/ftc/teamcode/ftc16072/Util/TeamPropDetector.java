@@ -1,6 +1,8 @@
 package org.firstinspires.ftc.teamcode.ftc16072.Util;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.provider.ContactsContract;
 
 import org.firstinspires.ftc.robotcore.internal.camera.calibration.CameraCalibration;
@@ -33,9 +35,6 @@ public class TeamPropDetector implements VisionProcessor {
     @Override
     public Object processFrame(Mat frame, long captureTimeNanos) {
         Imgproc.cvtColor(frame, hsvMat, Imgproc.COLOR_RGB2HSV);
-        Imgproc.rectangle(frame,leftTapeDetectionZone, rectangleColor);
-        Imgproc.rectangle(frame,middleTapeDetectionZone, rectangleColor);
-        Imgproc.rectangle(frame,rightTapeDetectionZone, rectangleColor);
 
         double RectLeft =  getAvgSaturation(hsvMat, leftTapeDetectionZone);
         double RectMiddle = getAvgSaturation(hsvMat, middleTapeDetectionZone);
@@ -82,11 +81,39 @@ public class TeamPropDetector implements VisionProcessor {
 
 
 
+
     }
 
 
     @Override
     public void onDrawFrame(Canvas canvas, int onscreenWidth, int onscreenHeight, float scaleBmpPxToCanvasPx, float scaleCanvasDensity, Object userContext) {
+        android.graphics.Rect coloredLeftZone = makeGraphicsRect(leftTapeDetectionZone,scaleBmpPxToCanvasPx);
+        android.graphics.Rect coloredRightZone = makeGraphicsRect(rightTapeDetectionZone,scaleBmpPxToCanvasPx);
+        android.graphics.Rect coloredMiddleZone = makeGraphicsRect(middleTapeDetectionZone,scaleBmpPxToCanvasPx);
+
+        Paint selectedColor = new Paint();
+        selectedColor.setColor(Color.GREEN);
+
+        Paint unselectedColor = new Paint(selectedColor);
+        unselectedColor.setColor(Color.GREEN);
+
+        if (getParkingZone() == 1){
+            canvas.drawRect(coloredLeftZone,selectedColor);
+            canvas.drawRect(coloredRightZone,unselectedColor);
+            canvas.drawRect(coloredMiddleZone,unselectedColor);
+
+
+        }else if(getParkingZone() == 2) {
+            canvas.drawRect(coloredLeftZone,unselectedColor);
+            canvas.drawRect(coloredRightZone,unselectedColor);
+            canvas.drawRect(coloredMiddleZone,selectedColor);
+
+        } else if (getParkingZone() == 3) {
+            canvas.drawRect(coloredLeftZone,unselectedColor);
+            canvas.drawRect(coloredRightZone,selectedColor);
+            canvas.drawRect(coloredMiddleZone,unselectedColor);
+
+        }
 
 
     }
