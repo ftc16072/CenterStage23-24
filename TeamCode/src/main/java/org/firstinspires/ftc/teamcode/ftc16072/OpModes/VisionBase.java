@@ -30,7 +30,7 @@ public class VisionBase extends OpMode{
         visionPortal = VisionPortal.easyCreateWithDefaults(webcamName,teamPropDetector);
         /*aprilTag = AprilTagProcessor.easyCreateWithDefaults();
 
-        visionPortal = visionPortal.easyCreateWithDefaults(
+        visionPortal = VisionPortal.easyCreateWithDefaults(
                 hardwareMap.get(WebcamName.class, "Webcam"), aprilTag);
 
          */
@@ -54,7 +54,7 @@ public class VisionBase extends OpMode{
             //if (detection.metadata != null) {
                 telemetry.addLine(String.format("\n==== (ID %d) Unknown", detection.id));
                 telemetry.addLine(String.format("RPY %6.1f(DEGREE)", detection.ftcPose.yaw));
-                telemetry.addLine(String.format("XYZ %6.1f %6.1f  (INCH)", detection.ftcPose.x, detection.ftcPose.y*y_multiplier));
+                telemetry.addLine(String.format("XYZ %6.1f %6.1f  (INCH)", detection.ftcPose.x, detection.ftcPose.y));
                 telemetry.addLine(String.format("RBE %6.1f (INCH)", detection.ftcPose.range));
                 telemetry.addData("id: ", detection.id);
             //}
