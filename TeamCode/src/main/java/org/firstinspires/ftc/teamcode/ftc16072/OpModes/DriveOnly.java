@@ -1,18 +1,14 @@
 package org.firstinspires.ftc.teamcode.ftc16072.OpModes;
 
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.ftc16072.Robot;
-
 @TeleOp()
-public class DriveOnly extends OpMode {
-    Robot robot = new Robot();
+public class DriveOnly extends QQOpMode {
 
     @Override
     public void init() {
         robot.makeDriveOnly();
-        robot.init(hardwareMap);
+        super.init();
     }
 
     @Override

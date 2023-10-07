@@ -26,7 +26,7 @@ public class VisionBase extends OpMode{
     public void start(){
         visionPortal.stopStreaming();
     }
-    
+
     @Override
     public void loop() {
     }

@@ -10,8 +10,7 @@ import org.firstinspires.ftc.teamcode.ftc16072.Robot;
 import java.util.List;
 
 @TeleOp
-public class TestWiring extends OpMode {
-    Robot robot = new Robot();
+public class TestWiring extends QQOpMode {
     List<Mechanism> mechanismList;
     int currentTest;
     int currentMechanism;
@@ -24,7 +23,7 @@ public class TestWiring extends OpMode {
 
 
     public void init() {
-        robot.init(hardwareMap);
+        super.init();
         mechanismList = robot.getMechanismList();
 
     }
