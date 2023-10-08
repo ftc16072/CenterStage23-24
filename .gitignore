@@ -81,3 +81,6 @@ lint/tmp/
 # lint/reports/
 
 gitUsers.xml
+
+# doxygen
+doxygen/
