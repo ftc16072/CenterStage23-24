@@ -6,11 +6,9 @@ import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Arm;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.ControlHub;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.LineDetector;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Intake;
-import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.LineDetector;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.MecanumDrive;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Mechanism;
 import org.firstinspires.ftc.teamcode.ftc16072.Util.Navigation;
-import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Intake;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,7 +22,6 @@ public class Robot {
     public Intake intake;
 
     public Arm arm;
-    public LineDetector lineDetector;
 
     public Robot() {
         controlHub = new ControlHub();
