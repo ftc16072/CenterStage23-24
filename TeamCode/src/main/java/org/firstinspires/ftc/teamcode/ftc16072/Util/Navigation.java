@@ -22,6 +22,7 @@ import com.acmerobotics.roadrunner.trajectory.constraints.TranslationalVelocityC
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.ControlHub;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.MecanumDrive;
+import org.firstinspires.ftc.teamcode.rr_trajectorysequence.TrajectorySequence;
 import org.firstinspires.ftc.teamcode.rr_trajectorysequence.TrajectorySequenceBuilder;
 import org.firstinspires.ftc.teamcode.rr_trajectorysequence.TrajectorySequenceRunner;
 
@@ -39,7 +40,7 @@ public class Navigation extends com.acmerobotics.roadrunner.drive.MecanumDrive {
     public static double kA = 0.0;
     public static double kStatic = 0;
 
-    private TrajectorySequenceRunner trajectorySequenceRunner;
+    private final TrajectorySequenceRunner trajectorySequenceRunner;
 
     public TrajectoryVelocityConstraint velocityConstraint = new MinVelocityConstraint(Arrays.asList(
             new AngularVelocityConstraint(MAX_ANGULAR_VELOCITY),
@@ -115,6 +116,9 @@ public class Navigation extends com.acmerobotics.roadrunner.drive.MecanumDrive {
                         .turn(angle)
                         .build()
         );
+    }
+    public void startNewTrajectorySequence(TrajectorySequence trajectorySequence){
+        trajectorySequenceRunner.followTrajectorySequenceAsync(trajectorySequence);
     }
     public void update() {
         updatePoseEstimate();

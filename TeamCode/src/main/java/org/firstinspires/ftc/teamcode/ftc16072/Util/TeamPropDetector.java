@@ -3,7 +3,6 @@ package org.firstinspires.ftc.teamcode.ftc16072.Util;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.provider.ContactsContract;
 
 import org.firstinspires.ftc.robotcore.internal.camera.calibration.CameraCalibration;
 import org.firstinspires.ftc.vision.VisionProcessor;
@@ -15,8 +14,7 @@ import org.opencv.imgproc.Imgproc;
 
 public class TeamPropDetector implements VisionProcessor {
     //makes "detection zones" for each tape zone
-    int parkingZone = 1;
-    public Scalar rectangleColor = new Scalar(0, 255, 0);
+    TeamPropLocation location = TeamPropLocation.NOT_DETECTED;
     public Rect leftTapeDetectionZone = new Rect(140,100,50,50);
     public Rect middleTapeDetectionZone = new Rect(40,20,50,50);
     public Rect rightTapeDetectionZone = new Rect(70,30,50,50);
@@ -36,29 +34,23 @@ public class TeamPropDetector implements VisionProcessor {
     public Object processFrame(Mat frame, long captureTimeNanos) {
         Imgproc.cvtColor(frame, hsvMat, Imgproc.COLOR_RGB2HSV);
 
-        double RectLeft =  getAvgSaturation(hsvMat, leftTapeDetectionZone);
-        double RectMiddle = getAvgSaturation(hsvMat, middleTapeDetectionZone);
-        double RectRight  = getAvgSaturation(hsvMat, rightTapeDetectionZone);
+        double leftSaturation =  getAvgSaturation(hsvMat, leftTapeDetectionZone);
+        double middleSaturation = getAvgSaturation(hsvMat, middleTapeDetectionZone);
+        double rightSaturation  = getAvgSaturation(hsvMat, rightTapeDetectionZone);
 
 
-        if((RectLeft>RectMiddle) && (RectLeft>RectRight)) {
-            parkingZone = 1;
-            return 1;
-        } else if ((RectMiddle>RectLeft) && (RectMiddle>RectRight)){
-            parkingZone = 2;
-            return 2;
-        }else if ((RectRight>RectMiddle) && (RectRight>RectLeft)){
-            parkingZone = 3;
-            return 3;
+        if((leftSaturation>middleSaturation) && (leftSaturation>rightSaturation)) {
+            location = TeamPropLocation.LEFT_SPIKE;
+        } else if ((middleSaturation>leftSaturation) && (middleSaturation>rightSaturation)){
+            location = TeamPropLocation.MIDDLE_SPIKE;
+        }else if ((rightSaturation>middleSaturation) && (rightSaturation>leftSaturation)){
+            location = TeamPropLocation.RIGHT_SPIKE;
         }
-        parkingZone = 1; // guess if it cant decide
-        return 1;
-
-
+        return location;
 
     }
-    public int getParkingZone(){
-        return parkingZone;
+    public TeamPropLocation getPropLocation(){
+        return location;
     }
 
     //gets average hsv values from a specific submat created earlier
@@ -78,10 +70,6 @@ public class TeamPropDetector implements VisionProcessor {
         int bottom = top + Math.round(rect.height*scaleBmpPxToCanvasPx);
 
         return new android.graphics.Rect(left,top,right,bottom);
-
-
-
-
     }
 
 
@@ -95,26 +83,23 @@ public class TeamPropDetector implements VisionProcessor {
         selectedColor.setColor(Color.GREEN);
 
         Paint unselectedColor = new Paint(selectedColor);
-        unselectedColor.setColor(Color.GREEN);
+        unselectedColor.setColor(Color.RED);
 
-        if (getParkingZone() == 1){
-            canvas.drawRect(coloredLeftZone,selectedColor);
-            canvas.drawRect(coloredRightZone,unselectedColor);
-            canvas.drawRect(coloredMiddleZone,unselectedColor);
+        canvas.drawRect(coloredLeftZone,unselectedColor);
+        canvas.drawRect(coloredRightZone,unselectedColor);
+        canvas.drawRect(coloredMiddleZone,unselectedColor);
 
-
-        }else if(getParkingZone() == 2) {
-            canvas.drawRect(coloredLeftZone,unselectedColor);
-            canvas.drawRect(coloredRightZone,unselectedColor);
-            canvas.drawRect(coloredMiddleZone,selectedColor);
-
-        } else if (getParkingZone() == 3) {
-            canvas.drawRect(coloredLeftZone,unselectedColor);
-            canvas.drawRect(coloredRightZone,selectedColor);
-            canvas.drawRect(coloredMiddleZone,unselectedColor);
+        switch(getPropLocation()){
+            case LEFT_SPIKE:
+                canvas.drawRect(coloredLeftZone,selectedColor);
+                break;
+            case RIGHT_SPIKE:
+                canvas.drawRect(coloredRightZone,selectedColor);
+                break;
+            case MIDDLE_SPIKE:
+                canvas.drawRect(coloredMiddleZone,selectedColor);
+                break;
 
         }
-
-
     }
 }

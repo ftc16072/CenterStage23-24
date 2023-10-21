@@ -6,13 +6,12 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.ftc16072.Robot;
 
 @TeleOp()
-public class FieldRelative extends OpMode {
-    Robot robot = new Robot();
+public class FieldRelative extends QQOpMode {
 
     @Override
     public void init() {
         robot.makeDriveOnly();
-        robot.init(hardwareMap);
+        super.init();
     }
 
     @Override
