@@ -2,14 +2,14 @@ package org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees;
 
 import org.firstinspires.ftc.teamcode.ftc16072.OpModes.QQOpMode;
 
+import java.util.Arrays;
 import java.util.List;
 
-public class SequenceNode extends Node {
+public class Sequence extends Node {
     List<Node> children;
 
-    public SequenceNode(List<Node> children) {
-        this.children = children;
-
+    public Sequence(Node ... a) {
+        this.children = Arrays.asList(a);
     }
 
     @Override
@@ -20,7 +20,6 @@ public class SequenceNode extends Node {
                 return State.FAILURE;
             } else if (state == State.RUNNING) {
                 return State.RUNNING;
-
             }
         }
         return State.SUCCESS;

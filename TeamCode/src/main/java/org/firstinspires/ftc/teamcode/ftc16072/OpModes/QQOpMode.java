@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.ftc16072.OpModes;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Node;
 import org.firstinspires.ftc.teamcode.ftc16072.Robot;
 import org.firstinspires.ftc.teamcode.ftc16072.Util.BlackBoard;
 
@@ -19,10 +18,7 @@ abstract public class QQOpMode extends OpMode {
      * every opmode initializes robot with hardware map
       */
     public void init(){
-        Node current;
         robot.init(hardwareMap);
-        current = board.get(Node.class, "current");
-        board.add("current", current);
     }
 
 }
