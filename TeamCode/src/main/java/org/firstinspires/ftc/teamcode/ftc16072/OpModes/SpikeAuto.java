@@ -10,6 +10,11 @@ public class SpikeAuto extends VisionBase{
     Node root = SpikeAutoTree.root();
     boolean done;
     @Override
+    public void init(){
+        robot.makeDriveOnly();
+        super.init();
+    }
+    @Override
     public void loop() {
         if(!done){
             Node.State state = root.tick(this);
