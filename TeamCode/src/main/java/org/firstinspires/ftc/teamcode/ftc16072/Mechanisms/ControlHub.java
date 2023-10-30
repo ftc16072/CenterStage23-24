@@ -38,6 +38,7 @@ public class ControlHub implements Mechanism {
         // Now initialize the IMU with this mounting orientation
         // Note: if you choose two conflicting directions, this initialization will cause a code exception.
         gyro.initialize(new IMU.Parameters(orientationOnRobot));
+        gyro.resetYaw();
     }
 
     @Override
