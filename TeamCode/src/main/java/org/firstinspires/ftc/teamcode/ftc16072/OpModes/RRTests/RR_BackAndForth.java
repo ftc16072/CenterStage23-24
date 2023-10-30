@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
-import org.firstinspires.ftc.teamcode.ftc16072.Actions.DelayAction;
+
 import org.firstinspires.ftc.teamcode.ftc16072.Robot;
 
 @Disabled
@@ -55,7 +55,7 @@ public class RR_BackAndForth extends OpMode {
                 break;
             case AWAY:
                 if (robot.nav.isDoneFollowing(currentPose)) {
-                    new DelayAction(2);
+
                     state = State.RETURN;
                     trajectory = robot.nav.trajectoryBuilder(currentPose, true)
                             .back(48)
