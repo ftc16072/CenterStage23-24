@@ -13,13 +13,13 @@ import java.util.List;
 
 @Config
 public class Arm implements Mechanism{
-    public static double WRIST_INTAKE_POS = 0.0;
-    public static double WRIST_PLACING_POS = 0.8;
-    public static double WRIST_DRIVING_POS = 0.2;
+    public static double WRIST_INTAKE_POS = 0.25;
+    public static double WRIST_PLACING_POS = 1;
+    public static double WRIST_DRIVING_POS = 0.4;
     public static double WRIST_TESTING_POS = 0.2;
-    public static double ARM_INTAKE_POS = 0.8;
+    public static double ARM_INTAKE_POS = 1;
     public static double ARM_PLACING_POS = 0.0;
-    public static double ARM_DRIVING_POS = 0.7;
+    public static double ARM_DRIVING_POS = 0.8;
     public static double ARM_TESTING_POS = 0.2;
     public static double MAX_ARM_CHANGE = 0.02;
 

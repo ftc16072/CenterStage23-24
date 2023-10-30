@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Intake implements Mechanism{
-    public static final double Intake_Speed = 1.0;
+    public static final double Intake_Speed = 0.3;
     public static final double Eject_Speed = -0.5;
     private DcMotor intakeLeft;
  private DcMotor intakeRight;
