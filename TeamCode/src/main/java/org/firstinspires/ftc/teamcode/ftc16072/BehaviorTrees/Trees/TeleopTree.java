@@ -1,6 +1,9 @@
 package org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trees;
 
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Failover;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Node;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Parallel;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Sequence;
 
 /*
 http://behaviortrees.ftcteams.com/
@@ -12,7 +15,8 @@ http://behaviortrees.ftcteams.com/
 | | | ->
 | | | | ?
 | | | | | (IsLastThreeSeconds)
-| | | | | -> (IsDroneLocation)
+| | | | | ->
+| | | | | | (IsDroneLocation)
 | | | | | | (IsDroneButtonPressed)
 | | | | (HaveNotLaunchedDrone)
 | | | | [LaunchDrone]
@@ -51,6 +55,67 @@ http://behaviortrees.ftcteams.com/
 
  */
 public class TeleopTree {
+    public static Node root(){
+        return new Parallel(4,
+                new Sequence(
+                    new IsEndgame(),
+
+                    new Parallel(2,
+                            new Sequence(
+                                    new Failover(
+                                            new IsLastThreeSeconds(),
+                                            new Sequence(
+                                                new IsDroneLocation(),
+                                                new IsDroneButtonPressed()
+
+
+                                            )
+                                    ),
+                                    new HaveNotLaunchedDrone(),
+                                    new LaunchDrone()
+                            ),
+
+                            new Sequence(
+                                    new IsClimbLocation(),
+                                    new IsClimbButtonPressed(),
+                                    new Climb()
+                            )
+                    )
+                ),
+
+                new Failover(
+                        new Sequence(
+                                new HasLessThan2Pixels(),
+                                new IfIntakeButtonPressed(),
+                                new SpinIntakeMotor()
+                        ),
+                        new StopIntakeMotor()
+                ),
+
+                new Parallel(2,
+                        new Sequence(
+                                new Has1or2Pixels(),
+                                new IfExtendSlideButtonPressed(),
+                                new ExtendSlides(),
+                                new Parallel(2,
+                                        new Sequence(
+                                                new IfLeftReleasePixelButtonPressed(),
+                                                new ReleaseLeftPixel()
+                                        ),
+                                        new Sequence(
+                                                new IfRightReleasePixelButtonPressed(),
+                                                new ReleaseRightPixel()
+                                        )
+                                )
+                        ),
+                        new Sequence(
+                                new AreSlidesNotExtended(),
+                                new IsControllerDriving(),
+                                new Drive()
+                        )
+                )
+        );
+    }
 
 
 }
