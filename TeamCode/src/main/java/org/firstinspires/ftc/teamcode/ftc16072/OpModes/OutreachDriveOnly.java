@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.ftc16072.OpModes;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 @TeleOp()
-public class Outreach extends QQOpMode {
+public class OutreachDriveOnly extends QQOpMode {
     public static final double OUTREACH_SPEED = .5;
     public static final double OUTREACH_TURBO_SPEED = .75;
     public static final double MAX_SPEED = 1.0;
