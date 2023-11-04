@@ -25,6 +25,7 @@ public class Robot {
     public Camera cameraBack;
     public Arm arm;
 
+
     public Robot() {
         cameraFront = new Camera(Camera.CameraPosition.FRONT);
         cameraBack = new Camera(Camera.CameraPosition.BACK);
