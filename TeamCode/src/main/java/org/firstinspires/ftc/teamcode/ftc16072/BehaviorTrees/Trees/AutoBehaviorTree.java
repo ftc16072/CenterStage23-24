@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trees;
 
 public class AutoBehaviorTree {
 }/*
-
 ->
 |  ?
 |  |  ->
@@ -16,9 +15,10 @@ public class AutoBehaviorTree {
 |  ?
 |  |  ->  (isClose)
 |  |  |
-|  |  |  ->(isRed)
-|  |  |  |[SetRedCloseTrajectory]
-|  |  |  [SetBlueCloseTrajectory]
+|  |  |  ?
+|  |  |  |  ->(isRed)
+|  |  |  |  |[SetRedCloseTrajectory]
+|  |  |  |  [SetBlueCloseTrajectory]
 |  |  ->  (isRed)
 |  |  |  [SetRedFarTrajectory]
 |  |  [SetBlueFarTrajectory]
@@ -31,17 +31,5 @@ public class AutoBehaviorTree {
 |  |  [SetMiddleAprilTagTrajectory]
 |  [FollowTrajectory]
 |  [PlacePixel]
-|  ?
-|  |  -> (isRed)
-|  |  |  -> (IsLeftSpike)
-|  |  |  |  [SetRedLeftAprilTagTrajectory]
-|  |  |  -> (IsRightSpike)
-|  |  |  |  [SetRedRightAprilTagTrajectory]
-|  |  |  [SetRedMiddleAprilTagTrajectory]
-|  |  -> (IsLeftSpike)
-|  |  |  [SetBlueLeftAprilTagTrajectory]
-|  |  -> (IsRightSpike)
-|  |  |  [SeBlueRightAprilTagTrajectory]
-|  |  [SetBlueMiddleAprilTagTrajectory]
 |  [CycleandPark]
 */
