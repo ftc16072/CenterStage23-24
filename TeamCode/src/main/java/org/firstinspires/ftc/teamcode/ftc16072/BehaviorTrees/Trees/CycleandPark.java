@@ -5,40 +5,33 @@ public class CycleandPark {
 /*
 ->
 |  ? (enoughTimeForCycle)
+|  | (isParked)
 |  |  -> (isRed)
-|  |  |  ?
-|  |  |  | -> (isLocationIntake)
-|  |  |  |  | [setRedIntakeParkTrajectory]
-|  |  |  | -> (isLocationPlacing)
-|  |  |  |  | [setRedPlacingParkTrajectory]
+|  |  |  [setRedParkTrajectory]
 |  |  -> !(isRed)
-|  |  |  ?
-|  |  |  | -> (isLocationIntake)
-|  |  |  |  | [setBlueIntakeParkTrajectory]
-|  |  |  | -> (isLocationPlacing)
-|  |  |  |  | [setBluePlacingParkTrajectory]
+|  |  |  [setBlueParkTrajectory]
 |  | -> [FollowTrajectory]
-|  ?
-|  | -> (isRed)
-|  |  |  ?
-|  |  |  | -> (isLeftSpike)
-|  |  |  |  | [setRedLeftTrajectory]
-|  |  |  | -> (isRightSpike)
-|  |  |  |  | [setRedRightTrajectory]
-|  |  |  |  [setRedMiddleTrajectory]
-|  |  ->
-|  |  |  (isLeftSpike)
-|  |  |  [setRedLeftTrajectory]
-|  |  -> (isRightSpike)
-|  |  |  [setRedRightTrajectory]
-|  |  [setRedMiddleTrajectory]
-|  [followTrajectory]
-|  [setLocationIntake]
-|  ? (has2Pixels)
-|  |  [intakePixel]
-|  ?
-|  |  ->  (isRed)
-|  |  | [setRedPlacingTrajectory]
-|  |  [setBluePlacingTrajectory]
-|  [followTrajectory]
-|  [setLocationPlacing] */
+|  -> !(isParked)
+|  |  ?
+|  |  | -> (isRed)
+|  |  |  |  ?
+|  |  |  |  | -> (isLeftSpike)
+|  |  |  |  |  | [setRedLeftTrajectory]
+|  |  |  |  | -> (isRightSpike)
+|  |  |  |  |  | [setRedRightTrajectory]
+|  |  |  |  |  [setRedMiddleTrajectory]
+|  |  |  ->
+|  |  |  |  (isLeftSpike)
+|  |  |  |  [setBlueLeftTrajectory]
+|  |  |  -> (isRightSpike)
+|  |  |  |  [setBlueRightTrajectory]
+|  |  |  [setBlueMiddleTrajectory]
+|  |  [FollowTrajectory]
+|  |  ? (has2Pixels)
+|  |  |  [intakePixel]
+|  |  ?
+|  |  |  ->  (isRed)
+|  |  |  | [setRedPlacingTrajectory]
+|  |  |  [setBluePlacingTrajectory]
+|  |  [FollowTrajectory]
+ */
