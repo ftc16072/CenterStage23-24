@@ -9,6 +9,7 @@ import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Intake;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.MecanumDrive;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Mechanism;
 import org.firstinspires.ftc.teamcode.ftc16072.Util.Navigation;
+import org.firstinspires.ftc.vision.VisionPortal;
 
 import java.util.Arrays;
 import java.util.List;
@@ -56,6 +57,10 @@ public class Robot {
     }
 
     public void init(HardwareMap hwMap) {
+        int[] ids = VisionPortal.makeMultiPortalView(2, VisionPortal.MultiPortalLayout.HORIZONTAL);
+        cameraFront.setViewPortID(ids[0]);
+        cameraBack.setViewPortID(ids[1]);
+
         for (Mechanism mechanism : mechanisms) {
             mechanism.init(hwMap);
         }
