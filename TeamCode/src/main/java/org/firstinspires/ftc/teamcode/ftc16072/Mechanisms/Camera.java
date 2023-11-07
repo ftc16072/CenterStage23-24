@@ -3,6 +3,8 @@ package org.firstinspires.ftc.teamcode.ftc16072.Mechanisms;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 
+import android.util.Size;
+
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.Position;
@@ -31,6 +33,8 @@ public class Camera implements Mechanism{
     String cameraName;
     Position position;
     WebcamName webcamName;
+    int viewPortID;
+
     public enum CameraPosition {
         FRONT, BACK
     }
@@ -41,17 +45,29 @@ public class Camera implements Mechanism{
         } else{
             cameraName = "BackCamera";
             this.position = new Position(DistanceUnit.CM, BACK_CAMERA_X, BACK_CAMERA_Y, BACK_CAMERA_Z, 0);
-
         }
-
     }
+    public void setViewPortID(int viewPortID){
+        this.viewPortID = viewPortID;
+    }
+
     @Override
     public void init(HardwareMap hwMap) {
-        aprilTag = AprilTagProcessor.easyCreateWithDefaults();
+        aprilTag = new AprilTagProcessor.Builder()
+                .setDrawAxes(true)
+                .setDrawTagID(true)
+                .setDrawTagOutline(true)
+                .setLensIntrinsics(825.125, 825.125, 287.391, 219.223)
+                .build();
 
         webcamName= hwMap.get(WebcamName.class,cameraName);
-        visionPortal = VisionPortal.easyCreateWithDefaults(webcamName,aprilTag);
+        visionPortal = new VisionPortal.Builder().setCamera(hwMap.get(WebcamName.class, cameraName))
+                            .setCameraResolution(new Size(640, 480))
+                            .setLiveViewContainerId(viewPortID)
+                            .addProcessor(aprilTag)
+                            .build();
     }
+
     public List<AprilTagDetection> getAprilTagDetections(){ // return robot position
         return aprilTag.getDetections();
     }
