@@ -22,6 +22,7 @@ public class AprilTag extends VisionBase {
         telemetry.addLine("------------");
     }
     public void printAprilTags( List<AprilTagDetection> detections){
+        telemetry.addLine(String.format("(%d tags found)", detections.size()));
         for(AprilTagDetection detection : detections){
             telemetry.addLine(String.format(Locale.US, "(%d) XYZ - angle: %.1f %.1f %.1f %.1f", detection.id, detection.ftcPose.x,
                     detection.ftcPose.y, detection.ftcPose.z, detection.ftcPose.yaw));
