@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 
 import android.util.Size;
+
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.Position;
@@ -52,7 +53,12 @@ public class Camera implements Mechanism{
 
     @Override
     public void init(HardwareMap hwMap) {
-        aprilTag = AprilTagProcessor.easyCreateWithDefaults();
+        aprilTag = new AprilTagProcessor.Builder()
+                .setDrawAxes(true)
+                .setDrawTagID(true)
+                .setDrawTagOutline(true)
+                .setLensIntrinsics(825.125, 825.125, 287.391, 219.223)
+                .build();
 
         webcamName= hwMap.get(WebcamName.class,cameraName);
         visionPortal = new VisionPortal.Builder().setCamera(hwMap.get(WebcamName.class, cameraName))
