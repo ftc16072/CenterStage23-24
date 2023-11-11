@@ -48,10 +48,17 @@ http://behaviortrees.ftcteams.com/
 | | | | | [ReleaseRightPixel]
 
 
-| | ->
-| | | (AreSlidesNotExtended)
+| | ?
+| | | ->
+
+| | | | (AreSlidesNotExtended)
+| | | | ->
+| | | | | (IsControllerDriving)
+| | | | | [Drive]
 | | | (IsControllerDriving)
-| | | [Drive]
+| | | (AreSlidesExtended)
+| | | [SlowDrive]
+
 
 
 
