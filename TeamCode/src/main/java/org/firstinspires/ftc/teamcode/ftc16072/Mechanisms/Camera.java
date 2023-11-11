@@ -14,6 +14,7 @@ import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 
+import java.lang.reflect.Array;
 import java.util.Collections;
 import java.util.List;
 
@@ -70,6 +71,23 @@ public class Camera implements Mechanism{
 
     public List<AprilTagDetection> getAprilTagDetections(){ // return robot position
         return aprilTag.getDetections();
+    }
+    // TODO this program takes the first april tag reading. it needs to be able to sort through multiple ones
+    // TODO getY, getX, and getHeading functions are all aprilTag relavtive, not field. this needs to be changed
+    public double getY(){
+        List<AprilTagDetection> detections = aprilTag.getDetections();
+        return  detections.get(0).ftcPose.y;
+    }
+    public double  getX(){
+        List<AprilTagDetection> detections = aprilTag.getDetections();
+        return detections.get(0).ftcPose.x;
+    }
+    public double getHeading(){
+        List<AprilTagDetection> detections = aprilTag.getDetections();
+        return  detections.get(0).ftcPose.yaw;
+    }
+    public boolean isTagDetected(){
+        return (aprilTag.getDetections().size() != 0);
     }
 
     @Override

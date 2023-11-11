@@ -34,17 +34,17 @@ public class Robot {
         controlHub = new ControlHub();
         mecanumDrive = new MecanumDrive();
         lineDetector = new LineDetector();
-        nav = new Navigation(controlHub, mecanumDrive);
+        nav = new Navigation(controlHub, mecanumDrive, cameraFront,cameraBack);
         intake = new Intake();
         holdingCell = new HoldingCell();
 
         mechanisms = Arrays.asList(
-                mecanumDrive,
+                //mecanumDrive,
                 controlHub,
                 // intake,
                 cameraBack,
-                cameraFront,
-                holdingCell
+                cameraFront
+                //holdingCell
                 // lineDetector
         );
     }
