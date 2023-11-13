@@ -66,6 +66,7 @@ public class Navigation extends com.acmerobotics.roadrunner.drive.MecanumDrive {
         follower = new HolonomicPIDVAFollower(TRANSLATIONAL_PID, TRANSLATIONAL_PID, HEADING_PID,
                 new Pose2d(0.5, 0.5, Math.toRadians(5.0)), 0.5);
 
+
         trajectorySequenceRunner = new TrajectorySequenceRunner(
                 follower, HEADING_PID, controlHub.batteryVoltageSensor);
     }
@@ -130,12 +131,13 @@ public class Navigation extends com.acmerobotics.roadrunner.drive.MecanumDrive {
     public void update() {
         updatePoseEstimate();
         if (mecanumDrive.getAverageDrivetrainPower()<0.1 && cameraFront.isTagDetected()){
-            Pose2d robotPos = new Pose2d(cameraFront.getX(),cameraFront.getY(),cameraFront.getHeading());
+            Pose2d robotPos = cameraBack.getPose();
             DriveSignal signal = trajectorySequenceRunner.update(robotPos, getPoseVelocity());
 
         } else if (mecanumDrive.getAverageDrivetrainPower()<0.1 && cameraBack.isTagDetected()){
-            Pose2d robotPos = new Pose2d(cameraBack.getX(),cameraBack.getY(),cameraBack.getHeading());
+            Pose2d robotPos = cameraBack.getPose();
             DriveSignal signal = trajectorySequenceRunner.update(robotPos, getPoseVelocity());
+
 
         } else {
             DriveSignal signal = trajectorySequenceRunner.update(getPoseEstimate(), getPoseVelocity());

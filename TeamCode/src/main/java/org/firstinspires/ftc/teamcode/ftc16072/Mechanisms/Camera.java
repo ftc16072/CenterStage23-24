@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.ftc16072.Mechanisms;
 
+import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 
@@ -15,7 +16,9 @@ import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 
 import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.Hashtable;
 import java.util.List;
 
 //TODO: Get to work with multiple cameras
@@ -26,6 +29,42 @@ public class Camera implements Mechanism{
     public static final int BACK_CAMERA_X = 1;
     public static final int BACK_CAMERA_Y = 2;
     public static final int BACK_CAMERA_Z = 3;
+    public enum TeamColor{
+        BLUE,
+        RED,
+    }
+    public enum AprilTagIds{
+        TAG1,
+        TAG2,
+        TAG3,
+        TAG4,
+        TAG5,
+        TAG6,
+
+    }
+    public void fillPositions(TeamColor teamColor){
+        if (teamColor == TeamColor.RED){
+            aprilTagPositions.clear();
+            aprilTagPositions.put(1, new Pose2d(1,2,3));
+            aprilTagPositions.put(2, new Pose2d(1,2,3));
+            aprilTagPositions.put(3, new Pose2d(1,2,3));
+            aprilTagPositions.put(4, new Pose2d(1,2,3));
+            aprilTagPositions.put(5, new Pose2d(1,2,3));
+            aprilTagPositions.put(5, new Pose2d(1,2,3));
+
+        } else {
+            aprilTagPositions.clear();
+            aprilTagPositions.put(1, new Pose2d(1,2,3));
+            aprilTagPositions.put(2, new Pose2d(1,2,3));
+            aprilTagPositions.put(3, new Pose2d(1,2,3));
+            aprilTagPositions.put(4, new Pose2d(1,2,3));
+            aprilTagPositions.put(5, new Pose2d(1,2,3));
+            aprilTagPositions.put(5, new Pose2d(1,2,3));
+
+        }
+
+    }
+    Hashtable<Integer, Pose2d> aprilTagPositions = new Hashtable<>();
 
     private AprilTagProcessor aprilTag;
 
@@ -74,17 +113,20 @@ public class Camera implements Mechanism{
     }
     // TODO this program takes the first april tag reading. it needs to be able to sort through multiple ones
     // TODO getY, getX, and getHeading functions are all aprilTag relavtive, not field. this needs to be changed
-    public double getY(){
+
+    public Pose2d getPose(){
         List<AprilTagDetection> detections = aprilTag.getDetections();
-        return  detections.get(0).ftcPose.y;
+        AprilTagDetection detection = detections.get(1);
+        Pose2d aprilTagLocation = aprilTagPositions.get(detection.id);
+
+        return new Pose2d(aprilTagLocation.getX()+detection.ftcPose.y, aprilTagLocation.getY()+detection.ftcPose.x,aprilTagLocation.getHeading()+detection.ftcPose.yaw);
+
     }
-    public double  getX(){
-        List<AprilTagDetection> detections = aprilTag.getDetections();
-        return detections.get(0).ftcPose.x;
-    }
-    public double getHeading(){
-        List<AprilTagDetection> detections = aprilTag.getDetections();
-        return  detections.get(0).ftcPose.yaw;
+    public AprilTagDetection selectTag(List<AprilTagDetection> detections ){
+        for (AprilTagDetection detection: detections){
+            //detection is smallest
+
+        }
     }
     public boolean isTagDetected(){
         return (aprilTag.getDetections().size() != 0);
