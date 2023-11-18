@@ -116,17 +116,20 @@ public class Camera implements Mechanism{
 
     public Pose2d getPose(){
         List<AprilTagDetection> detections = aprilTag.getDetections();
-        AprilTagDetection detection = detections.get(1);
+        AprilTagDetection detection = selectTag(detections);
         Pose2d aprilTagLocation = aprilTagPositions.get(detection.id);
 
         return new Pose2d(aprilTagLocation.getX()+detection.ftcPose.y, aprilTagLocation.getY()+detection.ftcPose.x,aprilTagLocation.getHeading()+detection.ftcPose.yaw);
 
     }
-    public AprilTagDetection selectTag(List<AprilTagDetection> detections ){
+    public AprilTagDetection selectTag(List<AprilTagDetection> detections ){ // this method selects the april tag that is most straight on relative to the robot
+        AprilTagDetection smallestDetection = detections.get(0);
         for (AprilTagDetection detection: detections){
-            //detection is smallest
-
+            if (smallestDetection.ftcPose.yaw>detection.ftcPose.yaw){
+                smallestDetection = detection;
+            }
         }
+        return smallestDetection;
     }
     public boolean isTagDetected(){
         return (aprilTag.getDetections().size() != 0);
