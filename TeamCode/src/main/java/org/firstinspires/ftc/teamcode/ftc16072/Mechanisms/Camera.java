@@ -5,11 +5,13 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import android.util.Size;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.Position;
 import org.firstinspires.ftc.teamcode.ftc16072.QQTest.QQtest;
 import org.firstinspires.ftc.teamcode.ftc16072.QQTest.TestCamera;
+import org.firstinspires.ftc.teamcode.ftc16072.Util.PixelDetector;
 import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
@@ -29,6 +31,8 @@ public class Camera implements Mechanism{
     private AprilTagProcessor aprilTag;
 
     private VisionPortal visionPortal;
+
+    private PixelDetector pixelDetector;
 
     String cameraName;
     Position position;
@@ -59,17 +63,26 @@ public class Camera implements Mechanism{
                 .setDrawTagOutline(true)
                 .setLensIntrinsics(825.125, 825.125, 287.391, 219.223)
                 .build();
+        pixelDetector = new PixelDetector();
 
         webcamName= hwMap.get(WebcamName.class,cameraName);
         visionPortal = new VisionPortal.Builder().setCamera(hwMap.get(WebcamName.class, cameraName))
                             .setCameraResolution(new Size(640, 480))
                             .setLiveViewContainerId(viewPortID)
-                            .addProcessor(aprilTag)
+                            .addProcessor(pixelDetector)
                             .build();
     }
 
     public List<AprilTagDetection> getAprilTagDetections(){ // return robot position
         return aprilTag.getDetections();
+    }
+
+    public void telemetryRobotPos(Telemetry telemetry){
+        telemetry.addData("heading: ",pixelDetector.getHeadingToPixel());
+        telemetry.addData("distance: ",pixelDetector.getDistanceToPixel());
+        telemetry.addData("length: ",pixelDetector.getContourListLength());
+        telemetry.addData("count: ", pixelDetector.getCount());
+
     }
 
     @Override

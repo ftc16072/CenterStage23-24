@@ -14,8 +14,10 @@ import org.opencv.core.MatOfPoint;
 import org.opencv.core.MatOfPoint2f;
 import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
+import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
 
+import java.io.BufferedInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,11 +28,14 @@ public class PixelDetector implements VisionProcessor {
     //submats are smaller portions of the frame that you can get values from
     Mat submat = new Mat();
     Mat hsvMat = new Mat();
-    public Scalar lower_white = new Scalar(0,0,0);
-    public Scalar upper_white = new Scalar(0,0,0);
+    public Scalar lower_white = new Scalar(11.3, 0.0, 82.2, 0.0);
+    public Scalar upper_white = new Scalar(107.7, 121.8, 255.0, 0.0);
     public double focalLength= 0.15748; //in
 
     public double pixelWidth = 3.5;
+    public int contourListLength;
+    public int count;
+    public Rect rectangle;
 
 
 
@@ -44,13 +49,20 @@ public class PixelDetector implements VisionProcessor {
     public void init(int width, int height, CameraCalibration calibration) {
 
     }
-    public double getDistanceToPixel(double pixelWidthRef){
-        return (focalLength*pixelWidth)/pixelWidthRef;
+
+    public double getDistanceToPixel(){
+        return (focalLength*pixelWidth)/w;
 
 
 
     }
-    public double getHeadingToPixel(double x){
+    public int getContourListLength(){
+        return contourListLength;
+    }
+    public int getCount(){
+        return count;
+    }
+    public double getHeadingToPixel(){
         return 55*(x/640);
     }
 
@@ -63,47 +75,39 @@ public class PixelDetector implements VisionProcessor {
     @Override
     public Object processFrame(Mat frame, long captureTimeNanos) {
 
-        Imgproc.cvtColor(frame, hsvMat, Imgproc.COLOR_RGB2HSV);
-        Core.inRange(hsvMat,lower_white,upper_white,outmat);
+        Imgproc.cvtColor(frame, frame, Imgproc.COLOR_RGB2HSV);
+        Core.inRange(frame,lower_white,upper_white,frame);
         List<MatOfPoint> contours = new ArrayList<>();
         Mat binary = new Mat();
         Mat hierarchy = new Mat();
+        Imgproc.GaussianBlur(frame,frame, new  Size(19,19),0);
+        Imgproc.findContours(frame,contours,hierarchy,Imgproc.RETR_TREE, Imgproc.CHAIN_APPROX_SIMPLE);
+        contourListLength = contours.size();
 
-        Imgproc.findContours(outmat,contours,hierarchy,Imgproc.RETR_TREE, Imgproc.CHAIN_APPROX_SIMPLE);
         for (MatOfPoint cnt : contours) {
             x = 0;
             y = 0;
             w = 0;
             h = 0;
             MatOfPoint2f curve = new MatOfPoint2f(cnt.toArray());
+            count = 0;
+
+            //Imgproc.approxPolyDP(curve, curve, Imgproc.arcLength(curve, true) * 0.02, true);
+
+            count = count + 1 ;
+            rectangle = Imgproc.boundingRect(curve);
+            x = rectangle.x;
+            y = rectangle.y;
+            w = rectangle.width;
+            h = rectangle.height;
 
 
-            Imgproc.approxPolyDP(curve, curve, Imgproc.arcLength(curve, true) * 0.02, true);
-            if ((curve.size().height) > 4.0) { // TODO currently this selects based of area
-                Rect rectangle = Imgproc.boundingRect(curve);
-                x = rectangle.x;
-                y = rectangle.y;
-                w = rectangle.width;
-                h = rectangle.height;
 
 
 
-            }
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
+        return null;
     }
 
     //scales rectangle to
@@ -119,6 +123,13 @@ public class PixelDetector implements VisionProcessor {
 
     @Override
     public void onDrawFrame(Canvas canvas, int onscreenWidth, int onscreenHeight, float scaleBmpPxToCanvasPx, float scaleCanvasDensity, Object userContext) {
+        android.graphics.Rect pixel = makeGraphicsRect(rectangle,scaleBmpPxToCanvasPx);
+
+        Paint selectedColor = new Paint();
+        selectedColor.setColor(Color.GREEN);
+        canvas.drawRect(pixel,selectedColor);
+
+
 
     }
 }

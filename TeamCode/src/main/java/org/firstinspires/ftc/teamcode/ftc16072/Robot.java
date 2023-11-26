@@ -39,12 +39,12 @@ public class Robot {
         holdingCell = new HoldingCell();
 
         mechanisms = Arrays.asList(
-                mecanumDrive,
+                //mecanumDrive,
                 controlHub,
                 // intake,
                 cameraBack,
-                cameraFront,
-                holdingCell
+                cameraFront
+                //holdingCell
                 // lineDetector
         );
     }
