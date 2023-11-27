@@ -37,6 +37,8 @@ public class PixelDetector implements VisionProcessor {
     public int count;
     public Rect rectangle;
 
+    public Rect correctPixel;
+
 
 
     Mat outmat = new Mat();
@@ -55,6 +57,9 @@ public class PixelDetector implements VisionProcessor {
 
 
 
+    }
+    public double getPixelWidth(){
+        return x;
     }
     public int getContourListLength(){
         return contourListLength;
@@ -80,7 +85,7 @@ public class PixelDetector implements VisionProcessor {
         List<MatOfPoint> contours = new ArrayList<>();
         Mat binary = new Mat();
         Mat hierarchy = new Mat();
-        Imgproc.GaussianBlur(frame,frame, new  Size(19,19),0);
+        Imgproc.GaussianBlur(frame,frame, new  Size(31,31),2);
         Imgproc.findContours(frame,contours,hierarchy,Imgproc.RETR_TREE, Imgproc.CHAIN_APPROX_SIMPLE);
         contourListLength = contours.size();
 
@@ -93,13 +98,18 @@ public class PixelDetector implements VisionProcessor {
             count = 0;
 
             //Imgproc.approxPolyDP(curve, curve, Imgproc.arcLength(curve, true) * 0.02, true);
-
             count = count + 1 ;
             rectangle = Imgproc.boundingRect(curve);
             x = rectangle.x;
             y = rectangle.y;
             w = rectangle.width;
             h = rectangle.height;
+            if (x>10){
+                if(x/y<1){
+                    correctPixel = rectangle;
+
+                }
+            }
 
 
 
@@ -123,7 +133,7 @@ public class PixelDetector implements VisionProcessor {
 
     @Override
     public void onDrawFrame(Canvas canvas, int onscreenWidth, int onscreenHeight, float scaleBmpPxToCanvasPx, float scaleCanvasDensity, Object userContext) {
-        android.graphics.Rect pixel = makeGraphicsRect(rectangle,scaleBmpPxToCanvasPx);
+        android.graphics.Rect pixel = makeGraphicsRect(correctPixel,scaleBmpPxToCanvasPx);
 
         Paint selectedColor = new Paint();
         selectedColor.setColor(Color.GREEN);

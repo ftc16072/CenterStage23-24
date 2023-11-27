@@ -82,6 +82,7 @@ public class Camera implements Mechanism{
         telemetry.addData("distance: ",pixelDetector.getDistanceToPixel());
         telemetry.addData("length: ",pixelDetector.getContourListLength());
         telemetry.addData("count: ", pixelDetector.getCount());
+        telemetry.addData("width",pixelDetector.getPixelWidth());
 
     }
 
