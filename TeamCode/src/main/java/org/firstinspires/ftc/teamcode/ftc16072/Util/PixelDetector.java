@@ -33,6 +33,7 @@ public class PixelDetector implements VisionProcessor {
     public double focalLength= 0.15748; //in
 
     public double pixelWidth = 3.5;
+
     public int contourListLength;
     public int count;
     public Rect rectangle;
@@ -53,7 +54,8 @@ public class PixelDetector implements VisionProcessor {
     }
 
     public double getDistanceToPixel(){
-        return (focalLength*pixelWidth)/w;
+        double pixelInRatio = focalLength/w;
+        return ((w*pixelWidth)/focalLength)*pixelInRatio;
 
 
 
