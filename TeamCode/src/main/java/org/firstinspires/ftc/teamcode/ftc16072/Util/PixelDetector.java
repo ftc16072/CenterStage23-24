@@ -108,6 +108,7 @@ public class PixelDetector implements VisionProcessor {
             h = rectangle.height;
             if (x>10){
                 if(x/y<1){
+
                     correctPixel = rectangle;
 
                 }
