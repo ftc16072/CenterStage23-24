@@ -129,20 +129,21 @@ public class Navigation extends com.acmerobotics.roadrunner.drive.MecanumDrive {
         trajectorySequenceRunner.followTrajectorySequenceAsync(trajectorySequence);
     }
     public void update() {
+        DriveSignal signal;
         updatePoseEstimate();
         if (mecanumDrive.getAverageDrivetrainPower()<0.1 && cameraFront.isTagDetected()){
             Pose2d robotPos = cameraBack.getPose();
-            DriveSignal signal = trajectorySequenceRunner.update(robotPos, getPoseVelocity());
+            signal = trajectorySequenceRunner.update(robotPos, getPoseVelocity());
 
         } else if (mecanumDrive.getAverageDrivetrainPower()<0.1 && cameraBack.isTagDetected()){
             Pose2d robotPos = cameraBack.getPose();
-            DriveSignal signal = trajectorySequenceRunner.update(robotPos, getPoseVelocity());
+            signal = trajectorySequenceRunner.update(robotPos, getPoseVelocity());
 
 
         } else {
-            DriveSignal signal = trajectorySequenceRunner.update(getPoseEstimate(), getPoseVelocity());
+            signal = trajectorySequenceRunner.update(getPoseEstimate(), getPoseVelocity());
         }
-        DriveSignal signal = trajectorySequenceRunner.update(getPoseEstimate(), getPoseVelocity());
+
         if (signal != null) setDriveSignal(signal);
     }
 
