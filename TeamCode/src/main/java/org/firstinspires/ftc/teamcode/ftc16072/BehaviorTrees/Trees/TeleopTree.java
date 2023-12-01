@@ -116,10 +116,20 @@ public class TeleopTree {
                                 )
                         ),
                         new Sequence(
-                                new AreSlidesNotExtended(),
+                                new AreSlidesExtended(),
                                 new IsControllerDriving(),
-                                new Drive()
+                                new slowDrive(),
+                                    new Sequence(
+                                        new AreSlidesNotExtended(),
+                                        new Sequence(
+                                                new IsControllerDriving(),
+                                                new NormalSpeedDrive()
+                                        )
+                                    )
+
+
                         )
+
                 )
         );
     }
