@@ -99,6 +99,7 @@ public class TeleopTree {
                         new StopIntakeMotor()
                 ),
 
+
                 new Parallel(2,
                         new Sequence(
                                 new Has1or2Pixels(),
