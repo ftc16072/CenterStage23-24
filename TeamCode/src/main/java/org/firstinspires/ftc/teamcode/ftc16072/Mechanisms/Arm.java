@@ -12,7 +12,7 @@ public class Arm implements Mechanism{
     private static final double INTAKE_ARM_POS = 89328;
     private static final double PLACING_ARM_POS = 9283;
 
-    private enum ArmPositions{
+    public enum ArmPositions{
         PLACING_POSITION,
         INTAKE_POSITION
     }
@@ -40,6 +40,9 @@ public class Arm implements Mechanism{
         leftArmServo.setPosition(PLACING_ARM_POS);
         rightArmServo.setPosition(PLACING_ARM_POS);
         armPosition= ArmPositions.PLACING_POSITION;
+    }
+    public ArmPositions getArmPosition(){
+        return armPosition;
     }
 }
 
