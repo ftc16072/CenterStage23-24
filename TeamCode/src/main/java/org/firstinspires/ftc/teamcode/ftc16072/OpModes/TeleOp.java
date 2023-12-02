@@ -16,6 +16,18 @@ public class TeleOp extends  QQOpMode{
     }
 
     public void driverLoop(Gamepad gamepad1){
+        if (gamepad1.right_bumper){
+            //manual slides up
+        } else if (gamepad1.left_bumper){
+            // manual slides down
+        }
+
+        if (gamepad1.right_trigger>0.1){
+            //intake
+        } else (gamepad1.left_trigger>0.1){
+            // eject
+        }
+        if
 
     }
     public void manipulatorLoop(Gamepad gamepad2){
