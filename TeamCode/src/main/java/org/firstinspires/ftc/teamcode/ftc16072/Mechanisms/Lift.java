@@ -14,6 +14,14 @@ import java.util.Collections;
 import java.util.List;
 
 public class Lift implements  Mechanism{
+    public enum LiftPositions{
+        FLOOR_POSITION,
+        LOW_POSITION,
+        MIDDLE_POSITION,
+        TOP_POSITION
+
+    }
+    public LiftPositions manipulatorPosition;
     private static final double LIFT_POSITION_SAFETY_BOTTOM = 392749;
     private static final double LOW_POSITION = 3923749;
     private static final double MIDDLE_POSITION = 47832;
@@ -27,7 +35,7 @@ public class Lift implements  Mechanism{
 
 
 
-    private double desiredPosition;
+    public  double desiredPosition;
     private double sumOfErrors;
     private double lastError;
     static double K_P = 0.001;
@@ -46,6 +54,7 @@ public class Lift implements  Mechanism{
         leftLiftMotor = hwMap.get(DcMotorEx.class, "left_lift_motor");
         leftLiftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         leftLiftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        manipulatorPosition = LiftPositions.FLOOR_POSITION;
 
 
     }

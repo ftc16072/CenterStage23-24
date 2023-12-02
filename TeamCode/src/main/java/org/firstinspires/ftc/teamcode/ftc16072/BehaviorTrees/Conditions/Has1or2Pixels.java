@@ -4,12 +4,12 @@ import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Node;
 import org.firstinspires.ftc.teamcode.ftc16072.OpModes.QQOpMode;
 import org.firstinspires.ftc.teamcode.ftc16072.Robot;
 
-public class HasLessThan2Pixels extends Node {
+public class Has1or2Pixels extends Node {
     Robot robot;
     @Override
     public State tick(QQOpMode opmode) {
 
-        if (robot.holdingCell.getNumPixels()<2){
+        if (robot.holdingCell.getNumPixels()<1){
             return State.SUCCESS;
         }
         return  State.FAILURE;

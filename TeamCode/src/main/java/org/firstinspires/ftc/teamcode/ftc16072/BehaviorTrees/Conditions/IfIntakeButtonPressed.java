@@ -2,18 +2,15 @@ package org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions;
 
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Node;
 import org.firstinspires.ftc.teamcode.ftc16072.OpModes.QQOpMode;
-import org.firstinspires.ftc.teamcode.ftc16072.Robot;
+import org.firstinspires.ftc.teamcode.ftc16072.OpModes.TeleOp;
 
-public class HasLessThan2Pixels extends Node {
-    Robot robot;
+public class IfIntakeButtonPressed extends Node {
+    TeleOp teleOp;
     @Override
     public State tick(QQOpMode opmode) {
-
-        if (robot.holdingCell.getNumPixels()<2){
+        if (teleOp.gamepad1.right_trigger>0.1){
             return State.SUCCESS;
         }
         return  State.FAILURE;
-
-
     }
 }
