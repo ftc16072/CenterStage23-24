@@ -27,7 +27,25 @@ public class TeleOp extends  QQOpMode{
         } else (gamepad1.left_trigger>0.1){
             // eject
         }
-        if
+        if (gamepad1.dpad_right){
+            // move climber down
+        } else if (gamepad1.dpad_left){
+            //move climber up
+        }
+        if (gamepad1.dpad_down){
+            //move slides down 1 pixel
+        } else if (gamepad1.dpad_up){
+            //move slides up 1 pixel
+        }
+        if (gamepad1.a){
+            //release pixel from grabber
+        }
+        if (gamepad1.y){
+            //reset slides
+        } else if (gamepad1.b){
+            // go to slides
+        }
+
 
     }
     public void manipulatorLoop(Gamepad gamepad2){
