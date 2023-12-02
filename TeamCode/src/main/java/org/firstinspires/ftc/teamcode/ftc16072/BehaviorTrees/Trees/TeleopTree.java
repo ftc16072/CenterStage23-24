@@ -65,8 +65,10 @@ http://behaviortrees.ftcteams.com/
  */
 public class TeleopTree {
     public static Node root(){
-        return new Parallel(4,
+        return new Parallel(3,
+                /*
                 new Sequence(
+
                     new IsEndgame(),
 
                     new Parallel(2,
@@ -89,6 +91,8 @@ public class TeleopTree {
                             )
                     )
                 ),
+
+                 */
 
                 new Failover(
                         new Sequence(
