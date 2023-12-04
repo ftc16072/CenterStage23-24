@@ -55,12 +55,16 @@ public class TeleOp extends  QQOpMode{
             robot.lift.goToFloor();
         } else if (gamepad1.b){
             if (robot.lift.manipulatorPosition == Lift.LiftPositions.LOW_POSITION){
+                robot.arm.goToPlacingPosition();
                 robot.lift.goToLow();
             } else if (robot.lift.manipulatorPosition == Lift.LiftPositions.MIDDLE_POSITION){
+                robot.arm.goToPlacingPosition();
                 robot.lift.goToMiddle();
             } else if (robot.lift.manipulatorPosition == Lift.LiftPositions.TOP_POSITION){
+                robot.arm.goToPlacingPosition();
                 robot.lift.goToTop();
             } else if (robot.lift.manipulatorPosition == Lift.LiftPositions.FLOOR_POSITION){
+                robot.arm.goToIntakePosition();
                 robot.lift.goToFloor();
             }
             // go to slides

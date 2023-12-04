@@ -122,11 +122,11 @@ public class TeleopTree {
                         ),
                         new StopIntakeMotor()
                 ),
-                    new Sequence(
-                            new HasMoreThan2Pixels(),
-                            new SpinOutIntakeMotor()
+                new Sequence(
+                        new HasMoreThan2Pixels(),
+                        new SpinOutIntakeMotor()
 
-                    ),
+                ),
 
 
 
@@ -146,19 +146,18 @@ public class TeleopTree {
                                         )
                                 )
                         ),
-                        new Sequence(
+                        new Failover(
                                 new AreSlidesExtended(),
                                 new IsControllerDriving(),
-                                new MakeSlowDrive(),
-                                    new Sequence(
-                                        new AreNotSlidesExtended(),
-                                        new Sequence(
-                                                new IsControllerDriving(),
-                                                new MakeNormalDrive()
-                                        )
-                                    )
+                                new MakeSlowDrive()
 
-
+                        ),
+                        new Sequence(
+                                new AreNotSlidesExtended(),
+                                new Sequence(
+                                        new IsControllerDriving(),
+                                        new MakeNormalDrive()
+                                )
                         )
 
                 )
