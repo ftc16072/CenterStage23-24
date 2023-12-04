@@ -39,7 +39,7 @@ public class Robot {
         controlHub = new ControlHub();
         mecanumDrive = new MecanumDrive();
         lineDetector = new LineDetector();
-        nav = new Navigation(controlHub, mecanumDrive);
+        nav = new Navigation(controlHub, mecanumDrive, cameraFront,cameraBack);
         intake = new Intake();
         holdingCell = new HoldingCell();
         lift = new Lift();
@@ -49,8 +49,10 @@ public class Robot {
         mechanisms = Arrays.asList(
                 mecanumDrive,
                 controlHub,
-                // intake,
+                intake,
                 cameraBack,
+                cameraFront,
+                holdingCell,
                 cameraFront,
                 holdingCell,
                 lift,

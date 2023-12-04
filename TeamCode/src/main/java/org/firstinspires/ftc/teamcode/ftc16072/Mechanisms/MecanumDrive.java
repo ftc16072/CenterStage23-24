@@ -20,6 +20,10 @@ public class MecanumDrive implements Mechanism {
     DcMotor backRightMotor;
     DcMotor frontRightMotor;
     DcMotor frontLeftMotor;
+    private double frontLeftPower;
+    private double frontRightPower;
+    private double backLeftPower;
+    private double backRightPower;
 
     public static final double SECS_PER_MIN = 60.0;
     public static final double MM_PER_IN = 25.4;
@@ -101,6 +105,10 @@ public class MecanumDrive implements Mechanism {
         frontRightMotor.setPower(frontRightPower);
         backLeftMotor.setPower(backLeftPower);
         backRightMotor.setPower(backRightPower);
+
+    }
+    public double getAverageDrivetrainPower(){
+        return (frontLeftPower+frontRightPower+backLeftPower+backRightPower)/4;
 
     }
 
