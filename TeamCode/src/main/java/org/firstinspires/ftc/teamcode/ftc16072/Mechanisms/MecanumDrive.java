@@ -14,6 +14,8 @@ import java.util.List;
 
 @Config
 public class MecanumDrive implements Mechanism {
+    public boolean doSlowDrive=false;
+    public final double SLOW_DRIVE_MULTIPLIER= 0.4;
     DcMotor backLeftMotor;
     DcMotor backRightMotor;
     DcMotor frontRightMotor;
@@ -93,11 +95,17 @@ public class MecanumDrive implements Mechanism {
         frontRightPower /= maxSpeed;
         backLeftPower /= maxSpeed;
         backRightPower /= maxSpeed;
-
+        if (doSlowDrive){
+            frontLeftMotor.setPower(frontLeftPower*SLOW_DRIVE_MULTIPLIER);
+            frontRightMotor.setPower(frontRightPower*SLOW_DRIVE_MULTIPLIER);
+            backLeftMotor.setPower(backLeftPower*SLOW_DRIVE_MULTIPLIER);
+            backRightMotor.setPower(backRightPower*SLOW_DRIVE_MULTIPLIER);
+        }
         frontLeftMotor.setPower(frontLeftPower);
         frontRightMotor.setPower(frontRightPower);
         backLeftMotor.setPower(backLeftPower);
         backRightMotor.setPower(backRightPower);
+
     }
     public double getAverageDrivetrainPower(){
         return (frontLeftPower+frontRightPower+backLeftPower+backRightPower)/4;

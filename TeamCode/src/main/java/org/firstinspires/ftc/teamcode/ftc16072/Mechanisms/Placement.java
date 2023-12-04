@@ -10,6 +10,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Placement implements Mechanism{
+    public static final int PLACEMENT_GRAB = 29812;
+    public static final int PLACEMENT_EJECT = 23984;
     Servo rightPlacement;
     Servo leftPlacement;
     @Override
@@ -19,6 +21,18 @@ public class Placement implements Mechanism{
 
 
     }
+    public void leftServoGrab(){
+        leftPlacement.setPosition(PLACEMENT_GRAB);
+    }
+    public void rightServoGrab(){
+        rightPlacement.setPosition(PLACEMENT_GRAB);
+    }
+    public void leftServoEject(){
+        leftPlacement.setPosition(PLACEMENT_EJECT);
+    } public void rightServoEject(){
+        rightPlacement.setPosition(PLACEMENT_EJECT);
+    }
+
 
     @Override
     public List<QQtest> getTests() {
