@@ -1,9 +1,12 @@
 package org.firstinspires.ftc.teamcode.ftc16072;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
+
+import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Arm;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Camera;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.ControlHub;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.HoldingCell;
+import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Lift;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.LineDetector;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Intake;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.MecanumDrive;
@@ -25,6 +28,8 @@ public class Robot {
     public HoldingCell holdingCell;
     public Camera cameraFront;
     public Camera cameraBack;
+    public Lift lift;
+    public Arm arm;
 
 
 
@@ -34,17 +39,24 @@ public class Robot {
         controlHub = new ControlHub();
         mecanumDrive = new MecanumDrive();
         lineDetector = new LineDetector();
-        nav = new Navigation(controlHub, mecanumDrive);
+        nav = new Navigation(controlHub, mecanumDrive, cameraFront,cameraBack);
         intake = new Intake();
         holdingCell = new HoldingCell();
+        lift = new Lift();
+        arm = new Arm();
+
 
         mechanisms = Arrays.asList(
                 mecanumDrive,
                 controlHub,
-                // intake,
+                intake,
                 cameraBack,
                 cameraFront,
-                holdingCell
+                holdingCell,
+                cameraFront,
+                holdingCell,
+                lift,
+                arm
                 // lineDetector
         );
     }

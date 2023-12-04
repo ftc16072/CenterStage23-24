@@ -20,6 +20,7 @@ import com.acmerobotics.roadrunner.trajectory.constraints.TrajectoryVelocityCons
 import com.acmerobotics.roadrunner.trajectory.constraints.TranslationalVelocityConstraint;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Camera;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.ControlHub;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.MecanumDrive;
 import org.firstinspires.ftc.teamcode.rr_trajectorysequence.TrajectorySequence;
@@ -33,6 +34,10 @@ import java.util.List;
 public class Navigation extends com.acmerobotics.roadrunner.drive.MecanumDrive {
     ControlHub controlHub;
     MecanumDrive mecanumDrive;
+
+    Camera cameraBack;
+
+    Camera cameraFront;
 
     public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(1.7, 0.176, 0);
     public static PIDCoefficients HEADING_PID = new PIDCoefficients(1.3, 0, 0);
@@ -50,14 +55,17 @@ public class Navigation extends com.acmerobotics.roadrunner.drive.MecanumDrive {
 
     public TrajectoryFollower follower; 
 
-    public Navigation(ControlHub controlHub, MecanumDrive mecanumDrive) {
+    public Navigation(ControlHub controlHub, MecanumDrive mecanumDrive, Camera cameraFront, Camera cameraBack) {
         super(kV, kA, kStatic, MecanumDrive.TRACK_WIDTH_IN);
+        this.cameraFront = cameraFront;
+        this.cameraBack = cameraBack;
 
         this.controlHub = controlHub;
         this.mecanumDrive = mecanumDrive;
 
         follower = new HolonomicPIDVAFollower(TRANSLATIONAL_PID, TRANSLATIONAL_PID, HEADING_PID,
                 new Pose2d(0.5, 0.5, Math.toRadians(5.0)), 0.5);
+
 
         trajectorySequenceRunner = new TrajectorySequenceRunner(
                 follower, HEADING_PID, controlHub.batteryVoltageSensor);
@@ -121,8 +129,21 @@ public class Navigation extends com.acmerobotics.roadrunner.drive.MecanumDrive {
         trajectorySequenceRunner.followTrajectorySequenceAsync(trajectorySequence);
     }
     public void update() {
+        DriveSignal signal;
         updatePoseEstimate();
-        DriveSignal signal = trajectorySequenceRunner.update(getPoseEstimate(), getPoseVelocity());
+        if (mecanumDrive.getAverageDrivetrainPower()<0.1 && cameraFront.isTagDetected()){
+            Pose2d robotPos = cameraBack.getPose();
+            signal = trajectorySequenceRunner.update(robotPos, getPoseVelocity());
+
+        } else if (mecanumDrive.getAverageDrivetrainPower()<0.1 && cameraBack.isTagDetected()){
+            Pose2d robotPos = cameraBack.getPose();
+            signal = trajectorySequenceRunner.update(robotPos, getPoseVelocity());
+
+
+        } else {
+            signal = trajectorySequenceRunner.update(getPoseEstimate(), getPoseVelocity());
+        }
+
         if (signal != null) setDriveSignal(signal);
     }
 
