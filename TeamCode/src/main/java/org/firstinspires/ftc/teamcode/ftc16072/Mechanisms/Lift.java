@@ -21,6 +21,8 @@ public class Lift implements  Mechanism{
         TOP_POSITION
 
     }
+    public static final int ARE_SLIDES_EXTENDED_BOUNDARY = 100; //TODO tune value
+
     public LiftPositions manipulatorPosition;
     private static final double LIFT_POSITION_SAFETY_BOTTOM = 392749;
     private static final double LOW_POSITION = 3923749;
@@ -63,6 +65,10 @@ public class Lift implements  Mechanism{
         sumOfErrors = 0;
         lastError = 0;
     }
+    public boolean areSlidesExtendedPastBoundary(){
+        return   currentPosition()> ARE_SLIDES_EXTENDED_BOUNDARY;
+
+        }
     public void update(){
         double error;
         error = desiredPosition - rightLiftMotor.getCurrentPosition();

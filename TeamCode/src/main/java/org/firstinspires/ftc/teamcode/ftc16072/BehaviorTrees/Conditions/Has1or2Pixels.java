@@ -9,7 +9,7 @@ public class Has1or2Pixels extends Node {
     @Override
     public State tick(QQOpMode opmode) {
 
-        if (robot.holdingCell.getNumPixels()<1){
+        if (robot.holdingCell.getNumPixels()>0){
             return State.SUCCESS;
         }
         return  State.FAILURE;
