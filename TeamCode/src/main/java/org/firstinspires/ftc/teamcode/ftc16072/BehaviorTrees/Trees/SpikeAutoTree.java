@@ -36,7 +36,52 @@ public class SpikeAutoTree {
                         ),
                         new SetMiddleSpikeTrajectory()
                 ),
-                new FollowTrajectory()
+                new FollowTrajectory(),
+                new Failover(
+                        new Sequence(
+                                new IsClose(),
+                                new Failover(
+                                        new Sequence(
+                                                new IsRed(),
+                                                new SetRedCloseTrajectory()
+
+
+                                        ),
+                                        new SetBlueCloseTrajectory()
+                                )
+                        ),
+                        new Sequence(
+                                new IsRed(),
+                                new SetRedFarTrajectory()
+
+
+                        ),
+                        new SetBlueFarTrajectory()
+                ),
+                new FollowTrajectory(),
+                new Failover(
+                        new Sequence(
+                                new IsLeftSpike(),
+                                new SetLeftAprilTagTrajectory()
+
+
+                        ),
+                        new Sequence(
+                                new IsRightSpike(),
+                                new SetRightAprilTagTrajectory()
+                        ),
+                        new SetMiddleAprilTagTrajectory()
+                ),
+                new FollowTrajectory(),
+                new PlacePixel(),
+                new SetGotoPixelStackTrajectory(),
+                new TurnOnIntake(),
+                new Sequence(
+                        new HAS2PIXEls(),
+                        new SetBackBoardTrajectory()
+                ),
+                new  PlacePixel()
+
         );
     }
 }
