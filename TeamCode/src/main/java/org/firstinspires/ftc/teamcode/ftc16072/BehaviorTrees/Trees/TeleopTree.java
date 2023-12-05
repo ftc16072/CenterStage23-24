@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trees;
 
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.DriveFieldRelative;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.ExtendSlides;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.MakeNormalDrive;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.MakeSlowDrive;
@@ -113,6 +114,9 @@ public class TeleopTree {
                 ),
 
                  */
+                new Sequence(
+                        new DriveFieldRelative()
+                ),
 
                 new Failover(
                         new Sequence(

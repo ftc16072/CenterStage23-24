@@ -8,12 +8,27 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.teamcode.ftc16072.QQTest.QQtest;
 import org.firstinspires.ftc.teamcode.ftc16072.QQTest.TestTwoMotor;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Lift implements  Mechanism{
+    public LiftPositions getManipulatorPosition() {
+        return manipulatorPosition;
+    }
+
+    public void setManipulatorPosition(LiftPositions manipulatorPosition) {
+        this.manipulatorPosition = manipulatorPosition;
+    }
+
+    public double getDesiredPosition() {
+        return desiredPosition;
+    }
+
+    public void setDesiredPosition(double desiredPosition) {
+        this.desiredPosition = desiredPosition;
+    }
+
+
     public enum LiftPositions{
         FLOOR_POSITION,
         LOW_POSITION,
@@ -23,7 +38,7 @@ public class Lift implements  Mechanism{
     }
     public static final int ARE_SLIDES_EXTENDED_BOUNDARY = 100; //TODO tune value
 
-    public LiftPositions manipulatorPosition;
+    private LiftPositions manipulatorPosition;
     private static final double LIFT_POSITION_SAFETY_BOTTOM = 392749;
     private static final double LOW_POSITION = 3923749;
     private static final double MIDDLE_POSITION = 47832;
@@ -37,7 +52,7 @@ public class Lift implements  Mechanism{
 
 
 
-    public  double desiredPosition;
+    private double desiredPosition;
     private double sumOfErrors;
     private double lastError;
     static double K_P = 0.001;
@@ -56,7 +71,7 @@ public class Lift implements  Mechanism{
         leftLiftMotor = hwMap.get(DcMotorEx.class, "left_lift_motor");
         leftLiftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         leftLiftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        manipulatorPosition = LiftPositions.FLOOR_POSITION;
+        setManipulatorPosition(LiftPositions.FLOOR_POSITION);
 
 
     }
@@ -71,7 +86,7 @@ public class Lift implements  Mechanism{
         }
     public void update(){
         double error;
-        error = desiredPosition - rightLiftMotor.getCurrentPosition();
+        error = getDesiredPosition() - rightLiftMotor.getCurrentPosition();
         sumOfErrors = sumOfErrors + error;
 
         double motorPower =K_P * error + K_I * sumOfErrors + K_D * (error - lastError);
@@ -88,34 +103,35 @@ public class Lift implements  Mechanism{
         );
     }
     public void manualLiftUp(){
-        desiredPosition = currentPosition() + MANUAL_CHANGE;
-        if(desiredPosition > LIFT_POSITION_SAFETY_TOP){
+        setDesiredPosition(currentPosition() + MANUAL_CHANGE);
+        if(getDesiredPosition() > LIFT_POSITION_SAFETY_TOP){
             desiredPosition = LIFT_POSITION_SAFETY_TOP;
         }
     }public void manualLiftDown(){
-        desiredPosition = currentPosition()-MANUAL_CHANGE;
-        if(desiredPosition < LIFT_POSITION_SAFETY_BOTTOM){
-            desiredPosition = LIFT_POSITION_SAFETY_BOTTOM;
+        setDesiredPosition(currentPosition()-MANUAL_CHANGE);
+        if(getDesiredPosition() < LIFT_POSITION_SAFETY_BOTTOM){
+            setDesiredPosition(LIFT_POSITION_SAFETY_BOTTOM);
 
         }
     }
+
     public void goToLow(){
-        desiredPosition = LOW_POSITION;
+        setDesiredPosition(LOW_POSITION);
     }
     public void goToMiddle(){
-        desiredPosition = MIDDLE_POSITION;
+        setDesiredPosition(MIDDLE_POSITION);
     }
     public void goToTop(){
-        desiredPosition = TOP_POSITION;
+        setDesiredPosition(TOP_POSITION);
     }
     public void goToFloor(){
-        desiredPosition = FLOOR_POSITION;
+        setDesiredPosition(FLOOR_POSITION);
     }
     public void upOnePixel(){
-        desiredPosition = currentPosition() + PIXEL_HEIGHT;
+        setDesiredPosition(currentPosition() + PIXEL_HEIGHT);
     }
     public void downOnePixel(){
-        desiredPosition = currentPosition() - PIXEL_HEIGHT;
+        setDesiredPosition(currentPosition() - PIXEL_HEIGHT);
     }
     public double currentPosition(){
         return (rightLiftMotor.getCurrentPosition() + leftLiftMotor.getCurrentPosition())/2.0;
