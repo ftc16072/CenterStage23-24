@@ -1,11 +1,9 @@
 package org.firstinspires.ftc.teamcode.ftc16072.OpModes;
 
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Mechanism;
 import org.firstinspires.ftc.teamcode.ftc16072.QQTest.QQtest;
-import org.firstinspires.ftc.teamcode.ftc16072.Robot;
 
 import java.util.List;
 
@@ -64,4 +62,6 @@ public class TestWiring extends QQOpMode {
         testList.get(currentTest).run(gamepad1.a, telemetry);
 
     }
+
+
 }
