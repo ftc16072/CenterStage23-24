@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.ftc16072.OpModes;
 
+import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
@@ -13,6 +14,7 @@ import org.firstinspires.ftc.teamcode.ftc16072.Util.LiftControl;
  */
 
 abstract public class QQOpMode extends OpMode {
+
     public Robot robot = new Robot();
     public LiftControl liftControl = new LiftControl(robot);
 
@@ -22,6 +24,8 @@ abstract public class QQOpMode extends OpMode {
      * every opmode initializes robot with hardware map
       */
     public void init(){
+
+
         robot.init(hardwareMap);
     }
 
