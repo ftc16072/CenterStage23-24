@@ -84,6 +84,12 @@ public class MecanumDrive implements Mechanism {
     }
 
     public void setPowers(double frontLeftPower, double frontRightPower, double backLeftPower, double backRightPower) {
+        if (doSlowDrive){
+            frontLeftPower*=SLOW_DRIVE_MULTIPLIER;
+            frontRightPower*=SLOW_DRIVE_MULTIPLIER;
+            backLeftPower*=SLOW_DRIVE_MULTIPLIER;
+            backRightPower*=SLOW_DRIVE_MULTIPLIER;
+        }
         double maxSpeed = 1.0;
 
         maxSpeed = Math.max(maxSpeed, Math.abs(frontLeftPower));
@@ -95,12 +101,7 @@ public class MecanumDrive implements Mechanism {
         frontRightPower /= maxSpeed;
         backLeftPower /= maxSpeed;
         backRightPower /= maxSpeed;
-        if (doSlowDrive){
-            frontLeftMotor.setPower(frontLeftPower*SLOW_DRIVE_MULTIPLIER);
-            frontRightMotor.setPower(frontRightPower*SLOW_DRIVE_MULTIPLIER);
-            backLeftMotor.setPower(backLeftPower*SLOW_DRIVE_MULTIPLIER);
-            backRightMotor.setPower(backRightPower*SLOW_DRIVE_MULTIPLIER);
-        }
+
         frontLeftMotor.setPower(frontLeftPower);
         frontRightMotor.setPower(frontRightPower);
         backLeftMotor.setPower(backLeftPower);

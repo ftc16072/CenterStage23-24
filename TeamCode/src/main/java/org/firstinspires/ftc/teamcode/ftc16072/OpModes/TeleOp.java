@@ -2,19 +2,30 @@ package org.firstinspires.ftc.teamcode.ftc16072.OpModes;
 
 import com.qualcomm.robotcore.hardware.Gamepad;
 
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Node;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trees.SpikeAutoTree;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trees.TeleopTree;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Lift;
 import org.firstinspires.ftc.teamcode.ftc16072.Robot;
+import org.firstinspires.ftc.teamcode.ftc16072.Util.LiftControl;
 
 public class TeleOp extends  QQOpMode{
 
-
+    Node root = TeleopTree.root();
+    LiftControl liftControl;
 
     Robot robot;
+    boolean done;
+
 
     @Override
     public void loop() {
-        new TeleopTree();
+        if(!done){
+            Node.State state = root.tick(this);
+            if(state == Node.State.SUCCESS){
+                done = true;
+            }
+        }
         driverLoop(gamepad1);
         manipulatorLoop(gamepad2);
 
@@ -24,9 +35,9 @@ public class TeleOp extends  QQOpMode{
 
 
         if (gamepad1.right_bumper){
-            robot.lift.manualLiftUp();
+            liftControl.manualLiftUp();
         } else if (gamepad1.left_bumper){
-            robot.lift.manualLiftDown();
+            liftControl.manualLiftDown();
 
         }
 
@@ -41,9 +52,9 @@ public class TeleOp extends  QQOpMode{
             //move climber up
         }
         if (gamepad1.dpad_down){
-            robot.lift.downOnePixel();
+            liftControl.downOnePixel();
         } else if (gamepad1.dpad_up){
-            robot.lift.upOnePixel();
+            liftControl.upOnePixel();
         }
         if (gamepad1.a){
             //release  right pixel from grabber
@@ -52,20 +63,20 @@ public class TeleOp extends  QQOpMode{
             //release left pixel from grabber
         }
         if (gamepad1.y){
-            robot.lift.goToFloor();
+            liftControl.goToFloor();
         } else if (gamepad1.b){
-            if (robot.lift.manipulatorPosition == Lift.LiftPositions.LOW_POSITION){
+            if (liftControl.atPosition(Lift.LiftPositions.LOW_POSITION)){
                 robot.arm.goToPlacingPosition();
-                robot.lift.goToLow();
-            } else if (robot.lift.manipulatorPosition == Lift.LiftPositions.MIDDLE_POSITION){
+                liftControl.goToLow();
+            } else if (liftControl.atPosition(Lift.LiftPositions.MIDDLE_POSITION)){
                 robot.arm.goToPlacingPosition();
-                robot.lift.goToMiddle();
-            } else if (robot.lift.manipulatorPosition == Lift.LiftPositions.TOP_POSITION){
+                liftControl.goToMiddle();
+            } else if (liftControl.atPosition(Lift.LiftPositions.TOP_POSITION)){
                 robot.arm.goToPlacingPosition();
-                robot.lift.goToTop();
-            } else if (robot.lift.manipulatorPosition == Lift.LiftPositions.FLOOR_POSITION){
+                liftControl.goToTop();
+            } else if (liftControl.atPosition(Lift.LiftPositions.FLOOR_POSITION)){
                 robot.arm.goToIntakePosition();
-                robot.lift.goToFloor();
+                liftControl.goToFloor();
             }
             // go to slides
         }
@@ -75,14 +86,14 @@ public class TeleOp extends  QQOpMode{
     }
     public void manipulatorLoop(Gamepad gamepad2){
         if(gamepad2.a){
-            robot.lift.manipulatorPosition = Lift.LiftPositions.LOW_POSITION;
+            liftControl.setManipulatorPosition(Lift.LiftPositions.LOW_POSITION);
         } else if(gamepad2.x) {
-            robot.lift.manipulatorPosition = Lift.LiftPositions.MIDDLE_POSITION;
+            liftControl.setManipulatorPosition(Lift.LiftPositions.MIDDLE_POSITION);
 
         } else if(gamepad2.y){
-            robot.lift.manipulatorPosition = Lift.LiftPositions.TOP_POSITION;
+            liftControl.setManipulatorPosition(Lift.LiftPositions.TOP_POSITION);
         } else if (gamepad2.b){
-            robot.lift.manipulatorPosition = Lift.LiftPositions.FLOOR_POSITION;
+            liftControl.setManipulatorPosition(Lift.LiftPositions.FLOOR_POSITION);
         }
 
 
