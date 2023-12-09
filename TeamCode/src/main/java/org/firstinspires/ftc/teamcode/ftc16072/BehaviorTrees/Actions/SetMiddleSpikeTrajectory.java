@@ -12,6 +12,7 @@ public class SetMiddleSpikeTrajectory extends Node {
     public State tick(QQOpMode opMode) {
         TrajectorySequenceBuilder builder = opMode.robot.nav.trajectorySequenceBuilder(opMode.robot.nav.getPoseEstimate());
         TrajectorySequence sequence = builder.forward(FORWARD_DISTANCE_INCHES).
+                                            back(FORWARD_DISTANCE_INCHES).
                                             build();
         if (sequence == null){
             return State.FAILURE;

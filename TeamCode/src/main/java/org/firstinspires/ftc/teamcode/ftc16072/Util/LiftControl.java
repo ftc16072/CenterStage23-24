@@ -1,10 +1,15 @@
 package org.firstinspires.ftc.teamcode.ftc16072.Util;
 
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Lift;
+import org.firstinspires.ftc.teamcode.ftc16072.Robot;
 
 public class LiftControl {
     Lift.LiftPositions manipulatorPosition;
     Lift lift;
+
+    public LiftControl(Robot robot){
+        lift = robot.lift;
+    }
     public boolean atPosition(Lift.LiftPositions liftPosition){
         return (manipulatorPosition==liftPosition);
     }

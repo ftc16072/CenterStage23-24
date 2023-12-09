@@ -12,6 +12,6 @@ public class TestCamera extends QQtest{
     }
     @Override
     public void run(boolean on, Telemetry telemetry) {
-        telemetry.addData("Is Camera Attached", webcamName.isAttached());
+        //telemetry.addData("Is Camera Attached", webcamName.isAttached());
     }
 }

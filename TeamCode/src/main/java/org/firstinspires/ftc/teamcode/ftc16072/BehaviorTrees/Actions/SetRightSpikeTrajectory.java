@@ -14,6 +14,8 @@ public class SetRightSpikeTrajectory extends Node {
         TrajectorySequenceBuilder builder = opMode.robot.nav.trajectorySequenceBuilder(opMode.robot.nav.getPoseEstimate());
         TrajectorySequence sequence = builder.forward(FORWARD_DISTANCE_INCHES).
                                             strafeRight(RIGHT_DISTANCE_INCHES).
+                                            strafeLeft(RIGHT_DISTANCE_INCHES).
+                                            back(FORWARD_DISTANCE_INCHES).
                                             build();
         if (sequence == null){
             return State.FAILURE;

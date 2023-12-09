@@ -19,13 +19,10 @@ import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IfIntake
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IfLeftReleasePixelButtonPressed;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IfRightReleasePixelButtonPressed;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IsControllerDriving;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IsEndgame;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IsLastThreeSeconds;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Failover;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Node;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Parallel;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Sequence;
-import org.firstinspires.ftc.teamcode.ftc16072.OpModes.TeleOp;
 
 /*
 http://behaviortrees.ftcteams.com/
@@ -86,7 +83,7 @@ http://behaviortrees.ftcteams.com/
 public class TeleopTree {
 
     public static Node root(){
-        return new Parallel(3,
+        return new Parallel(4,
                 /*
                 new Sequence(
 
@@ -114,9 +111,7 @@ public class TeleopTree {
                 ),
 
                  */
-                new Sequence(
-                        new DriveFieldRelative()
-                ),
+                new DriveFieldRelative(),
 
                 new Failover(
                         new Sequence(
