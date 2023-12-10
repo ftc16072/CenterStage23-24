@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.teamcode.ftc16072.QQTest.QQtest;
 import org.firstinspires.ftc.teamcode.ftc16072.QQTest.TestTwoMotor;
 
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 public class Lift implements  Mechanism{
@@ -58,13 +58,16 @@ public class Lift implements  Mechanism{
     static double K_P = 0.001;
     static double K_I = 0.0001;
     static double K_D = 0.2;
+    //we have to change the positions later.
+    public static int[] PIXEL_POSITIONS = new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+
 
     private static final int LIFT_POSITION_SAFETY_TOP = 343455; //TODO need to fix
 
     @Override
     public void init(HardwareMap hwMap) {
         rightLiftMotor = hwMap.get(DcMotorEx.class, "right_lift_motor");
-        rightLiftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        //rightLiftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         rightLiftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rightLiftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
@@ -98,8 +101,9 @@ public class Lift implements  Mechanism{
 
     @Override
     public List<QQtest> getTests() {
-        return Collections.singletonList(
-                new TestTwoMotor("lift", leftLiftMotor, rightLiftMotor, 0.5)
+        return Arrays.asList(
+                new TestTwoMotor("lift", leftLiftMotor, rightLiftMotor, 0.5),
+                new TestTwoMotor("downLift", leftLiftMotor, rightLiftMotor, -0.5)
         );
     }
     public void manualLiftUp(){
