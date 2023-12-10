@@ -4,7 +4,9 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.ftc16072.QQTest.QQtest;
+import org.firstinspires.ftc.teamcode.ftc16072.QQTest.TestServo;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Arm implements Mechanism{
@@ -29,7 +31,10 @@ public class Arm implements Mechanism{
 
     @Override
     public List<QQtest> getTests() {
-        return null;
+        return Arrays.asList(
+                new TestServo("left_arm_servo", 0.25, 0, leftArmServo),
+                new TestServo("right_arm_servo", -0.25,0, rightArmServo)
+        );
     }
     public void goToIntakePosition(){
         leftArmServo.setPosition(INTAKE_ARM_POS);
@@ -38,7 +43,7 @@ public class Arm implements Mechanism{
     }
     public void goToPlacingPosition(){
         leftArmServo.setPosition(PLACING_ARM_POS);
-        rightArmServo.setPosition(PLACING_ARM_POS);
+        rightArmServo.setPosition(-PLACING_ARM_POS);
         armPosition= ArmPositions.PLACING_POSITION;
     }
     public ArmPositions getArmPosition(){

@@ -37,8 +37,8 @@ public class Placement implements Mechanism{
     @Override
     public List<QQtest> getTests() {
         return Arrays.asList(
-                new TestServo("right placement", 0.5,0,rightPlacement),
-                new TestServo("right placement", 0.5,0,rightPlacement)
+                new TestServo("right_placement", 0.5,0, rightPlacement),
+                new TestServo("left_placement", 0.5,0,leftPlacement)
         );
     }
 }
