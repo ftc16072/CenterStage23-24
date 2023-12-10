@@ -11,6 +11,7 @@ import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.LineDetector;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Intake;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.MecanumDrive;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Mechanism;
+import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Placement;
 import org.firstinspires.ftc.teamcode.ftc16072.Util.Navigation;
 import org.firstinspires.ftc.vision.VisionPortal;
 
@@ -30,6 +31,7 @@ public class Robot {
     public Camera cameraBack;
     public Lift lift;
     public Arm arm;
+    public Placement placement;
 
 
 
@@ -44,6 +46,7 @@ public class Robot {
         holdingCell = new HoldingCell();
         lift = new Lift();
         arm = new Arm();
+        placement = new Placement();
 
 
         mechanisms = Arrays.asList(
@@ -56,7 +59,8 @@ public class Robot {
                 cameraFront,
                 holdingCell,
                 lift,
-                arm
+                arm,
+                placement
                 // lineDetector
         );
     }
