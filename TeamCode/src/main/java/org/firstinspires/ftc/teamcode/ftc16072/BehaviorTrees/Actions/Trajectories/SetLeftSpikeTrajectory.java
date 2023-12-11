@@ -1,4 +1,7 @@
-package org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.Trajectories;
+package org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions;
+
+import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.acmerobotics.roadrunner.geometry.Vector2d;
 
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Node;
 import org.firstinspires.ftc.teamcode.ftc16072.OpModes.QQOpMode;
@@ -12,15 +15,14 @@ public class SetLeftSpikeTrajectory extends Node {
     @Override
     public State tick(QQOpMode opMode) {
         TrajectorySequenceBuilder builder = opMode.robot.nav.trajectorySequenceBuilder(opMode.robot.nav.getPoseEstimate());
-        TrajectorySequence sequence = builder.forward(FORWARD_DISTANCE_INCHES).
-                                            strafeLeft(LEFT_DISTANCE_INCHES).
-                                            strafeRight(LEFT_DISTANCE_INCHES).
-                                            forward(FORWARD_DISTANCE_INCHES).
-                                            build();
-        if (sequence == null){
+        TrajectorySequence leftParking = opMode.robot.nav.trajectorySequenceBuilder(new Pose2d(-36.57, -61.50, Math.toRadians(90.00)))
+                .splineTo(new Vector2d(-43.13, -39.69), Math.toRadians(132.71))
+                .build();
+
+        if (leftParking == null){
             return State.FAILURE;
         }
-        opMode.board.add("TrajectorySequence", sequence);
+        opMode.board.add("TrajectorySequence", leftParking);
         return State.SUCCESS;
     }
 }
