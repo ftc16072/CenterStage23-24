@@ -2,10 +2,13 @@ package org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trees;
 
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.DriveFieldRelative;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.ExtendSlides;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.MakeFastDrive;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.MakeNormalDrive;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.MakeSlowDrive;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.MoveArmAndLift;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.ReleaseLeftPixel;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.ReleaseRightPixel;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.SetLiftPosition;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.SpinInIntakeMotor;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.SpinOutIntakeMotor;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.StopIntakeMotor;
@@ -17,6 +20,7 @@ import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.HasMoreT
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IfExtendSlideButtonPressed;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IfIntakeButtonPressed;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IfLeftReleasePixelButtonPressed;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IfLeftTriggerPressed;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IfRightReleasePixelButtonPressed;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IsControllerDriving;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Failover;
@@ -81,6 +85,18 @@ http://behaviortrees.ftcteams.com/
 
  */
 public class TeleopTree {
+    public static Node placePixels(){
+        return  new Parallel(2,
+                new Sequence(
+                        new IfLeftReleasePixelButtonPressed(),
+                        new ReleaseLeftPixel()
+                ),
+                new Sequence(
+                        new IfRightReleasePixelButtonPressed(),
+                        new ReleaseRightPixel()
+                )
+        );
+    }
 
     public static Node root(){
         return new Parallel(4,
@@ -119,31 +135,35 @@ public class TeleopTree {
                                 new IfIntakeButtonPressed(),
                                 new SpinInIntakeMotor()
                         ),
+                        new Sequence(
+                                new HasMoreThan2Pixels(), // having more than 2 pixels is impossible
+                                new SpinOutIntakeMotor() // X not using eject
+                        ),
                         new StopIntakeMotor()
                 ),
-                new Sequence(
-                        new HasMoreThan2Pixels(),
-                        new SpinOutIntakeMotor()
+                new Failover(
+                        new Sequence(
+                                new SetLiftPosition()
+                        )
+
+
+
+
 
                 ),
-
-
-
                 new Parallel(2,
                         new Sequence(
                                 new Has1or2Pixels(),
-                                new IfExtendSlideButtonPressed(),
-                                new ExtendSlides(),
-                                new Parallel(2,
+                                new Failover(
                                         new Sequence(
-                                                new IfLeftReleasePixelButtonPressed(),
-                                                new ReleaseLeftPixel()
-                                        ),
-                                        new Sequence(
-                                                new IfRightReleasePixelButtonPressed(),
-                                                new ReleaseRightPixel()
+                                                new MoveArmAndLift()
+
                                         )
-                                )
+
+
+                                ),
+                                placePixels()
+
                         ),
                         new Failover(
                                 new AreSlidesExtended(),
@@ -155,7 +175,17 @@ public class TeleopTree {
                                 new AreNotSlidesExtended(),
                                 new Sequence(
                                         new IsControllerDriving(),
-                                        new MakeNormalDrive()
+                                        new Failover(
+                                                new MakeNormalDrive(),
+                                                new Sequence(
+                                                        new IfLeftTriggerPressed(),
+                                                        new MakeFastDrive()
+
+                                                )
+
+
+                                        )
+
                                 )
                         )
 
