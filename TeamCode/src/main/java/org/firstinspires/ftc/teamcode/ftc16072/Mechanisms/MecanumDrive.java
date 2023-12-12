@@ -14,8 +14,10 @@ import java.util.List;
 
 @Config
 public class MecanumDrive implements Mechanism {
+    public static final double FAST_DRIVE_MULTIPLIER = 1.0;
     public boolean doSlowDrive=false;
     public final double SLOW_DRIVE_MULTIPLIER= 0.4;
+    public final double REGULAR_DRIVE_MULTIPLIER = 0.6;
     DcMotor backLeftMotor;
     DcMotor backRightMotor;
     DcMotor frontRightMotor;
@@ -39,6 +41,8 @@ public class MecanumDrive implements Mechanism {
     public static double MAX_ACCELERATION = 60;
     public static double MAX_ANGULAR_VELOCITY = Math.PI;
     public static double MAX_ANGULAR_ACCELERATION = Math.PI;
+
+    private double speedMultiplier = 1.0;
 
     //Roadrunner tuning values
     //public static final double LATERAL_MULTIPLIER = 0.92717643;
@@ -74,6 +78,16 @@ public class MecanumDrive implements Mechanism {
         return "MecanumDrive";
     }
 
+    public void setSlowDrive(){
+        speedMultiplier = SLOW_DRIVE_MULTIPLIER;
+    }
+    public void setFastDrive(){
+        speedMultiplier = FAST_DRIVE_MULTIPLIER;
+    }
+    public void setNormalDrive(){
+        speedMultiplier = REGULAR_DRIVE_MULTIPLIER;
+    }
+
     public void move(double forward, double right, double rotate) {
         double frontLeftPower = forward + right + rotate;
         double frontRightPower = forward - right - rotate;
@@ -84,12 +98,13 @@ public class MecanumDrive implements Mechanism {
     }
 
     public void setPowers(double frontLeftPower, double frontRightPower, double backLeftPower, double backRightPower) {
-        if (doSlowDrive){
-            frontLeftPower*=SLOW_DRIVE_MULTIPLIER;
-            frontRightPower*=SLOW_DRIVE_MULTIPLIER;
-            backLeftPower*=SLOW_DRIVE_MULTIPLIER;
-            backRightPower*=SLOW_DRIVE_MULTIPLIER;
-        }
+
+        frontLeftPower*=speedMultiplier;
+        frontRightPower*=speedMultiplier;
+        backLeftPower*=speedMultiplier;
+        backRightPower*=speedMultiplier;
+
+
         double maxSpeed = 1.0;
 
         maxSpeed = Math.max(maxSpeed, Math.abs(frontLeftPower));
