@@ -5,7 +5,9 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.ftc16072.QQTest.QQtest;
+import org.firstinspires.ftc.teamcode.ftc16072.QQTest.TestMotor;
 import org.firstinspires.ftc.teamcode.ftc16072.QQTest.TestTwoMotor;
 
 import java.util.Arrays;
@@ -20,13 +22,8 @@ public class Lift implements  Mechanism{
         this.manipulatorPosition = manipulatorPosition;
     }
 
-    public double getDesiredPosition() {
-        return desiredPosition;
-    }
 
-    public void setDesiredPosition(double desiredPosition) {
-        this.desiredPosition = desiredPosition;
-    }
+
 
 
     public enum LiftPositions{
@@ -39,13 +36,15 @@ public class Lift implements  Mechanism{
     public static final int ARE_SLIDES_EXTENDED_BOUNDARY = 100; //TODO tune value
 
     private LiftPositions manipulatorPosition;
-    private static final double LIFT_POSITION_SAFETY_BOTTOM = 392749;
-    private static final double LOW_POSITION = 3923749;
-    private static final double MIDDLE_POSITION = 47832;
-    private static final double TOP_POSITION = 822727;
-    private static final double FLOOR_POSITION =898998  ;
-    private static final double PIXEL_HEIGHT = 271;
-    private final double MANUAL_CHANGE = 100;
+    private static final int LIFT_POSITION_SAFETY_BOTTOM = -50;
+    private static final int LIFT_POSITION_SAFETY_TOP = 343455; //TODO need to fix
+
+    private static final int LOW_POSITION = 800;
+    private static final int MIDDLE_POSITION = 1600;
+    private static final int TOP_POSITION = 2400;
+    private static final int FLOOR_POSITION =0  ;
+    private static final int PIXEL_HEIGHT = 271;
+    private final int MANUAL_CHANGE = 50;
     private DcMotorEx rightLiftMotor;
     private DcMotorEx leftLiftMotor;
 
@@ -55,45 +54,51 @@ public class Lift implements  Mechanism{
     private double desiredPosition;
     private double sumOfErrors;
     private double lastError;
-    static double K_P = 0.001;
+    static double K_P = 0.007;
     static double K_I = 0.0001;
     static double K_D = 0.2;
-    //we have to change the positions later.
-    public static int[] PIXEL_POSITIONS = new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+    public double motorPower;
 
 
-    private static final int LIFT_POSITION_SAFETY_TOP = 343455; //TODO need to fix
 
     @Override
     public void init(HardwareMap hwMap) {
         rightLiftMotor = hwMap.get(DcMotorEx.class, "right_lift_motor");
-        //rightLiftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightLiftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         rightLiftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rightLiftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightLiftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         leftLiftMotor = hwMap.get(DcMotorEx.class, "left_lift_motor");
         leftLiftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        leftLiftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         leftLiftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         setManipulatorPosition(LiftPositions.FLOOR_POSITION);
+        desiredPosition = leftLiftMotor.getCurrentPosition();
+
 
 
     }
-    private void setDesiredPosition(int newPosition){
+    private void setDesiredPosition(double newPosition){
         desiredPosition = newPosition;
         sumOfErrors = 0;
         lastError = 0;
     }
+
     public boolean areSlidesExtendedPastBoundary(){
-        return   currentPosition()> ARE_SLIDES_EXTENDED_BOUNDARY;
+        return currentPosition()> ARE_SLIDES_EXTENDED_BOUNDARY;
 
         }
-    public void update(){
+    public void update(Telemetry telemetry){
+
         double error;
-        error = getDesiredPosition() - rightLiftMotor.getCurrentPosition();
+        error = getDesiredPosition() - currentPosition();
         sumOfErrors = sumOfErrors + error;
 
-        double motorPower =K_P * error + K_I * sumOfErrors + K_D * (error - lastError);
+        //motorPower =K_P * error + K_I * sumOfErrors + K_D * (error - lastError);
+        motorPower = K_P *error;
         lastError = error;
+        telemetry.addData("error", error);
 
         rightLiftMotor.setPower(motorPower);
         leftLiftMotor.setPower(motorPower);
@@ -104,8 +109,13 @@ public class Lift implements  Mechanism{
         return Arrays.asList(
                 new TestTwoMotor("lift", leftLiftMotor, rightLiftMotor, 0.5),
                 new TestTwoMotor("downLift", leftLiftMotor, rightLiftMotor, -0.5)
-        );
+                //new TestMotor("right lift", 0.8, rightLiftMotor),
+                //new TestMotor("left lift", 0.8, leftLiftMotor)
+
+
+                );
     }
+
     public void manualLiftUp(){
         setDesiredPosition(currentPosition() + MANUAL_CHANGE);
         if(getDesiredPosition() > LIFT_POSITION_SAFETY_TOP){
@@ -118,6 +128,13 @@ public class Lift implements  Mechanism{
 
         }
     }
+    public double getPower(){
+        return motorPower;
+    }
+    public double getDesiredPosition(){
+        return desiredPosition;
+    }
+
 
     public void goToLow(){
         setDesiredPosition(LOW_POSITION);
@@ -138,6 +155,7 @@ public class Lift implements  Mechanism{
         setDesiredPosition(currentPosition() - PIXEL_HEIGHT);
     }
     public double currentPosition(){
-        return (rightLiftMotor.getCurrentPosition() + leftLiftMotor.getCurrentPosition())/2.0;
+        return ((rightLiftMotor.getCurrentPosition() + leftLiftMotor.getCurrentPosition())/2.0);
     }
+
 }
