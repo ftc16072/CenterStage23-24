@@ -39,7 +39,7 @@ public class Lift implements  Mechanism{
     private static final int LIFT_POSITION_SAFETY_BOTTOM = -50;
     private static final int LIFT_POSITION_SAFETY_TOP = 343455; //TODO need to fix
 
-    private static final int LOW_POSITION = 800;
+    private static final int LOW_POSITION = 700;
     private static final int MIDDLE_POSITION = 1600;
     private static final int TOP_POSITION = 2400;
     private static final int FLOOR_POSITION =0  ;
