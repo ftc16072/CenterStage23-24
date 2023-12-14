@@ -17,6 +17,7 @@ import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.AreSlide
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.Has1or2Pixels;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.HasLessThan2Pixels;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.HasMoreThan2Pixels;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IfEjectButtonPressed;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IfExtendSlideButtonPressed;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IfIntakeButtonPressed;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IfLeftReleasePixelButtonPressed;
@@ -131,12 +132,13 @@ public class TeleopTree {
 
                 new Failover(
                         new Sequence(
-                                new HasLessThan2Pixels(),
+                                //new HasLessThan2Pixels(),
                                 new IfIntakeButtonPressed(),
                                 new SpinInIntakeMotor()
                         ),
                         new Sequence(
-                                new HasMoreThan2Pixels(), // having more than 2 pixels is impossible
+                                //new HasMoreThan2Pixels(), // having more than 2 pixels is impossible
+                                new IfEjectButtonPressed(),
                                 new SpinOutIntakeMotor() // X not using eject
                         ),
                         new StopIntakeMotor()
@@ -153,7 +155,7 @@ public class TeleopTree {
                 ),
                 new Parallel(2,
                         new Sequence(
-                                new Has1or2Pixels(),
+                                //new Has1or2Pixels(),
                                 new Failover(
                                         new Sequence(
                                                 new MoveArmAndLift()

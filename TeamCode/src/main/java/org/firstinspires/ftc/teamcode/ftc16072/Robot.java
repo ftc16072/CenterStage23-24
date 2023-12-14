@@ -50,9 +50,9 @@ public class Robot {
 
 
         mechanisms = Arrays.asList(
-                //mecanumDrive,
+                mecanumDrive,
                 controlHub,
-                //intake,
+                intake,
                 //cameraBack,
                 //cameraFront,
                 //holdingCell,
