@@ -21,9 +21,7 @@ public class ScrimTeleOp extends  QQOpMode{
                 done = true;
             }
         }
-
-
-
+        robot.lift.update(telemetry);
     }
 
 
