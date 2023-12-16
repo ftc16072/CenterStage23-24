@@ -41,7 +41,7 @@ public class Robot {
         controlHub = new ControlHub();
         mecanumDrive = new MecanumDrive();
         lineDetector = new LineDetector();
-        nav = new Navigation(controlHub, mecanumDrive, cameraFront,cameraBack);
+        nav = new Navigation(controlHub, mecanumDrive);
         intake = new Intake();
         holdingCell = new HoldingCell();
         lift = new Lift();
