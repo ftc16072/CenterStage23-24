@@ -29,9 +29,9 @@ public class MoveArmAndLift extends Node {
                 opmode.liftControl.goToFloor();
             }
         } else  if (opmode.gamepad1.dpad_down){
-            opmode.liftControl.downOnePixel();
+            opmode.robot.arm.goToIntakePosition();
         } else if (opmode.gamepad1.dpad_up){
-            opmode.liftControl.upOnePixel();
+            opmode.robot.arm.goToPlacingPosition();
         } else if (opmode.gamepad1.right_bumper){
             opmode.liftControl.manualLiftUp();
         } else if (opmode.gamepad1.left_bumper){
