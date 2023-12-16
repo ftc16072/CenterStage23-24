@@ -41,7 +41,7 @@ public class RightRI3W extends OpMode {
             case BEGIN:
                 state = State.FORWARD;
                 trajectory = robot.nav.trajectoryBuilder(currentPose, false)
-                        .strafeLeft(4)
+                        .strafeLeft(8)
                         .build();
 
                 robot.nav.follower.followTrajectory(trajectory);
@@ -49,7 +49,7 @@ public class RightRI3W extends OpMode {
             case FORWARD:
                 if (robot.nav.isDoneFollowing(currentPose)) {
                     trajectory = robot.nav.trajectoryBuilder(currentPose, false)
-                            .forward(50)
+                            .forward(75)
                             .build();
 
                     robot.nav.follower.followTrajectory(trajectory);
