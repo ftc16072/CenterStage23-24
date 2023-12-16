@@ -13,8 +13,8 @@ import java.util.List;
 
 public class Intake implements Mechanism{
 
-    public static final int INTAKE_SPEED = 1;
-    public static final int EJECT_SPEED = -1;
+    public static final double INTAKE_SPEED = 0.5;
+    public static final double EJECT_SPEED = -0.5;
     private DcMotor intakeMotor;
     @Override
     public void init(HardwareMap hwMap) {
@@ -25,8 +25,8 @@ public class Intake implements Mechanism{
 
     public List<QQtest> getTests() {
         return Arrays.asList(
-                new TestMotor("Intake", 0.6, intakeMotor),
-                new TestMotor("Eject", -0.6, intakeMotor));
+                new TestMotor("Intake", INTAKE_SPEED, intakeMotor),
+                new TestMotor("Eject", EJECT_SPEED, intakeMotor));
 
     }
     public void intake(){
