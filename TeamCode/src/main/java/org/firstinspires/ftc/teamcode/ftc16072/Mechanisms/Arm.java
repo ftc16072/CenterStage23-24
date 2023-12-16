@@ -11,8 +11,12 @@ import java.util.List;
 
 public class Arm implements Mechanism{
 
-    private static final double INTAKE_ARM_POS = 0.25;  //value not tested
-    private static final double PLACING_ARM_POS = 0.75; //value not tested
+    private static final double RIGHT_SERVO_INTAKE_ARM_POS = 0;  //value not tested
+    private static final double RIGHT_SERVO_PLACING_ARM_POS = 0.6;  //value not tested
+
+    private static final double LEFT_SERVO_PLACING_ARM_POS = 0.6 ; //value not tested
+    private static final double LEFT_SERVO_INTAKE_ARM_POS = 0; //value not tested
+
     public enum ArmPositions{
         PLACING_POSITION,
         INTAKE_POSITION
@@ -32,18 +36,18 @@ public class Arm implements Mechanism{
     @Override
     public List<QQtest> getTests() {
         return Arrays.asList(
-                new TestServo("left_arm_servo", 0.25, 0, leftArmServo),
-                new TestServo("right_arm_servo", 0.25,0, rightArmServo)
+                new TestServo("left_arm_servo", 0.5, 0, leftArmServo),
+                new TestServo("right_arm_servo", 0.5,0, rightArmServo)
         );
     }
     public void goToIntakePosition(){
-        leftArmServo.setPosition(INTAKE_ARM_POS);
-        rightArmServo.setPosition(INTAKE_ARM_POS);
+        leftArmServo.setPosition(LEFT_SERVO_INTAKE_ARM_POS);
+        rightArmServo.setPosition(RIGHT_SERVO_INTAKE_ARM_POS);
         armPosition= ArmPositions.INTAKE_POSITION;
     }
     public void goToPlacingPosition(){
-        leftArmServo.setPosition(PLACING_ARM_POS);
-        rightArmServo.setPosition(PLACING_ARM_POS);
+        leftArmServo.setPosition(LEFT_SERVO_PLACING_ARM_POS);
+        rightArmServo.setPosition(RIGHT_SERVO_PLACING_ARM_POS);
         armPosition= ArmPositions.PLACING_POSITION;
     }
     public ArmPositions getArmPosition(){

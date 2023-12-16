@@ -10,8 +10,12 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Placement implements Mechanism{
-    public static final int PLACEMENT_GRAB = 29812;
-    public static final int PLACEMENT_EJECT = 23984;
+    public static final double PLACEMENT_GRAB = 0;
+    public static final double PLACEMENT_EJECT = 0.3;
+    public static final double LEFT_SERVO_GRAB_POSITION = 0.7;
+    public static final double LEFT_SERVO_EJECT_POSITION = 0.4;
+    public static final double RIGHT_SERVO_GRAB_POSITION = 0.1;
+    public static final double RIGHT_SERVO_EJECT_POSITION = 1;
     Servo rightPlacement;
     Servo leftPlacement;
     @Override
@@ -20,25 +24,28 @@ public class Placement implements Mechanism{
         rightPlacement = hwMap.get(Servo.class,"right_placement");
 
 
+
     }
     public void leftServoGrab(){
-        leftPlacement.setPosition(PLACEMENT_GRAB);
+        leftPlacement.setPosition(LEFT_SERVO_GRAB_POSITION);
     }
     public void rightServoGrab(){
-        rightPlacement.setPosition(PLACEMENT_GRAB);
+        rightPlacement.setPosition(RIGHT_SERVO_GRAB_POSITION);
     }
     public void leftServoEject(){
-        leftPlacement.setPosition(PLACEMENT_EJECT);
+        leftPlacement.setPosition(LEFT_SERVO_EJECT_POSITION);
     } public void rightServoEject(){
-        rightPlacement.setPosition(PLACEMENT_EJECT);
+        rightPlacement.setPosition(RIGHT_SERVO_EJECT_POSITION);
     }
 
 
     @Override
     public List<QQtest> getTests() {
         return Arrays.asList(
-                new TestServo("right_placement", 0.5,0, rightPlacement),
-                new TestServo("left_placement", 0.5,0,leftPlacement)
+                new TestServo("left_placement", LEFT_SERVO_GRAB_POSITION, LEFT_SERVO_EJECT_POSITION,leftPlacement),
+                new TestServo("right_placement", RIGHT_SERVO_GRAB_POSITION, RIGHT_SERVO_EJECT_POSITION,rightPlacement)
+
+
         );
     }
 }

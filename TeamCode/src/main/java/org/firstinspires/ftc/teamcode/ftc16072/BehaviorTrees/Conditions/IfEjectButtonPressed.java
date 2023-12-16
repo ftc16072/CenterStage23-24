@@ -3,13 +3,12 @@ package org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Node;
 import org.firstinspires.ftc.teamcode.ftc16072.OpModes.QQOpMode;
 
-public class IfRightReleasePixelButtonPressed extends Node {
-
+public class IfEjectButtonPressed extends Node {
     @Override
     public State tick(QQOpMode opmode) {
-        if(opmode.gamepad1.a){
+        if (opmode.gamepad1.x){
             return State.SUCCESS;
         }
-        return  State.FAILURE;
+        return State.FAILURE;
     }
 }

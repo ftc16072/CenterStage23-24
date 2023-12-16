@@ -30,7 +30,8 @@ public class TestTwoMotor extends QQtest {
             motorLeft.setPower(0);
 
         }
-        telemetry.addData("Current Position", motorLeft.getCurrentPosition());
+        telemetry.addData("Current Position Motor Right ", motorRight.getCurrentPosition());
+        telemetry.addData("Current Position Motor Left ", motorLeft.getCurrentPosition());
 
     }
 }
