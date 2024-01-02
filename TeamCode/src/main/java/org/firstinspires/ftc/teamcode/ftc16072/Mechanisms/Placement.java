@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.ftc16072.Mechanisms;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -9,13 +10,18 @@ import org.firstinspires.ftc.teamcode.ftc16072.QQTest.TestServo;
 import java.util.Arrays;
 import java.util.List;
 
+@Config
 public class Placement implements Mechanism{
-    public static final double PLACEMENT_GRAB = 0;
-    public static final double PLACEMENT_EJECT = 0.3;
-    public static final double LEFT_SERVO_GRAB_POSITION = 0.7;
-    public static final double LEFT_SERVO_EJECT_POSITION = 0.4;
-    public static final double RIGHT_SERVO_GRAB_POSITION = 0.1;
-    public static final double RIGHT_SERVO_EJECT_POSITION = 1;
+
+
+    public static double LEFT_SERVO_GRAB_POSITION = 0.25;
+    //TODO add final after tuning
+    public static double LEFT_SERVO_EJECT_POSITION = 0.1    ;
+    public static double RIGHT_SERVO_GRAB_POSITION = 0.45;
+    //TODO add final after tuning
+    public static  double RIGHT_SERVO_EJECT_POSITION = 0.5;
+    public static double RIGHT_SERVO_LIFTDOWN_POSITION = 0.6;
+    public static double LEFT_SERVO_LIFTDOWN_POSITION= 0;
     Servo rightPlacement;
     Servo leftPlacement;
     @Override
@@ -36,6 +42,10 @@ public class Placement implements Mechanism{
         leftPlacement.setPosition(LEFT_SERVO_EJECT_POSITION);
     } public void rightServoEject(){
         rightPlacement.setPosition(RIGHT_SERVO_EJECT_POSITION);
+    }
+    public void servosGoToLiftDownPosition(){
+        leftPlacement.setPosition(LEFT_SERVO_LIFTDOWN_POSITION);
+        rightPlacement.setPosition(RIGHT_SERVO_LIFTDOWN_POSITION);
     }
 
 

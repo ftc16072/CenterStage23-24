@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.ftc16072.Mechanisms;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -9,12 +10,13 @@ import org.firstinspires.ftc.teamcode.ftc16072.QQTest.TestServo;
 import java.util.Arrays;
 import java.util.List;
 
+@Config
 public class Arm implements Mechanism{
 
     private static final double RIGHT_SERVO_INTAKE_ARM_POS = 0;  //value not tested
-    private static final double RIGHT_SERVO_PLACING_ARM_POS = 0.6;  //value not tested
+    private static final double RIGHT_SERVO_PLACING_ARM_POS = 0.75;  //value not tested
 
-    private static final double LEFT_SERVO_PLACING_ARM_POS = 0.6 ; //value not tested
+    private static final double LEFT_SERVO_PLACING_ARM_POS = 0.75 ; //value not tested
     private static final double LEFT_SERVO_INTAKE_ARM_POS = 0; //value not tested
 
     public enum ArmPositions{

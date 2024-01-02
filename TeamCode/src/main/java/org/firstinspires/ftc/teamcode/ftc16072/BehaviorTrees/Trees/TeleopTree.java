@@ -5,6 +5,7 @@ import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.MakeFastDri
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.MakeNormalDrive;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.MakeSlowDrive;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.MoveArmAndLift;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.MovePlacementToLiftDownPosition;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.PlacePixels;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.SetLiftPosition;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.SpinInIntakeMotor;
@@ -15,6 +16,7 @@ import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.AreSlide
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IfEjectButtonPressed;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IfIntakeButtonPressed;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IfLeftTriggerPressed;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IfPlacementToLiftDownPosition;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IsControllerDriving;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Failover;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Node;
@@ -79,7 +81,7 @@ http://behaviortrees.ftcteams.com/
  */
 public class TeleopTree {
     public static Node root(){
-        return new Parallel(4,
+        return new Parallel(5,
                 /*
                 new Sequence(
 
@@ -106,7 +108,12 @@ public class TeleopTree {
                     )
                 ),
 
+
                  */
+                new Sequence(
+                        new IfPlacementToLiftDownPosition(),
+                        new MovePlacementToLiftDownPosition()
+                ),
                 new DriveFieldRelative(),
                 new PlacePixels(),
                 new Failover(
