@@ -10,6 +10,7 @@ import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.SetLiftPosi
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.SpinInIntakeMotor;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.SpinOutIntakeMotor;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.StopIntakeMotor;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.UpdateArm;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.AreNotSlidesExtended;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.AreSlidesExtended;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IfEjectButtonPressed;
@@ -79,7 +80,7 @@ http://behaviortrees.ftcteams.com/
  */
 public class TeleopTree {
     public static Node root(){
-        return new Parallel(4,
+        return new Parallel(5,
                 /*
                 new Sequence(
 
@@ -108,6 +109,7 @@ public class TeleopTree {
 
                  */
                 new DriveFieldRelative(),
+                new UpdateArm(),
                 new PlacePixels(),
                 new Failover(
                         new Sequence(

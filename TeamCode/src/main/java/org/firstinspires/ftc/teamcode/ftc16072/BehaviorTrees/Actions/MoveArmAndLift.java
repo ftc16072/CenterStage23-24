@@ -9,23 +9,14 @@ public class MoveArmAndLift extends Node {
     public State tick(QQOpMode opmode) {
         if (opmode.gamepad1.y) {
             opmode.liftControl.goToFloor();
-        }
-        else if (opmode.gamepad1.b){
+        } else if (opmode.gamepad1.b){
             if (opmode.liftControl.atPosition(Lift.LiftPositions.LOW_POSITION)){
-                opmode.robot.arm.goToPlacingPosition();
-                new delayAction();
                 opmode.liftControl.goToLow();
             } else if (opmode.liftControl.atPosition(Lift.LiftPositions.MIDDLE_POSITION)){
-                opmode.robot.arm.goToPlacingPosition();
-                new delayAction();
                 opmode.liftControl.goToMiddle();
             } else if (opmode.liftControl.atPosition(Lift.LiftPositions.TOP_POSITION)){
-                opmode.robot.arm.goToPlacingPosition();
-                new delayAction();
                 opmode.liftControl.goToTop();
             } else if (opmode.liftControl.atPosition(Lift.LiftPositions.FLOOR_POSITION)){
-                opmode.robot.arm.goToIntakePosition();
-                new delayAction();
                 opmode.liftControl.goToFloor();
             }
         } else  if (opmode.gamepad1.dpad_down){
