@@ -10,7 +10,6 @@ public class UpdateArmAndLift extends Node {
     @Override
     public State tick(QQOpMode opmode) {
         armControl.updateArm();
-
         lift.update(opmode.telemetry);
 
         return State.RUNNING;
