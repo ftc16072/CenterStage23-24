@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.ftc16072.Util;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Lift;
 import org.firstinspires.ftc.teamcode.ftc16072.Robot;
 
-public class LiftControl {
+public class  LiftControl {
     Lift.LiftPositions manipulatorPosition;
     Lift lift;
 

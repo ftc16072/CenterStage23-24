@@ -51,14 +51,14 @@ public class Robot {
 
         mechanisms = Arrays.asList(
                 mecanumDrive,
-                controlHub,
-                intake,
+                controlHub
+                //intake,
                 //cameraBack,
                 //cameraFront,
                 //holdingCell,
-                lift,
-                arm,
-                placement
+                //lift,
+                //arm,
+                //placement
                 // lineDetector
         );
     }
