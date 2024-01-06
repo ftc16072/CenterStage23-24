@@ -1,9 +1,9 @@
 package org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trees;
 
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.FollowTrajectory;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.SetLeftSpikeTrajectory;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.SetMiddleSpikeTrajectory;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.SetRightSpikeTrajectory;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.Trajectories.FollowTrajectory;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.Trajectories.SetLeftSpikeTrajectory;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.Trajectories.SetMiddleSpikeTrajectory;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.Trajectories.SetRightSpikeTrajectory;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IsLeftSpike;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IsRightSpike;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Failover;
