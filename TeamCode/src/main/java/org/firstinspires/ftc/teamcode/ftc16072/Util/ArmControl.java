@@ -8,7 +8,7 @@ public class ArmControl {
     Arm arm;
     Lift lift;
    public int safePosition; //TODO
-    public ArmControl (Robot robot){
+    public ArmControl (Robot robot){ //TODO  call this function in QQOpmode
         arm = robot.arm;
         lift = robot.lift;
     }
