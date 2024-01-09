@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.ftc16072.Mechanisms;
+package org.firstinspires.ftc.teamcode.ftc16072.OpModes;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Gamepad;
