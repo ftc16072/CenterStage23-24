@@ -26,6 +26,7 @@ public class Lift implements  Mechanism{
 
 
 
+
     public enum LiftPositions{
         FLOOR_POSITION,
         LOW_POSITION,
