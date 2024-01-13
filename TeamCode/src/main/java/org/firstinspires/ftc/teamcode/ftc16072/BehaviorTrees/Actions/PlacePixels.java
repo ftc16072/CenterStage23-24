@@ -10,9 +10,7 @@ public class PlacePixels extends Node {
         if(opmode.gamepad1.b){
             opmode.robot.placement.leftServoEject();
             opmode.robot.placement.rightServoEject();
-        }else if(opmode.gamepad1.a){
-            opmode.robot.placement.leftServoGrab();
-            opmode.robot.placement.rightServoGrab();
+
         }
         return State.RUNNING;
     }

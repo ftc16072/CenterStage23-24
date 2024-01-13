@@ -12,7 +12,7 @@ import org.firstinspires.ftc.teamcode.ftc16072.QQTest.TestSwitch;
 import java.util.Arrays;
 import java.util.List;
 
-public class HoldingCell implements Mechanism{
+public class  HoldingCell implements Mechanism{
     public static final int PIXEL_THRESHOLD_MM = 20;
 
     private ColorRangeSensor leftPixelCounter;
