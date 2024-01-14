@@ -29,15 +29,15 @@ public class Arm implements Mechanism{
         leftArmServo = hwMap.get(Servo.class,"left_arm_servo");
         rightArmServo = hwMap.get(Servo.class,"right_arm_servo");
         rightArmServo.setDirection(Servo.Direction.REVERSE);
-        armPosition= ArmPositions.INTAKE_POSITION;
+        //armPosition= ArmPositions.INTAKE_POSITION; // could be
 
     }
 
     @Override
     public List<QQtest> getTests() {
         return Arrays.asList(
-                new TestServo("left_arm_servo", 0.5, 0, leftArmServo),
-                new TestServo("right_arm_servo", 0.5,0, rightArmServo)
+                new TestServo("left_arm_servo", 1, 0, leftArmServo),
+                new TestServo("right_arm_servo", 1,0, rightArmServo)
         );
     }
     public void goToIntakePosition(){

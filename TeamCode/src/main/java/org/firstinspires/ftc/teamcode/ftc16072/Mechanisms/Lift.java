@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.ftc16072.Mechanisms;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -12,7 +13,7 @@ import org.firstinspires.ftc.teamcode.ftc16072.QQTest.TestTwoMotor;
 
 import java.util.Arrays;
 import java.util.List;
-
+@Config
 public class Lift implements  Mechanism{
     public LiftPositions getManipulatorPosition() {
         return manipulatorPosition;
@@ -57,9 +58,9 @@ public class Lift implements  Mechanism{
     private double desiredPosition;
     private double sumOfErrors;
     private double lastError;
-    static double K_P = 0.007;
-    static double K_I = 0.0001;
-    static double K_D = 0.2;
+    public static double K_P = 0.007;
+    public static double K_I = 0.0001;
+    public static double K_D = 0.2;
     public double motorPower;
 
 

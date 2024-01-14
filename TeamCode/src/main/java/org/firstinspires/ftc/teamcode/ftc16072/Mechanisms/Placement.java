@@ -12,16 +12,17 @@ import java.util.List;
 public class Placement implements Mechanism{
     public static final double PLACEMENT_GRAB = 0;
     public static final double PLACEMENT_EJECT = 0.3;
-    public static final double LEFT_SERVO_GRAB_POSITION = 0.7;
-    public static final double LEFT_SERVO_EJECT_POSITION = 0.4;
-    public static final double RIGHT_SERVO_GRAB_POSITION = 0.1;
-    public static final double RIGHT_SERVO_EJECT_POSITION = 1;
+    public static final double LEFT_SERVO_GRAB_POSITION = 1;
+    public static final double LEFT_SERVO_EJECT_POSITION = 0;
+    public static final double RIGHT_SERVO_GRAB_POSITION = 0.25;
+    public static final double RIGHT_SERVO_EJECT_POSITION = 0.65 ;
     Servo rightPlacement;
     Servo leftPlacement;
     @Override
     public void init(HardwareMap hwMap) {
         leftPlacement= hwMap.get(Servo.class,"left_placement");
         rightPlacement = hwMap.get(Servo.class,"right_placement");
+
 
 
 
