@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Arm;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Camera;
+import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Climber;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.ControlHub;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.HoldingCell;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Lift;
@@ -32,6 +33,7 @@ public class Robot {
     public Lift lift;
     public Arm arm;
     public Placement placement;
+    public Climber climber;
 
 
 
@@ -47,19 +49,21 @@ public class Robot {
         lift = new Lift();
         arm = new Arm();
         placement = new Placement();
+        climber = new Climber();
 
 
         mechanisms = Arrays.asList(
                 mecanumDrive,
-                controlHub
-                //intake,
-                //cameraBack,
-                //cameraFront,
-                //holdingCell,
-                //lift,
-                //arm,
-                //placement
-                // lineDetector
+                controlHub,
+                intake,
+                cameraBack,
+                cameraFront,
+                holdingCell,
+                lift,
+                arm,
+                placement,
+                 lineDetector,
+                climber
         );
     }
 
