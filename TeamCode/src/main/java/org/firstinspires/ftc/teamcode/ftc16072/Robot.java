@@ -8,7 +8,6 @@ import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Climber;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.ControlHub;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.HoldingCell;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Lift;
-import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.LineDetector;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Intake;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.MecanumDrive;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Mechanism;
@@ -24,7 +23,7 @@ public class Robot {
     public MecanumDrive mecanumDrive;
     public Navigation nav;
     public ControlHub controlHub;
-    public LineDetector lineDetector;
+    //public LineDetector lineDetector;
     public Intake intake;
 
     public HoldingCell holdingCell;
@@ -38,11 +37,10 @@ public class Robot {
 
 
     public Robot() {
-        cameraFront = new Camera(Camera.CameraPosition.FRONT);
+        //cameraFront = new Camera(Camera.CameraPosition.FRONT);
         cameraBack = new Camera(Camera.CameraPosition.BACK);
         controlHub = new ControlHub();
         mecanumDrive = new MecanumDrive();
-        lineDetector = new LineDetector();
         nav = new Navigation(controlHub, mecanumDrive, cameraFront,cameraBack);
         intake = new Intake();
         holdingCell = new HoldingCell();
@@ -61,7 +59,6 @@ public class Robot {
                 lift,
                 arm,
                 placement,
-                lineDetector,
                 climber
         );
     }
@@ -75,7 +72,7 @@ public class Robot {
 
     public void init(HardwareMap hwMap) {
         int[] ids = VisionPortal.makeMultiPortalView(2, VisionPortal.MultiPortalLayout.HORIZONTAL);
-        cameraFront.setViewPortID(ids[0]);
+        //cameraFront.setViewPortID(ids[0]);
         cameraBack.setViewPortID(ids[1]);
 
         for (Mechanism mechanism : mechanisms) {
