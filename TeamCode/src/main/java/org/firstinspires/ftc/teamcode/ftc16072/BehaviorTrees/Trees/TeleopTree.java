@@ -14,6 +14,7 @@ import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.SpinOutInta
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.StopIntakeMotor;
 
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.UpdateArmAndLift;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.UpdateClimber;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.AreNotSlidesExtended;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.AreSlidesExtended;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.Has1Pixel;
@@ -118,6 +119,7 @@ public class TeleopTree {
                  */
                 new DriveFieldRelative(),
                 new UpdateArmAndLift(),
+                new UpdateClimber(),
                 new Failover(
                         new Sequence(
                                 new HasLessThan2Pixels(),

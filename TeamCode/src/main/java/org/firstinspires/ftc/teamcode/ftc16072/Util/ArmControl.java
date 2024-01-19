@@ -1,22 +1,15 @@
 package org.firstinspires.ftc.teamcode.ftc16072.Util;
 
-import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Arm;
-import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Lift;
 import org.firstinspires.ftc.teamcode.ftc16072.Robot;
 
 public class ArmControl {
-    Arm arm;
-    Lift lift;
-   public int safePosition; //TODO
-    public ArmControl (Robot robot){
-        arm = robot.arm;
-        lift = robot.lift;
-    }
-    public void updateArm (){
-        if (lift.currentPosition() > safePosition){
-            arm.goToPlacingPosition();
+   public int safePosition= 10000; //TODO: Know this isn't right
+
+    public void updateArm (Robot robot){
+        if (robot.lift.currentPosition() > safePosition){
+            robot.arm.goToPlacingPosition();
         } else{
-            arm.goToIntakePosition();
+            robot.arm.goToIntakePosition();
         }
 
     }
