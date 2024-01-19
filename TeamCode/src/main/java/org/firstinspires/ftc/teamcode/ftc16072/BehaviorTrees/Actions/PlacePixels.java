@@ -8,11 +8,13 @@ public class PlacePixels extends Node {
     public State tick(QQOpMode opmode) {
         //TODO: change later so we can release pixels individually
         if(opmode.gamepad1.b){
-            opmode.robot.placement.leftServoEject();
-            opmode.robot.placement.rightServoEject();
-        }else if(opmode.gamepad1.a){
             opmode.robot.placement.leftServoGrab();
             opmode.robot.placement.rightServoGrab();
+
+        }else {
+
+            opmode.robot.placement.leftServoEject();
+            opmode.robot.placement.rightServoEject();
         }
         return State.RUNNING;
     }
