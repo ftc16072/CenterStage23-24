@@ -22,6 +22,9 @@ public class  LiftControl {
     public void goToLow(){
         lift.goToLow();
     }
+    public void goToPixelGrab(){
+        lift.goToPixelGrab();
+    }
     public void goToMiddle(){
         lift.goToMiddle();
     }

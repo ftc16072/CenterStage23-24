@@ -1,13 +1,22 @@
 package org.firstinspires.ftc.teamcode.ftc16072.OpModes;
 
+import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.teamcode.ftc16072.OpModes.QQOpMode;
 @TeleOp
+@Config
 public class TestingRobotTeleOp extends QQOpMode {
+    FtcDashboard dashboard;
+
     public void init(){
         robot.init(hardwareMap);
+        dashboard = FtcDashboard.getInstance();
+        telemetry = dashboard.getTelemetry();
+
+
     }
     @Override
     public void loop() {
@@ -31,6 +40,10 @@ public class TestingRobotTeleOp extends QQOpMode {
             robot.lift.manualLiftDown();
         } else if (gamepad1.dpad_up){
             robot.lift.manualLiftUp();
+        } if (gamepad1.x){
+            robot.lift.goToMiddle();
+        } else if (gamepad1.b){
+            robot.lift.goToLow();
         }
 
 

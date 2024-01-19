@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.ftc16072.Mechanisms;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -12,7 +13,7 @@ import org.firstinspires.ftc.teamcode.ftc16072.QQTest.TestTwoMotor;
 
 import java.util.Arrays;
 import java.util.List;
-
+@Config
 public class Lift implements  Mechanism{
     public LiftPositions getManipulatorPosition() {
         return manipulatorPosition;
@@ -40,10 +41,12 @@ public class Lift implements  Mechanism{
     private static final int LIFT_POSITION_SAFETY_BOTTOM = -50;
     private static final int LIFT_POSITION_SAFETY_TOP = 343455; //TODO need to fix
 
+    private static final int PIXEL_GRAB_POSITION=0;
+
     private static final int LOW_POSITION = 700;
     private static final int MIDDLE_POSITION = 1600;
     private static final int TOP_POSITION = 2400;
-    private static final int FLOOR_POSITION =0  ;
+    private static final int FLOOR_POSITION =100  ;
     private static final int PIXEL_HEIGHT = 271;
     private final int MANUAL_CHANGE = 50;
     private DcMotorEx rightLiftMotor;
@@ -55,9 +58,9 @@ public class Lift implements  Mechanism{
     private double desiredPosition;
     private double sumOfErrors;
     private double lastError;
-    static double K_P = 0.007;
-    static double K_I = 0.0001;
-    static double K_D = 0.2;
+    public static double K_P = 0.007;
+    public static double K_I = 0.0001;
+    public static double K_D = 0.2;
     public double motorPower;
 
 
@@ -135,7 +138,9 @@ public class Lift implements  Mechanism{
     public double getDesiredPosition(){
         return desiredPosition;
     }
-
+    public void goToPixelGrab(){
+        setDesiredPosition(PIXEL_GRAB_POSITION);
+    }
 
     public void goToLow(){
         setDesiredPosition(LOW_POSITION);
