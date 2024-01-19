@@ -57,12 +57,11 @@ public class Robot {
                 controlHub,
                 intake,
                 cameraBack,
-                cameraFront,
                 holdingCell,
                 lift,
                 arm,
                 placement,
-                 lineDetector,
+                lineDetector,
                 climber
         );
     }
