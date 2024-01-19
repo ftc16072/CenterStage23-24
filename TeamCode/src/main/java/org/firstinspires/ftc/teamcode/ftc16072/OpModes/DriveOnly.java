@@ -1,8 +1,10 @@
 package org.firstinspires.ftc.teamcode.ftc16072.OpModes;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 @TeleOp()
+@Disabled
 public class DriveOnly extends QQOpMode {
 
     @Override
