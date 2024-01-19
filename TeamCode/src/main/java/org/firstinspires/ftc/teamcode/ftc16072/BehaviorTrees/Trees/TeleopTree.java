@@ -8,6 +8,7 @@ import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.MakeSlowDri
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.MoveArmAndLift;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.MoveLiftToPixelGrabPosition;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.PlacePixels;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.ResetGyro;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.SetLiftPosition;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.SpinInIntakeMotor;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.SpinOutIntakeMotor;
@@ -120,6 +121,7 @@ public class TeleopTree {
                 new DriveFieldRelative(),
                 new UpdateArmAndLift(),
                 new UpdateClimber(),
+                new ResetGyro(),
                 new Failover(
                         new Sequence(
                                 new HasLessThan2Pixels(),

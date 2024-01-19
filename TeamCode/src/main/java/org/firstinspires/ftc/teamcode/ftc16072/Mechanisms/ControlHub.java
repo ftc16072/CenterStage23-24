@@ -18,6 +18,7 @@ import java.util.List;
 
 public class ControlHub implements Mechanism {
     IMU gyro;
+    double offsetDegrees;
     public VoltageSensor batteryVoltageSensor;
 
     @Override
@@ -51,7 +52,11 @@ public class ControlHub implements Mechanism {
 
     public double getHeading(AngleUnit angleUnit) {
         YawPitchRollAngles angles = gyro.getRobotYawPitchRollAngles();
-        return angles.getYaw(angleUnit);
+        double newDegrees = angles.getYaw(AngleUnit.DEGREES) - offsetDegrees;
+        return angleUnit.fromDegrees(newDegrees);
     }
-
+    public void resetHeading(double angle, AngleUnit angleUnit){
+        offsetDegrees = angleUnit.toDegrees(angle);
+        gyro.resetYaw();
+    }
 }
