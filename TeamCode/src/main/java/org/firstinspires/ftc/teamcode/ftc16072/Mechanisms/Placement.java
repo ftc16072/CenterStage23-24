@@ -10,43 +10,35 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Placement implements Mechanism{
-    public static final double PLACEMENT_GRAB = 0;
-    public static final double PLACEMENT_EJECT = 0.3;
-    public static final double LEFT_SERVO_GRAB_POSITION = 1;
-    public static final double LEFT_SERVO_EJECT_POSITION = 0;
-    public static final double RIGHT_SERVO_GRAB_POSITION = 0.25;
-    public static final double RIGHT_SERVO_EJECT_POSITION = 0.65 ;
-    Servo rightPlacement;
-    Servo leftPlacement;
+    public static final double LEFT_SERVO_GRAB_POSITION = 0.5;
+    public static final double LEFT_SERVO_EJECT_POSITION = 0.95;
+    public static final double RIGHT_SERVO_GRAB_POSITION = 1.0;
+    public static final double RIGHT_SERVO_EJECT_POSITION = 0.5;
+
+    Servo rightPlacementServo;
+    Servo leftPlacementServo;
     @Override
     public void init(HardwareMap hwMap) {
-        leftPlacement= hwMap.get(Servo.class,"left_placement");
-        rightPlacement = hwMap.get(Servo.class,"right_placement");
-
-
-
-
+        leftPlacementServo = hwMap.get(Servo.class,"left_placement");
+        rightPlacementServo = hwMap.get(Servo.class,"right_placement");
     }
     public void leftServoGrab(){
-        leftPlacement.setPosition(LEFT_SERVO_GRAB_POSITION);
+        leftPlacementServo.setPosition(LEFT_SERVO_GRAB_POSITION);
     }
     public void rightServoGrab(){
-        rightPlacement.setPosition(RIGHT_SERVO_GRAB_POSITION);
+        rightPlacementServo.setPosition(RIGHT_SERVO_GRAB_POSITION);
     }
     public void leftServoEject(){
-        leftPlacement.setPosition(LEFT_SERVO_EJECT_POSITION);
+        leftPlacementServo.setPosition(LEFT_SERVO_EJECT_POSITION);
     } public void rightServoEject(){
-        rightPlacement.setPosition(RIGHT_SERVO_EJECT_POSITION);
+        rightPlacementServo.setPosition(RIGHT_SERVO_EJECT_POSITION);
     }
-
 
     @Override
     public List<QQtest> getTests() {
         return Arrays.asList(
-                new TestServo("left_placement", LEFT_SERVO_GRAB_POSITION, LEFT_SERVO_EJECT_POSITION,leftPlacement),
-                new TestServo("right_placement", RIGHT_SERVO_GRAB_POSITION, RIGHT_SERVO_EJECT_POSITION,rightPlacement)
-
-
+                new TestServo("left_placement", LEFT_SERVO_EJECT_POSITION, LEFT_SERVO_GRAB_POSITION, leftPlacementServo),
+                new TestServo("right_placement", RIGHT_SERVO_EJECT_POSITION, RIGHT_SERVO_GRAB_POSITION, rightPlacementServo)
         );
     }
 }

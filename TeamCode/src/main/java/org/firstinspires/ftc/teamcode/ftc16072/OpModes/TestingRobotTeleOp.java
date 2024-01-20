@@ -3,9 +3,7 @@ package org.firstinspires.ftc.teamcode.ftc16072.OpModes;
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.Gamepad;
 
-import org.firstinspires.ftc.teamcode.ftc16072.OpModes.QQOpMode;
 @TeleOp
 @Config
 public class TestingRobotTeleOp extends QQOpMode {
@@ -45,8 +43,15 @@ public class TestingRobotTeleOp extends QQOpMode {
         } else if (gamepad1.b){
             robot.lift.goToLow();
         }
-
-
+        if(gamepad2.dpad_up){
+            robot.climber.up();
+        }
+        else if(gamepad2.dpad_down){
+            robot.climber.down();
+        }
+        else{
+            robot.climber.stop();
+        }
 
         telemetry.addData("lift motor power ",robot.lift.getPower());
         telemetry.addData("lift desired Position", robot.lift.getDesiredPosition());

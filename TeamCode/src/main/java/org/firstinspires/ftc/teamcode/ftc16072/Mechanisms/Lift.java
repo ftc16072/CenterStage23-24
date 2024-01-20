@@ -8,7 +8,6 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.ftc16072.QQTest.QQtest;
-import org.firstinspires.ftc.teamcode.ftc16072.QQTest.TestMotor;
 import org.firstinspires.ftc.teamcode.ftc16072.QQTest.TestTwoMotor;
 
 import java.util.Arrays;
@@ -35,7 +34,7 @@ public class Lift implements  Mechanism{
         TOP_POSITION
 
     }
-    public static final int ARE_SLIDES_EXTENDED_BOUNDARY = 100; //TODO tune value
+    public static final int ARE_SLIDES_EXTENDED_BOUNDARY = 600;
 
     private LiftPositions manipulatorPosition;
     private static final int LIFT_POSITION_SAFETY_BOTTOM = -50;
@@ -113,10 +112,6 @@ public class Lift implements  Mechanism{
         return Arrays.asList(
                 new TestTwoMotor("lift", leftLiftMotor, rightLiftMotor, 0.5),
                 new TestTwoMotor("downLift", leftLiftMotor, rightLiftMotor, -0.5)
-                //new TestMotor("right lift", 0.8, rightLiftMotor),
-                //new TestMotor("left lift", 0.8, leftLiftMotor)
-
-
                 );
     }
 

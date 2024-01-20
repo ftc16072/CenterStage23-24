@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.ftc16072.OpModes;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
@@ -8,6 +9,7 @@ import java.util.List;
 import java.util.Locale;
 
 @TeleOp
+@Disabled
 public class AprilTag extends VisionBase {
 
     @Override

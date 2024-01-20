@@ -1,16 +1,20 @@
 package org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Node;
 import org.firstinspires.ftc.teamcode.ftc16072.OpModes.QQOpMode;
-import org.firstinspires.ftc.teamcode.ftc16072.Util.ArmControl;
 
-public class UpdateArmAndLift extends Node {
-    ArmControl armControl = new ArmControl();
+public class UpdateClimber extends Node {
+
     @Override
     public State tick(QQOpMode opmode) {
-        armControl.updateArm(opmode.robot);
-        opmode.robot.lift.update(opmode.telemetry);
-
+        if(opmode.gamepad2.dpad_up){
+            opmode.robot.climber.up();
+        }
+        else if(opmode.gamepad2.dpad_down){
+            opmode.robot.climber.down();
+        }
+        else{
+            opmode.robot.climber.stop();
+        }
         return State.RUNNING;
-
     }
 }

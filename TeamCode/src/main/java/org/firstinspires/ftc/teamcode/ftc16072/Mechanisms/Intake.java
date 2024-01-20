@@ -13,8 +13,8 @@ import java.util.List;
 
 public class Intake implements Mechanism{
 
-    public static final double INTAKE_SPEED = 0.5;
-    public static final double EJECT_SPEED = -0.5;
+    public static final double INTAKE_SPEED = -0.5;
+    public static final double EJECT_SPEED = 0.5;
     private DcMotor intakeMotor;
     @Override
     public void init(HardwareMap hwMap) {
