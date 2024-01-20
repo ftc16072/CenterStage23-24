@@ -8,6 +8,7 @@ import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.MoveArmAndL
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.ResetGyro;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.UpdateArmAndLift;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.UpdateClimber;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.UpdateGrabber;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.UpdateIntake;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.AreNotSlidesExtended;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.AreSlidesExtended;
@@ -82,6 +83,7 @@ public class TeleopTree {
                 new UpdateClimber(),
                 new ResetGyro(),
                 new UpdateIntake(),
+                new UpdateGrabber(),
                 new Sequence(
                     new Failover(
                             new AreNotSlidesExtended(),
