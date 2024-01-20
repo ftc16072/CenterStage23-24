@@ -7,7 +7,6 @@ import android.graphics.Paint;
 import com.acmerobotics.dashboard.config.Config;
 
 import org.firstinspires.ftc.robotcore.internal.camera.calibration.CameraCalibration;
-import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Camera;
 import org.firstinspires.ftc.vision.VisionProcessor;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
@@ -16,16 +15,11 @@ import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 @Config
 public class TeamPropDetector implements VisionProcessor {
-    public static final int SATURATION_THRESHOLD = 128;
     //makes "detection zones" for each tape zone
-    TeamPropLocation location = TeamPropLocation.LEFT_SPIKE;
-
-    public Rect middleTapeDetectionZone = new Rect(200,165,120,75);
-    public Rect rightTapeDetectionZone = new Rect(500,155,120,75);
-    public double middleSaturation;
-    public double rightSaturation;
-
-
+    TeamPropLocation location = TeamPropLocation.NOT_DETECTED;
+    public Rect leftTapeDetectionZone = new Rect(100,100,75,75);
+    public Rect middleTapeDetectionZone = new Rect(400,130,75,75);
+    public Rect rightTapeDetectionZone = new Rect(800,100,75,75);
 
     //submats are smaller portions of the frame that you can get values from
     Mat submat = new Mat();
@@ -33,7 +27,6 @@ public class TeamPropDetector implements VisionProcessor {
 
     @Override
     public void init(int width, int height, CameraCalibration calibration) {
-
 
     }
 
@@ -43,18 +36,18 @@ public class TeamPropDetector implements VisionProcessor {
     public Object processFrame(Mat frame, long captureTimeNanos) {
         Imgproc.cvtColor(frame, hsvMat, Imgproc.COLOR_RGB2HSV);
 
-        middleSaturation = getAvgSaturation(hsvMat, middleTapeDetectionZone);
-        rightSaturation  = getAvgSaturation(hsvMat, rightTapeDetectionZone);
+        double leftSaturation =  getAvgSaturation(hsvMat, leftTapeDetectionZone);
+        double middleSaturation = getAvgSaturation(hsvMat, middleTapeDetectionZone);
+        double rightSaturation  = getAvgSaturation(hsvMat, rightTapeDetectionZone);
 
-        if (middleSaturation > SATURATION_THRESHOLD){
-            location = TeamPropLocation.MIDDLE_SPIKE;
-        }
-        else if(rightSaturation > SATURATION_THRESHOLD){
-            location = TeamPropLocation.RIGHT_SPIKE;
-        } else {
+
+        if((leftSaturation>middleSaturation) && (leftSaturation>rightSaturation)) {
             location = TeamPropLocation.LEFT_SPIKE;
+        } else if ((middleSaturation>leftSaturation) && (middleSaturation>rightSaturation)){
+            location = TeamPropLocation.MIDDLE_SPIKE;
+        }else if ((rightSaturation>middleSaturation) && (rightSaturation>leftSaturation)){
+            location = TeamPropLocation.RIGHT_SPIKE;
         }
-
         return location;
 
     }
@@ -84,6 +77,7 @@ public class TeamPropDetector implements VisionProcessor {
 
     @Override
     public void onDrawFrame(Canvas canvas, int onscreenWidth, int onscreenHeight, float scaleBmpPxToCanvasPx, float scaleCanvasDensity, Object userContext) {
+        android.graphics.Rect coloredLeftZone = makeGraphicsRect(leftTapeDetectionZone,scaleBmpPxToCanvasPx);
         android.graphics.Rect coloredRightZone = makeGraphicsRect(rightTapeDetectionZone,scaleBmpPxToCanvasPx);
         android.graphics.Rect coloredMiddleZone = makeGraphicsRect(middleTapeDetectionZone,scaleBmpPxToCanvasPx);
 
@@ -93,11 +87,13 @@ public class TeamPropDetector implements VisionProcessor {
         Paint unselectedColor = new Paint(selectedColor);
         unselectedColor.setColor(Color.RED);
 
+        canvas.drawRect(coloredLeftZone,unselectedColor);
         canvas.drawRect(coloredRightZone,unselectedColor);
         canvas.drawRect(coloredMiddleZone,unselectedColor);
 
         switch(getPropLocation()){
             case LEFT_SPIKE:
+                canvas.drawRect(coloredLeftZone,selectedColor);
                 break;
             case RIGHT_SPIKE:
                 canvas.drawRect(coloredRightZone,selectedColor);
