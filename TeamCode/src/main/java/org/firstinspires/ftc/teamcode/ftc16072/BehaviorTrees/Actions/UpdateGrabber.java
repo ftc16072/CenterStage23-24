@@ -15,6 +15,6 @@ public class UpdateGrabber extends Node {
             opmode.robot.placement.leftServoGrab();
             opmode.robot.placement.rightServoGrab();
         }
-        return State.RUNNING;
+        return State.SUCCESS;
     }
 }
