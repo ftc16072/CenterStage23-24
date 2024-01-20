@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.ftc16072.Util;
 import org.firstinspires.ftc.teamcode.ftc16072.Robot;
 
 public class ArmControl {
-   public int safePosition= 10000; //TODO: Know this isn't right
+   public int safePosition = 600;
 
     public void updateArm (Robot robot){
         if (robot.lift.currentPosition() > safePosition){
@@ -11,6 +11,5 @@ public class ArmControl {
         } else{
             robot.arm.goToIntakePosition();
         }
-
     }
 }
