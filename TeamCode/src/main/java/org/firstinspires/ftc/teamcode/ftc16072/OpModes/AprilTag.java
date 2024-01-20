@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Locale;
 
 @TeleOp
-@Disabled
 public class AprilTag extends VisionBase {
 
     @Override
