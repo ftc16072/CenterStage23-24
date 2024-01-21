@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import com.acmerobotics.dashboard.config.Config;
 
 import org.firstinspires.ftc.robotcore.internal.camera.calibration.CameraCalibration;
+import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Camera;
 import org.firstinspires.ftc.vision.VisionProcessor;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
@@ -16,10 +17,12 @@ import org.opencv.imgproc.Imgproc;
 @Config
 public class TeamPropDetector implements VisionProcessor {
     //makes "detection zones" for each tape zone
-    TeamPropLocation location = TeamPropLocation.NOT_DETECTED;
-    public Rect leftTapeDetectionZone = new Rect(100,100,75,75);
-    public Rect middleTapeDetectionZone = new Rect(400,130,75,75);
-    public Rect rightTapeDetectionZone = new Rect(800,100,75,75);
+    TeamPropLocation location = TeamPropLocation.LEFT_SPIKE;
+    public Rect leftTapeDetectionZone = new Rect(0,155,120,75);
+    public Rect middleTapeDetectionZone = new Rect(250,165,120,75);
+    public Rect rightTapeDetectionZone = new Rect(500,155,120,75);
+
+
 
     //submats are smaller portions of the frame that you can get values from
     Mat submat = new Mat();
@@ -27,6 +30,7 @@ public class TeamPropDetector implements VisionProcessor {
 
     @Override
     public void init(int width, int height, CameraCalibration calibration) {
+
 
     }
 

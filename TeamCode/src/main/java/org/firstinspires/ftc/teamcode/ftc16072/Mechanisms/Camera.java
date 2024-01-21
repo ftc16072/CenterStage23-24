@@ -108,7 +108,7 @@ public class Camera implements Mechanism{
         visionPortal = new VisionPortal.Builder().setCamera(hwMap.get(WebcamName.class, cameraName))
                             .setCameraResolution(new Size(640, 480))
                             .setLiveViewContainerId(viewPortID)
-                            .addProcessor(aprilTag)
+                            //.addProcessor(aprilTag)
                             .addProcessor(teamPropDetector)
                             .build();
     }
