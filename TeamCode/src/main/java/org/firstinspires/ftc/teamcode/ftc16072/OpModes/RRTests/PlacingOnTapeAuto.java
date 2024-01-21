@@ -5,19 +5,24 @@ import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
+import org.firstinspires.ftc.teamcode.ftc16072.OpModes.QQOpMode;
+import org.firstinspires.ftc.teamcode.ftc16072.OpModes.VisionBase;
 import org.firstinspires.ftc.teamcode.ftc16072.Robot;
 import org.firstinspires.ftc.teamcode.ftc16072.Util.TeamPropLocation;
 
 @Autonomous
-public class PlacingOnTapeAuto extends OpMode {
+public class PlacingOnTapeAuto extends VisionBase {
     Robot robot = new Robot();
     Trajectory trajectory;
     private enum State {BEGIN, FORWARD,TURN,FORWARD_TO_TAPE, DONE}
     State state = State.BEGIN;
     @Override
     public void init() {
-        robot.makeDriveOnly();
         robot.init(hardwareMap);
+        super.init(); // for vision
+    }
+    public void init_loop(){
+
     }
 
     @Override
@@ -26,7 +31,7 @@ public class PlacingOnTapeAuto extends OpMode {
         Pose2d currentPose = robot.nav.getPoseEstimate();
         TeamPropLocation teamPropLocation = robot.cameraBack.getTeamPropPosition();
 
-        telemetry.addData("STATE", state);
+        telemetry.addData("team prop", teamPropLocation);
         telemetry.addData("POSE", "x = %.2f y = %.2f h = %.1f", currentPose.getX(), currentPose.getY(), Math.toDegrees(currentPose.getHeading()));
         switch (state) {
             case BEGIN:
@@ -51,38 +56,56 @@ public class PlacingOnTapeAuto extends OpMode {
                 robot.nav.follower.followTrajectory(trajectory);
                 break;
             case FORWARD:
-                state = State.TURN;
-                if (teamPropLocation == TeamPropLocation.LEFT_SPIKE){
-                    if (robot.nav.isDoneFollowing(currentPose)) {
-                        robot.nav.turnAsync(-0.25*Math.PI);
+
+                if (robot.nav.isDoneFollowing(currentPose)) {
+                    if (teamPropLocation == TeamPropLocation.LEFT_SPIKE){
+                        if (robot.nav.isDoneFollowing(currentPose)) {
+                            robot.nav.turnAsync(-0.25*Math.PI);
+                        }
+                    } else if (teamPropLocation == TeamPropLocation.RIGHT_SPIKE) {
+                        if (robot.nav.isDoneFollowing(currentPose)) {
+                            robot.nav.turnAsync(0.25*Math.PI);
+                        }
+
                     }
-                } else if (teamPropLocation == TeamPropLocation.RIGHT_SPIKE) {
-                    if (robot.nav.isDoneFollowing(currentPose)) {
-                        robot.nav.turnAsync(0.25*Math.PI);
-                    }
+                    state = State.TURN;
 
                 }
+
+
 
                 break;
 
 
             case TURN:
                 state = State.FORWARD_TO_TAPE;
-                if (teamPropLocation == TeamPropLocation.LEFT_SPIKE){
-                    trajectory = robot.nav.trajectoryBuilder(currentPose, false)
-                            .back(12)
-                            .build();
+                if (robot.nav.isDoneFollowing(currentPose)) {
 
 
-                } else  if (teamPropLocation == TeamPropLocation.RIGHT_SPIKE){
-                    trajectory = robot.nav.trajectoryBuilder(currentPose, false)
-                            .back(12)
-                            .build();
+                    if (teamPropLocation == TeamPropLocation.LEFT_SPIKE) {
+                        trajectory = robot.nav.trajectoryBuilder(currentPose, false)
+                                .back(7)
+                                .build();
+
+
+                    } else if (teamPropLocation == TeamPropLocation.RIGHT_SPIKE) {
+                        trajectory = robot.nav.trajectoryBuilder(currentPose, false)
+                                .back(7)
+                                .build();
+                    }
                 }
                 break;
             case FORWARD_TO_TAPE:
-                state = State.DONE;
+                if (robot.nav.isDoneFollowing(currentPose)) {
+                    state = State.DONE;
+                }
+
+
+
                 break;
+            case DONE:
+                break;
+
         }
 
 
