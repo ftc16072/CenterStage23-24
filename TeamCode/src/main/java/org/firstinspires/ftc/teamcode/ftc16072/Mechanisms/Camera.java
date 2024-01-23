@@ -69,7 +69,7 @@ public class Camera implements Mechanism{
     Hashtable<Integer, Pose2d> aprilTagPositions = new Hashtable<>();
 
     private AprilTagProcessor aprilTag;
-    private TeamPropDetector teamPropDetector;
+    public TeamPropDetector teamPropDetector;
 
     private VisionPortal visionPortal;
 
@@ -109,7 +109,7 @@ public class Camera implements Mechanism{
         visionPortal = new VisionPortal.Builder().setCamera(hwMap.get(WebcamName.class, cameraName))
                             .setCameraResolution(new Size(640, 480))
                             .setLiveViewContainerId(viewPortID)
-                            //.addProcessor(aprilTag)
+                            .addProcessor(aprilTag)
                             .addProcessor(teamPropDetector)
                             .build();
     }
