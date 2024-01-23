@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class  HoldingCell implements Mechanism{
-    public static final int PIXEL_THRESHOLD_MM = 20;
+    public static final int PIXEL_THRESHOLD_MM = 80;
 
     private ColorRangeSensor leftPixelCounter;
     private ColorRangeSensor rightPixelCounter;
@@ -21,7 +21,6 @@ public class  HoldingCell implements Mechanism{
     private DigitalChannel leftConeDetector;
 
     private DigitalChannel rightConeDetector;
-
 
     @Override
     public void init(HardwareMap hwMap) {
@@ -48,9 +47,11 @@ public class  HoldingCell implements Mechanism{
      */
     public int getNumPixels() {
         int numPixelsSeen = 0;
+
         if (leftPixelCounter.getDistance(DistanceUnit.MM) < PIXEL_THRESHOLD_MM) {
             numPixelsSeen++;
         }
+
         if (rightPixelCounter.getDistance(DistanceUnit.MM) < PIXEL_THRESHOLD_MM) {
             numPixelsSeen++;
         }
