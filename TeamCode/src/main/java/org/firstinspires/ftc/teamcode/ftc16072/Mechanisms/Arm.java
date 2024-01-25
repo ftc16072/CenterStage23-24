@@ -24,7 +24,7 @@ public class Arm implements Mechanism{
         leftArmServo = hwMap.get(Servo.class,"left_arm_servo");
         goToIntakePosition();
     }
-
+ 
     @Override
     public List<QQtest> getTests() {
         return Arrays.asList(
