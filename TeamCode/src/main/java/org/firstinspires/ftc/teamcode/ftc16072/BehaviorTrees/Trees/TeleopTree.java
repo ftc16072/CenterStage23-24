@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trees;
 
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.DriveFieldRelative;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.MakeFastDrive;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.MakeNormalDrive;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.MakeSlowDrive;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.MoveArmAndLift;
@@ -93,7 +92,7 @@ public class TeleopTree {
                             new AreSlidesExtended(),
                             new Sequence(
                                     new IfLeftTriggerPressed(),
-                                    new MakeFastDrive()
+                                    new MakeSlowDrive()
                             ),
                             new MakeNormalDrive()
                     )
