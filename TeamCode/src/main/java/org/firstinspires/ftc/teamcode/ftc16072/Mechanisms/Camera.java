@@ -100,7 +100,8 @@ public class Camera implements Mechanism{
                 .setDrawAxes(true)
                 .setDrawTagID(true)
                 .setDrawTagOutline(true)
-                .setLensIntrinsics(825.125, 825.125, 287.391, 219.223)
+                //.setLensIntrinsics(825.125, 825.125, 287.391, 219.223) logitech camera
+                .setLensIntrinsics(191.894,191.894, 319.827,245.493)
                 .build();
         teamPropDetector  = new TeamPropDetector();
 
