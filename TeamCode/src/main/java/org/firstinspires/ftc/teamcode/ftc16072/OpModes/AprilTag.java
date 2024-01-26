@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Locale;
 
 @TeleOp
-@Disabled
+
 public class AprilTag extends VisionBase {
 
     @Override
@@ -17,8 +17,7 @@ public class AprilTag extends VisionBase {
         super.init();
     }
     public void init_loop(){
-        telemetry.addLine("Front Camera");
-        printAprilTags(robot.cameraFront.getAprilTagDetections());
+
         telemetry.addLine("Back Camera");
         printAprilTags(robot.cameraBack.getAprilTagDetections());
         telemetry.addLine("------------");
