@@ -24,6 +24,7 @@ import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.HasLessT
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IfEjectButtonPressed;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IfIntakeButtonPressed;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IfLeftTriggerPressed;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IfLiftAtBottom;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IfLiftToPixelGrabPosButtonPressed;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IsControllerDriving;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Failover;
@@ -151,16 +152,27 @@ public class TeleopTree {
                 ),
                 new Parallel(2,
                         new Sequence(
-                                new IfLiftAtBottom(),
-                                new Has1or2Pixels(),
-
                                 new Failover(
-                                        new Sequence(
-                                                new MoveArmAndLift(),
-                                                new PlacePixels()
+                                        new IfLiftAtBottom(),
+                                        new Has1or2Pixels(),
+
+                                        new Failover(
+                                                new Sequence(
+                                                        new MoveArmAndLift(),
+                                                        new PlacePixels()
+                                                )
+
                                         )
 
+                                ),
+
+                                new Sequence(
+                                        new MoveArmAndLift(),
+                                        new PlacePixels()
                                 )
+
+
+
 
                         ),
                         new Failover(
