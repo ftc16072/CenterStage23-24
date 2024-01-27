@@ -170,10 +170,14 @@ public class TeleopTree {
 
 
 
+                                new Failover(
+                                        new IfLiftAtBottom(),
+                                        new Sequence(
+                                                new MoveArmAndLift(),
+                                                new PlacePixels()
+                                        )
 
-                                new Sequence(
-                                        new MoveArmAndLift(),
-                                        new PlacePixels()
+
                                 )
 
 
