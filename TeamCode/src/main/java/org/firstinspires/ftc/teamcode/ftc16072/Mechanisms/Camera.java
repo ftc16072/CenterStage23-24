@@ -11,6 +11,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.Position;
 import org.firstinspires.ftc.teamcode.ftc16072.QQTest.QQtest;
 import org.firstinspires.ftc.teamcode.ftc16072.QQTest.TestCamera;
+import org.firstinspires.ftc.teamcode.ftc16072.Util.TeamPropDetector;
+import org.firstinspires.ftc.teamcode.ftc16072.Util.TeamPropLocation;
 import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
@@ -67,6 +69,7 @@ public class Camera implements Mechanism{
     Hashtable<Integer, Pose2d> aprilTagPositions = new Hashtable<>();
 
     private AprilTagProcessor aprilTag;
+    private TeamPropDetector teamPropDetector;
 
     private VisionPortal visionPortal;
 
@@ -100,12 +103,14 @@ public class Camera implements Mechanism{
                 //.setLensIntrinsics(825.125, 825.125, 287.391, 219.223) logitech camera
                 .setLensIntrinsics(191.894,191.894, 319.827,245.493)
                 .build();
+        teamPropDetector  = new TeamPropDetector();
 
         webcamName= hwMap.get(WebcamName.class,cameraName);
         visionPortal = new VisionPortal.Builder().setCamera(hwMap.get(WebcamName.class, cameraName))
                             .setCameraResolution(new Size(640, 480))
                             .setLiveViewContainerId(viewPortID)
                             .addProcessor(aprilTag)
+                            .addProcessor(teamPropDetector)
                             .build();
     }
 
@@ -121,6 +126,10 @@ public class Camera implements Mechanism{
         Pose2d aprilTagLocation = aprilTagPositions.get(detection.id);
 
         return new Pose2d(aprilTagLocation.getX()+detection.ftcPose.y, aprilTagLocation.getY()+detection.ftcPose.x,aprilTagLocation.getHeading()+detection.ftcPose.yaw);
+
+    }
+    public TeamPropLocation getTeamPropPosition(){
+        return teamPropDetector.getPropLocation();
 
     }
     public AprilTagDetection selectTag(List<AprilTagDetection> detections ){ // this method selects the april tag that is most straight on relative to the robot

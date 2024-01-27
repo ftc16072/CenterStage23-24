@@ -37,8 +37,6 @@ public class Navigation extends com.acmerobotics.roadrunner.drive.MecanumDrive {
 
     Camera cameraBack;
 
-    Camera cameraFront;
-
     public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(1.7, 0.176, 0);
     public static PIDCoefficients HEADING_PID = new PIDCoefficients(1.3, 0, 0);
     public static double kV = 1.0 / MecanumDrive.MAX_MOTOR_VELOCITY;
@@ -55,9 +53,8 @@ public class Navigation extends com.acmerobotics.roadrunner.drive.MecanumDrive {
 
     public TrajectoryFollower follower; 
 
-    public Navigation(ControlHub controlHub, MecanumDrive mecanumDrive, Camera cameraFront, Camera cameraBack) {
+    public Navigation(ControlHub controlHub, MecanumDrive mecanumDrive, Camera cameraBack) {
         super(kV, kA, kStatic, MecanumDrive.TRACK_WIDTH_IN);
-        this.cameraFront = cameraFront;
         this.cameraBack = cameraBack;
 
         this.controlHub = controlHub;
@@ -131,11 +128,8 @@ public class Navigation extends com.acmerobotics.roadrunner.drive.MecanumDrive {
     public void update() {
         DriveSignal signal;
         updatePoseEstimate();
-        if (mecanumDrive.getAverageDrivetrainPower()<0.1 && cameraFront.isTagDetected()){
-            Pose2d robotPos = cameraBack.getPose();
-            signal = trajectorySequenceRunner.update(robotPos, getPoseVelocity());
 
-        } else if (mecanumDrive.getAverageDrivetrainPower()<0.1 && cameraBack.isTagDetected()){
+        if (mecanumDrive.getAverageDrivetrainPower()<0.1 && cameraBack.isTagDetected()){
             Pose2d robotPos = cameraBack.getPose();
             signal = trajectorySequenceRunner.update(robotPos, getPoseVelocity());
 
