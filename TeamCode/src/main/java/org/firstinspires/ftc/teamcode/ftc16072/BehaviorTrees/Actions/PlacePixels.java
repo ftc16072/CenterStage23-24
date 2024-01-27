@@ -11,6 +11,9 @@ public class PlacePixels extends Node {
             opmode.robot.placement.leftServoEject();
             opmode.robot.placement.rightServoEject();
 
+        } else {
+            opmode.robot.placement.leftServoGrab();
+            opmode.robot.placement.rightServoGrab();
         }
         return State.RUNNING;
     }
