@@ -11,6 +11,7 @@ import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Lift;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Intake;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.MecanumDrive;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Mechanism;
+import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.PixelServo;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Placement;
 import org.firstinspires.ftc.teamcode.ftc16072.Util.Navigation;
 import org.firstinspires.ftc.vision.VisionPortal;
@@ -20,6 +21,7 @@ import java.util.List;
 
 public class Robot {
     List<Mechanism> mechanisms;
+    public PixelServo pixelServo;
     public MecanumDrive mecanumDrive;
     public Navigation nav;
     public ControlHub controlHub;
@@ -38,6 +40,7 @@ public class Robot {
 
     public Robot() {
         //cameraFront = new Camera(Camera.CameraPosition.FRONT);
+        pixelServo = new PixelServo();
         cameraBack = new Camera(Camera.CameraPosition.BACK);
         controlHub = new ControlHub();
         mecanumDrive = new MecanumDrive();
