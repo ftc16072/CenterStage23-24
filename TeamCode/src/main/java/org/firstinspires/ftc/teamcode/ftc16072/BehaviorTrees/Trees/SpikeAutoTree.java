@@ -38,7 +38,10 @@ public class SpikeAutoTree {
                         new SetMiddleSpikeTrajectory()
                 ),
                 new FollowTrajectory(),
-                new PlacePurplePixel()
+                new ReleaseAutoPixel(),
+                new SetBackboardFromSpikeTrajectory(),
+                new FollowTrajectory()
+
         );
     }
 }
