@@ -1,134 +1,252 @@
-##Bottom left  corner Middle Tape
-
-TrajectorySequence bottom_left_corner_middle_tape = drive.trajectorySequenceBuilder(new Pose2d(-36.32, -24.54, Math.toRadians(270.00)))
-.lineTo(new Vector2d(-37.77, -60.95))
-.lineTo(new Vector2d(34.69, -60.77))
-.lineTo(new Vector2d(35.23, -35.05))
-.lineTo(new Vector2d(49.54, -36.86))
-.lineTo(new Vector2d(48.45, -60.95))
-.lineTo(new Vector2d(62.94, -61.86))
+##Going to tape
+##Far Red corner
+##Left
+TrajectorySequence Going_to_far_red_corner_left_tape = drive.trajectorySequenceBuilder(new Pose2d(-36.26, -62.51, Math.toRadians(-87.72)))
+.lineTo(new Vector2d(-47.23, -30.18))
 .build();
 
 
-##Bottom left corner Left Tape
+##Middle
+TrajectorySequence Going_to_far_red_corner_middle_tape = drive.trajectorySequenceBuilder(new Pose2d(-36.26, -62.51, Math.toRadians(-87.72)))
+.lineTo(new Vector2d(-36.70, -23.95))
+.build();
 
-TrajectorySequence bottom_left_corner_left_tape = drive.trajectorySequenceBuilder(new Pose2d(-47.18, -30.52, Math.toRadians(0.00)))
-.lineTo(new Vector2d(-36.14, -30.16))
-.lineTo(new Vector2d(-37.77, -60.59))
-.lineTo(new Vector2d(35.23, -64.21))
-.lineTo(new Vector2d(34.32, -34.32))
-.lineTo(new Vector2d(48.63, -36.68))
-.lineTo(new Vector2d(48.45, -63.49))
-.lineTo(new Vector2d(62.58, -62.22))
+##Right
+TrajectorySequence Going_to_far_red_corner_right_tape = drive.trajectorySequenceBuilder(new Pose2d(-35.96, -62.51, Math.toRadians(-87.72)))
+.lineTo(new Vector2d(-36.41, -35.22))
+.lineTo(new Vector2d(-25.14, -36.70))
 .build();
 
 
-##Bottom left corner Right Tape
-
-TrajectorySequence bottom_left_corner_right_tape = drive.trajectorySequenceBuilder(new Pose2d(-25.27, -29.98, Math.toRadians(180.00)))
-.lineTo(new Vector2d(-37.95, -30.88))
-.lineTo(new Vector2d(-38.85, -60.77))
-.splineTo(new Vector2d(35.95, -60.77), Math.toRadians(0.00))
-.lineTo(new Vector2d(34.87, -35.23))
-.lineTo(new Vector2d(49.00, -36.68))
-.lineTo(new Vector2d(48.45, -60.59))
-.lineTo(new Vector2d(61.31, -59.32))
+##Close Red corner
+##Left
+TrajectorySequence Going_to_close_red_corner_left_tape = drive.trajectorySequenceBuilder(new Pose2d(11.79, -63.99, Math.toRadians(-87.72)))
+.lineTo(new Vector2d(11.35, -35.52))
+.lineTo(new Vector2d(-0.07, -33.74))
 .build();
 
 
-##Bottom Right Corner Middle Tape
-TrajectorySequence bottom_right_corner_middle_tape = drive.trajectorySequenceBuilder(new Pose2d(11.50, -24.72, Math.toRadians(270.00)))
-.lineTo(new Vector2d(10.05, -61.49))
-.lineTo(new Vector2d(37.04, -62.40))
-.lineTo(new Vector2d(35.23, -36.32))
-.lineTo(new Vector2d(48.63, -36.68))
-.lineTo(new Vector2d(48.27, -61.86))
-.lineTo(new Vector2d(62.40, -61.49))
+##Middle
+TrajectorySequence Going_to_close_red_corner_middle_tape = drive.trajectorySequenceBuilder(new Pose2d(11.79, -63.99, Math.toRadians(-87.72)))
+.lineTo(new Vector2d(11.35, -24.54))
+.build();
+
+##Right
+TrajectorySequence Going_to_close_red_corner_right_tape = drive.trajectorySequenceBuilder(new Pose2d(11.79, -63.99, Math.toRadians(-87.72)))
+.lineTo(new Vector2d(22.76, -30.77))
 .build();
 
 
-##Bottom Right Corner Left Tape
-TrajectorySequence bottom_right_corner_left_tape = drive.trajectorySequenceBuilder(new Pose2d(0.63, -29.98, Math.toRadians(0.00)))
-.lineTo(new Vector2d(10.78, -30.34))
-.lineTo(new Vector2d(9.87, -62.04))
-.lineTo(new Vector2d(36.14, -61.49))
-.lineTo(new Vector2d(34.51, -35.41))
-.lineTo(new Vector2d(47.91, -36.32))
-.lineTo(new Vector2d(48.09, -63.12))
-.lineTo(new Vector2d(62.22, -62.94))
+
+##Far blue corner
+##Left
+TrajectorySequence Going_to_far_blue_corner_left_tape = drive.trajectorySequenceBuilder(new Pose2d(-36.56, 59.54, Math.toRadians(90.00)))
+.lineTo(new Vector2d(-47.68, 30.03))
+.build();
+
+##Middle
+TrajectorySequence Going_to_far_blue_corner_middle_tape = drive.trajectorySequenceBuilder(new Pose2d(-36.56, 59.54, Math.toRadians(90.00)))
+.lineTo(new Vector2d(-36.26, 25.43))
+.build();
+
+##Right
+TrajectorySequence Going_to_far_blue_corner_right_tape = drive.trajectorySequenceBuilder(new Pose2d(-36.56, 59.54, Math.toRadians(90.00)))
+.lineTo(new Vector2d(-35.67, 32.70))
+.lineTo(new Vector2d(-24.54, 35.81))
+.build();
+
+##Close blue corner
+##Left
+TrajectorySequence Going_to_close_blue_corner_left_tape = drive.trajectorySequenceBuilder(new Pose2d(12.53, 62.36, Math.toRadians(90.00)))
+.lineTo(new Vector2d(10.90, 35.67))
+.lineTo(new Vector2d(0.22, 35.22))
 .build();
 
 
-##Bottom Right Corner Right Tape
-TrajectorySequence bottom_right_corner_right_tape = drive.trajectorySequenceBuilder(new Pose2d(23.28, -30.34, Math.toRadians(180.00)))
-.splineTo(new Vector2d(10.60, -31.06), Math.toRadians(183.27))
-.lineTo(new Vector2d(10.60, -61.86))
-.lineTo(new Vector2d(36.32, -61.49))
-.lineTo(new Vector2d(37.40, -35.23))
-.lineTo(new Vector2d(48.45, -36.32))
-.lineTo(new Vector2d(48.09, -63.12))
-.lineTo(new Vector2d(61.86, -63.67))
+
+##Middle
+TrajectorySequence Going_to_close_blue_corner_middle_tape = drive.trajectorySequenceBuilder(new Pose2d(11.64, 60.14, Math.toRadians(90.00)))
+.lineTo(new Vector2d(11.64, 24.40))
 .build();
 
 
-##Top left corner middle tape
-
-TrajectorySequence Top_left_corner_middle_tape = drive.trajectorySequenceBuilder(new Pose2d(-36.26, 70.37, Math.toRadians(90.00)))
-.splineTo(new Vector2d(-35.37, 24.69), Math.toRadians(-88.88))
-.lineTo(new Vector2d(-36.26, 59.54))
-.lineTo(new Vector2d(-19.20, 59.10))
-.lineTo(new Vector2d(34.33, 59.10))
-.splineTo(new Vector2d(34.48, 33.59), Math.toRadians(-89.67))
-.lineTo(new Vector2d(49.01, 34.78))
-.splineTo(new Vector2d(47.83, 57.17), Math.toRadians(93.03))
-.lineTo(new Vector2d(61.17, 61.77))
+##Right
+TrajectorySequence Going_to_close_blue_corner_right_tape = drive.trajectorySequenceBuilder(new Pose2d(11.64, 60.14, Math.toRadians(90.00)))
+.lineTo(new Vector2d(23.06, 30.92))
 .build();
 
 
-##Top left corner left tape
 
-TrajectorySequence Top_left_corner_left_tape = drive.trajectorySequenceBuilder(new Pose2d(-37.45, 62.21, Math.toRadians(90.00)))
-.splineTo(new Vector2d(-37.00, 33.59), Math.toRadians(-89.11))
-.lineTo(new Vector2d(-49.01, 30.92))
-.lineTo(new Vector2d(-38.78, 57.47))
-.lineTo(new Vector2d(-7.79, 61.32))
-.lineTo(new Vector2d(38.34, 58.36))
-.splineTo(new Vector2d(38.19, 34.78), Math.toRadians(269.64))
-.lineTo(new Vector2d(48.72, 35.81))
-.lineTo(new Vector2d(47.53, 56.58))
-.lineTo(new Vector2d(60.43, 60.58))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##Going to backboard
+##Far red corner
+##Left
+TrajectorySequence far_red_corner_left_tape = drive.trajectorySequenceBuilder(new Pose2d(-47.80, -30.56, Math.toRadians(-1.33)))
+.lineTo(new Vector2d(-37.18, -30.38))
+.lineTo(new Vector2d(-37.52, -62.07))
+.lineTo(new Vector2d(35.43, -61.20))
+.lineTo(new Vector2d(33.87, -36.48))
+.lineTo(new Vector2d(48.84, -37.70))
 .build();
 
 
-##Top left corner right tape
-
-TrajectorySequence Top_left_corner_right_tape = drive.trajectorySequenceBuilder(new Pose2d(-37.30, 71.11, Math.toRadians(90.00)))
-.lineTo(new Vector2d(-35.81, 35.22))
-.lineTo(new Vector2d(-23.21, 34.33))
-.lineTo(new Vector2d(-36.85, 39.52))
-.lineTo(new Vector2d(-37.59, 58.36))
-.lineTo(new Vector2d(-21.28, 59.69))
-.lineTo(new Vector2d(33.29, 58.36))
-.lineTo(new Vector2d(36.85, 36.70))
-.lineTo(new Vector2d(49.16, 37.15))
-.lineTo(new Vector2d(49.75, 62.06))
-.lineTo(new Vector2d(58.95, 59.25))
+##Middle
+TrajectorySequence far_red_corner_middle_tape = drive.trajectorySequenceBuilder(new Pose2d(-36.30, -25.16, Math.toRadians(270.00)))
+.lineTo(new Vector2d(-37.70, -62.42))
+.lineTo(new Vector2d(34.74, -61.73))
+.lineTo(new Vector2d(33.69, -34.39))
+.lineTo(new Vector2d(48.84, -36.83))
 .build();
 
 
-##Top right corner middle tape
+##Right
+TrajectorySequence far_red_corner_right_tape = drive.trajectorySequenceBuilder(new Pose2d(-26.03, -30.21, Math.toRadians(178.45)))
+.lineTo(new Vector2d(-38.05, -31.26))
+.lineTo(new Vector2d(-37.35, -61.73))
+.lineTo(new Vector2d(34.91, -61.90))
+.lineTo(new Vector2d(34.22, -34.74))
+.lineTo(new Vector2d(49.02, -36.48))
+.build();
+
+
+##Close red corner
+Left:
+TrajectorySequence close_red_corner_left_tape = drive.trajectorySequenceBuilder(new Pose2d(0.44, -30.38, Math.toRadians(-1.91)))
+.lineTo(new Vector2d(11.58, -30.56))
+.lineTo(new Vector2d(10.71, -61.73))
+.lineTo(new Vector2d(34.39, -61.03))
+.lineTo(new Vector2d(33.87, -33.87))
+.lineTo(new Vector2d(49.02, -35.61))
+.build();
+
+
+##Middle:
+TrajectorySequence close_red_corner_middle_tape = drive.trajectorySequenceBuilder(new Pose2d(11.75, -24.64, Math.toRadians(270.00)))
+.lineTo(new Vector2d(11.06, -62.07))
+.splineToConstantHeading(new Vector2d(35.43, -61.38), Math.toRadians(1.64))
+.lineTo(new Vector2d(34.39, -35.43))
+.lineTo(new Vector2d(48.84, -37.18))
+.build();
 
 
 
-##Top right corner left tape
+##Right
+TrajectorySequence close_red_corner_right_tape = drive.trajectorySequenceBuilder(new Pose2d(23.25, -30.56, Math.toRadians(180.00)))
+.lineTo(new Vector2d(11.06, -31.43))
+.lineTo(new Vector2d(10.53, -62.07))
+.lineTo(new Vector2d(36.30, -62.25))
+.lineTo(new Vector2d(36.83, -35.78))
+.lineTo(new Vector2d(49.36, -36.48))
+.build();
 
-Top right corner right tape
-TrajectorySequence top_right_corner_right_tape = drive.trajectorySequenceBuilder(new Pose2d(23.46, 29.98, Math.toRadians(180.00)))
+
+
+##Far blue corner
+##Left
+
+TrajectorySequence far_blue_corner_left_tape = drive.trajectorySequenceBuilder(new Pose2d(-47.10, 30.04, Math.toRadians(0.00)))
+.lineTo(new Vector2d(-36.13, 29.86))
+.lineTo(new Vector2d(-38.05, 61.20))
+.lineTo(new Vector2d(35.26, 61.20))
+.lineTo(new Vector2d(34.74, 33.69))
+.lineTo(new Vector2d(48.67, 34.56))
+.build();
+
+##Middle
+
+TrajectorySequence far_blue_corner_middle_tape = drive.trajectorySequenceBuilder(new Pose2d(-36.13, 24.81, Math.toRadians(90.00)))
+.lineTo(new Vector2d(-36.83, 62.25))
+.lineTo(new Vector2d(33.87, 61.90))
+.lineTo(new Vector2d(35.09, 31.78))
+.lineTo(new Vector2d(49.19, 34.74))
+.build();
+
+##Right
+
+TrajectorySequence far_blue_corner_right_tape = drive.trajectorySequenceBuilder(new Pose2d(-25.86, 30.73, Math.toRadians(180.00)))
+.lineTo(new Vector2d(-37.00, 30.56))
+.lineTo(new Vector2d(-35.96, 62.42))
+.lineTo(new Vector2d(35.78, 61.38))
+.lineTo(new Vector2d(35.78, 33.00))
+.lineTo(new Vector2d(48.84, 33.69))
+.build();
+
+
+
+##Close blue corner
+##Left
+
+TrajectorySequence close_blue_corner_left_tape = drive.trajectorySequenceBuilder(new Pose2d(0.44, 30.21, Math.toRadians(0.00)))
+.lineTo(new Vector2d(12.10, 30.91))
+.lineTo(new Vector2d(10.53, 62.42))
+.lineTo(new Vector2d(35.78, 63.64))
+.lineTo(new Vector2d(35.61, 33.52))
+.lineTo(new Vector2d(49.02, 34.91))
+.build();
+
+
+
+##Middle
+TrajectorySequence close_blue_corner_middle_tape = drive.trajectorySequenceBuilder(new Pose2d(11.93, 24.29, Math.toRadians(90.00)))
+.UNSTABLE_addTemporalMarkerOffset(2.66,() -> {})
+.UNSTABLE_addTemporalMarkerOffset(2.75,() -> {})
+.lineTo(new Vector2d(10.53, 59.46))
+.lineTo(new Vector2d(34.74, 59.64))
+.lineTo(new Vector2d(33.69, 32.30))
+.lineTo(new Vector2d(47.62, 34.56))
+.build();
+
+
+
+##Right
+TrajectorySequence close_blue_corner_right_tape = drive.trajectorySequenceBuilder(new Pose2d(23.46, 29.98, Math.toRadians(180.00)))
 .lineTo(new Vector2d(12.23, 30.52))
 .lineTo(new Vector2d(13.86, 61.31))
 .lineTo(new Vector2d(37.40, 62.40))
 .lineTo(new Vector2d(37.58, 33.60))
 .lineTo(new Vector2d(48.82, 35.23))
-.lineTo(new Vector2d(48.63, 64.39))
-.lineTo(new Vector2d(60.95, 63.31))
 .build();
+
+
+
+
+
+
+
+##Parking Trajectories
+
+##Blue(Top)
+
+TrajectorySequence parking_blue = drive.trajectorySequenceBuilder(new Pose2d(49.02, 35.43, Math.toRadians(-2.73)))
+.lineTo(new Vector2d(48.67, 64.16))
+.lineTo(new Vector2d(62.25, 63.99))
+.build();
+
+##Red(Bottom)
+
+TrajectorySequence parking_red = drive.trajectorySequenceBuilder(new Pose2d(48.49, -36.65, Math.toRadians(0.00)))
+.lineTo(new Vector2d(48.32, -64.51))
+.lineTo(new Vector2d(63.29, -63.99))
+.build();
+
