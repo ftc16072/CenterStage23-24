@@ -45,7 +45,8 @@ public class Lift implements  Mechanism{
     private static final int LOW_POSITION = 700;
     private static final int MIDDLE_POSITION = 1600;
     private static final int TOP_POSITION = 2400;
-    private static final int FLOOR_POSITION =100  ;
+    private static final int INTAKE_POSITION = 250;
+    private static final int FLOOR_POSITION =0  ;
     private static final int PIXEL_HEIGHT = 271;
     private final int MANUAL_CHANGE = 50;
     private DcMotorEx rightLiftMotor;
@@ -135,6 +136,9 @@ public class Lift implements  Mechanism{
     }
     public void goToPixelGrab(){
         setDesiredPosition(PIXEL_GRAB_POSITION);
+    }
+    public void goToIntake(){
+        setDesiredPosition(INTAKE_POSITION);
     }
 
     public void goToLow(){

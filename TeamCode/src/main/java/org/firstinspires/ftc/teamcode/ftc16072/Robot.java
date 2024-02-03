@@ -27,7 +27,7 @@ public class Robot {
     public Intake intake;
 
     public HoldingCell holdingCell;
-    public Camera cameraFront;
+    //public Camera cameraFront;
     public Camera cameraBack;
     public Lift lift;
     public Arm arm;
@@ -41,7 +41,7 @@ public class Robot {
         cameraBack = new Camera(Camera.CameraPosition.BACK);
         controlHub = new ControlHub();
         mecanumDrive = new MecanumDrive();
-        nav = new Navigation(controlHub, mecanumDrive, cameraFront,cameraBack);
+        nav = new Navigation(controlHub, mecanumDrive, cameraBack);
         intake = new Intake();
         holdingCell = new HoldingCell();
         lift = new Lift();
