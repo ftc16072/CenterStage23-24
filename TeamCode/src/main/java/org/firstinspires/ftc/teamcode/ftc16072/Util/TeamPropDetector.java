@@ -18,8 +18,8 @@ public class TeamPropDetector implements VisionProcessor {
     //makes "detection zones" for each tape zone
     TeamPropLocation location = TeamPropLocation.NOT_DETECTED;
     public Rect leftTapeDetectionZone = new Rect(100,100,75,75);
-    public Rect middleTapeDetectionZone = new Rect(400,130,75,75);
-    public Rect rightTapeDetectionZone = new Rect(800,100,75,75);
+    public Rect middleTapeDetectionZone = new Rect(250,130,75,75);
+    public Rect rightTapeDetectionZone = new Rect(400,100,75,75);
 
     //submats are smaller portions of the frame that you can get values from
     Mat submat = new Mat();

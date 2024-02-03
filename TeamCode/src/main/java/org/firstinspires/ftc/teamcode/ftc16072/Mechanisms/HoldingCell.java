@@ -18,28 +18,28 @@ public class  HoldingCell implements Mechanism{
     private ColorRangeSensor leftPixelCounter;
     private ColorRangeSensor rightPixelCounter;
 
-    private DigitalChannel leftConeDetector;
+    private DigitalChannel leftLimitSwitch;
 
-    private DigitalChannel rightConeDetector;
+    private DigitalChannel rightLimitSwitch;
 
     @Override
     public void init(HardwareMap hwMap) {
         leftPixelCounter = hwMap.get(ColorRangeSensor.class, "left_pixel_counter");
         rightPixelCounter = hwMap.get(ColorRangeSensor.class, "right_pixel_counter");
-        leftConeDetector = hwMap.get(DigitalChannel.class,"left_cone_detector");
-        rightConeDetector = hwMap.get(DigitalChannel.class,"right_cone_detector");
+        leftLimitSwitch = hwMap.get(DigitalChannel.class,"left_limit_switch");
+        rightLimitSwitch = hwMap.get(DigitalChannel.class,"right_limit_switch");
     }
 
     public List<QQtest> getTests() {
         return Arrays.asList(
                 new TestColorRangeSensor("left pixel detector", leftPixelCounter),
                 new TestColorRangeSensor("right pixel detector", rightPixelCounter),
-                new TestSwitch("left_cone_detector",leftConeDetector),
-                new TestSwitch("right_cone_detector", rightConeDetector));
+                new TestSwitch("left_limit_switch",leftLimitSwitch),
+                new TestSwitch("right_limit_switch", rightLimitSwitch));
     }
 
-    public boolean isConeDetected(){
-        return leftConeDetector.getState() || rightConeDetector.getState();
+    public boolean isLimitSwitchDetected(){
+        return !leftLimitSwitch.getState() || !rightLimitSwitch.getState();
     }
     /**
      * Checks how many pixels are in the holding cell.

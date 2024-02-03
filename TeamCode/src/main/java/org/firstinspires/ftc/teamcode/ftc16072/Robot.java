@@ -27,7 +27,7 @@ public class Robot {
     public Intake intake;
 
     public HoldingCell holdingCell;
-    public Camera cameraFront;
+    //public Camera cameraFront;
     public Camera cameraBack;
     public Lift lift;
     public Arm arm;
@@ -51,15 +51,15 @@ public class Robot {
 
 
         mechanisms = Arrays.asList(
-                //mecanumDrive,
+                mecanumDrive,
                 controlHub,
-                //intake,
-                cameraBack
-                //holdingCell,
-                //lift,
-                //arm,
-                //placement,
-                //climber
+                intake,
+                cameraBack,
+                holdingCell,
+                lift,
+                arm,
+                placement,
+                climber
         );
     }
 
