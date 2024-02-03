@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<Robot type="FirstInspires-FTC">
+    <LynxUsbDevice name="Control Hub Portal" serialNumber="(embedded)" parentModuleAddress="173">
+        <LynxModule name="Expansion Hub 2" port="2">
+            <goBILDA5202SeriesMotor name="left_lift_motor" port="0" />
+            <goBILDA5202SeriesMotor name="right_lift_motor" port="1" />
+            <goBILDA5202SeriesMotor name="Intake_Motor" port="2" />
+            <goBILDA5202SeriesMotor name="climber_motor" port="3" />
+            <LynxColorSensor name="right_pixel_counter" port="0" bus="2" />
+            <LynxColorSensor name="left_pixel_counter" port="0" bus="1" />
+            <REV_VL53L0X_RANGE_SENSOR name="back_distance_sensor" port="0" bus="3" />
+        </LynxModule>
+        <LynxModule name="Control Hub" port="173">
+            <goBILDA5202SeriesMotor name="back_right_motor" port="0" />
+            <goBILDA5202SeriesMotor name="front_right_motor" port="1" />
+            <goBILDA5202SeriesMotor name="back_left_motor" port="2" />
+            <goBILDA5202SeriesMotor name="front_left_motor" port="3" />
+            <Servo name="left_arm_servo" port="0" />
+            <Servo name="right_arm_servo" port="2" />
+            <Servo name="left_placement" port="4" />
+            <Servo name="right_placement" port="5" />
+            <DigitalDevice name="right_limit_switch" port="1" />
+            <DigitalDevice name="left_limit_switch" port="3" />
+            <ControlHubImuBHI260AP name="imu" port="0" bus="0" />
+        </LynxModule>
+    </LynxUsbDevice>
+    <Webcam name="BackCamera" serialNumber="VGA USB Camera" />
+</Robot>
