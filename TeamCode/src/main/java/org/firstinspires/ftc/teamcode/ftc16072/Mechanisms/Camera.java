@@ -69,7 +69,7 @@ public class Camera implements Mechanism{
     Hashtable<Integer, Pose2d> aprilTagPositions = new Hashtable<>();
 
     private AprilTagProcessor aprilTag;
-    private TeamPropDetector teamPropDetector;
+    public TeamPropDetector teamPropDetector;
 
     private VisionPortal visionPortal;
 
