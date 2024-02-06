@@ -15,7 +15,7 @@ public class BackDistanceSensor implements Mechanism{
     DistanceSensor distanceSensor;
     @Override
     public void init(HardwareMap hwMap) {
-        distanceSensor = hwMap.get(DistanceSensor.class, "distanceSensor");
+        distanceSensor = hwMap.get(DistanceSensor.class, "back_distance_sensor");
 
     }
 public double distanceToBackboard(){
