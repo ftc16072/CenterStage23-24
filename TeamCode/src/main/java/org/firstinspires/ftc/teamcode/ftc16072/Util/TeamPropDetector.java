@@ -15,6 +15,7 @@ import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 @Config
 public class TeamPropDetector implements VisionProcessor {
+    public static final int SATURATION_THRESHOLD = 1233;
     //makes "detection zones" for each tape zone
     TeamPropLocation location = TeamPropLocation.NOT_DETECTED;
     public Rect leftTapeDetectionZone = new Rect(100,100,75,75);
@@ -36,21 +37,21 @@ public class TeamPropDetector implements VisionProcessor {
     public Object processFrame(Mat frame, long captureTimeNanos) {
         Imgproc.cvtColor(frame, hsvMat, Imgproc.COLOR_RGB2HSV);
 
-        double leftSaturation =  getAvgSaturation(hsvMat, leftTapeDetectionZone);
+
         double middleSaturation = getAvgSaturation(hsvMat, middleTapeDetectionZone);
         double rightSaturation  = getAvgSaturation(hsvMat, rightTapeDetectionZone);
 
-
-        if((leftSaturation>middleSaturation) && (leftSaturation>rightSaturation)) {
-            location = TeamPropLocation.LEFT_SPIKE;
-        } else if ((middleSaturation>leftSaturation) && (middleSaturation>rightSaturation)){
+        if(middleSaturation > SATURATION_THRESHOLD) {
             location = TeamPropLocation.MIDDLE_SPIKE;
-        }else if ((rightSaturation>middleSaturation) && (rightSaturation>leftSaturation)){
+        } else if (rightSaturation > SATURATION_THRESHOLD) {
             location = TeamPropLocation.RIGHT_SPIKE;
+        } else {
+            location = TeamPropLocation.LEFT_SPIKE;
         }
         return location;
 
     }
+
     public TeamPropLocation getPropLocation(){
         return location;
     }
