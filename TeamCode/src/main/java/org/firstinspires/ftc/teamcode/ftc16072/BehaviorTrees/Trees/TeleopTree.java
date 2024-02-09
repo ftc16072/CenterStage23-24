@@ -144,9 +144,12 @@ public class TeleopTree {
 
                                 new IfLiftToPixelGrabPosButtonPressed(),
                                 new MoveLiftToPixelGrabPosition(),
-                                new ClampOnPixel(),
+                                new ClampOnPixel()
+
+                        ),
+                        new Sequence(
                                 new IfEjectButtonPressed(),
-                                new SpinOutIntakeMotor() // X not using eject
+                                new SpinOutIntakeMotor()
 
                         ),
                         new StopIntakeMotor()
