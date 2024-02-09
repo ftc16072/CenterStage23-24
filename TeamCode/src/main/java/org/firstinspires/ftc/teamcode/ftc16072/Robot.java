@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.ftc16072;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Arm;
+import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.BackDistanceSensor;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Camera;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Climber;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.ControlHub;
@@ -25,6 +26,7 @@ public class Robot {
     public ControlHub controlHub;
     //public LineDetector lineDetector;
     public Intake intake;
+    public BackDistanceSensor backDistanceSensor;
 
     public HoldingCell holdingCell;
     //public Camera cameraFront;
@@ -38,6 +40,7 @@ public class Robot {
 
     public Robot() {
         //cameraFront = new Camera(Camera.CameraPosition.FRONT);
+        backDistanceSensor = new BackDistanceSensor();
         cameraBack = new Camera(Camera.CameraPosition.BACK);
         controlHub = new ControlHub();
         mecanumDrive = new MecanumDrive();
@@ -59,7 +62,8 @@ public class Robot {
                 lift,
                 arm,
                 placement,
-                climber
+                climber,
+                backDistanceSensor
         );
     }
 
