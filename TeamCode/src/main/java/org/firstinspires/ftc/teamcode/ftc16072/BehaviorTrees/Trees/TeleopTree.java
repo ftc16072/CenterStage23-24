@@ -10,13 +10,13 @@ import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.MoveArmAndL
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.MoveLiftToIntakePosition;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.MoveLiftToPixelGrabPosition;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.PlacePixels;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.RumbleGamepad;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.SetLiftPosition;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.SpinInIntakeMotor;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.SpinOutIntakeMotor;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.StopIntakeMotor;
 
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.UpdateArmAndLift;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.UpdateClimber;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.AreNotSlidesExtended;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.AreSlidesExtended;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.Has1Pixel;
@@ -120,6 +120,7 @@ public class TeleopTree {
                 ),
 
                  */
+                new UpdateClimber(), // Moves climber
                 new DriveFieldRelative(),
                 new UpdateArmAndLift(),
                 new Failover(
@@ -131,7 +132,6 @@ public class TeleopTree {
                         ),
                         new Sequence( // moving lift down to grab pixels when there is 2 pixels
                                 new Has2Pixels(), // having more than 2 pixels is impossible
-
                                 new MoveLiftToPixelGrabPosition(),
                                 new ClampOnPixel(),
                                 new IfEjectButtonPressed(), // might want to consider removing this and automatically ejecting
@@ -187,7 +187,7 @@ public class TeleopTree {
 
 
 
-                        ),
+                        ), // Changing drive train speed
                         new Failover(
                                 new AreSlidesExtended(),
                                 new IsControllerDriving(),
