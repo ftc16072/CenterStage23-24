@@ -147,12 +147,12 @@ public class TeleopTree {
                                 new ClampOnPixel()
 
                         ),
-                        new Sequence(
-                                new IfEjectButtonPressed(),
-                                new SpinOutIntakeMotor()
-
-                        ),
                         new StopIntakeMotor()
+                ),
+                new Sequence(
+                        new IfEjectButtonPressed(),
+                        new SpinOutIntakeMotor()
+
                 ),
                 new Failover(
                         new Sequence(
