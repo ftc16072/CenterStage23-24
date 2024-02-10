@@ -34,7 +34,7 @@ public class Lift implements  Mechanism{
         TOP_POSITION
 
     }
-    public static final int ARE_SLIDES_EXTENDED_BOUNDARY = 600;
+    public static final int ARE_SLIDES_EXTENDED_BOUNDARY = 800;
 
     private LiftPositions manipulatorPosition;
     private static final int LIFT_POSITION_SAFETY_BOTTOM = -50;

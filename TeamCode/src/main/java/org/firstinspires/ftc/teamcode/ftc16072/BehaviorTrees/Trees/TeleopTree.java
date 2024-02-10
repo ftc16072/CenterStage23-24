@@ -30,6 +30,7 @@ import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IfIntake
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IfLeftTriggerPressed;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IfLiftAtBottom;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IfLiftToPixelGrabPosButtonPressed;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IsBackboardInRange;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IsControllerDriving;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Failover;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Node;
@@ -125,6 +126,11 @@ public class TeleopTree {
                 new UpdateClimber(),
                 new DriveFieldRelative(),
                 new UpdateArmAndLift(),
+                new Sequence(
+                        new AreSlidesExtended(),
+                        new IsBackboardInRange(),
+                        new RumbleGamepad()
+                ),
                 new Sequence(
                         new IfEjectButtonPressed(),
                         new PlacePixels2()
