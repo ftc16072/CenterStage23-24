@@ -1,10 +1,11 @@
 package org.firstinspires.ftc.teamcode.ftc16072.OpModes;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Node;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trees.PushbotTeleop;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trees.TeleopTree;
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp
 public class CompTeleOp extends  QQOpMode{
 
-    Node root = TeleopTree.root();
+    Node root = PushbotTeleop.root();
 
     boolean done;
     public void init_loop(){
