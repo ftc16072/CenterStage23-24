@@ -169,7 +169,8 @@ public class TeleopTree {
                                         new IfLiftAtBottom(),
                                         new Has1or2Pixels(),
                                         new AddTelemetry(),
-                                        new Sequence(
+                                        new Parallel(2,
+
                                                 new MoveArmAndLift(),
                                                 new PlacePixels()
                                         )
@@ -180,7 +181,7 @@ public class TeleopTree {
                                 ),
                                 new Failover(
                                         new IfLiftAtBottom(),
-                                        new Sequence(
+                                        new Parallel(2,
                                                 new MoveArmAndLift(),
                                                 new PlacePixels()
                                         )
