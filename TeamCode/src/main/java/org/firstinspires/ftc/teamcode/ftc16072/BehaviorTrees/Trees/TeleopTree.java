@@ -10,6 +10,7 @@ import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.MoveArmAndL
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.MoveLiftToIntakePosition;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.MoveLiftToPixelGrabPosition;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.PlacePixels;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.PlacePixels2;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.RumbleGamepad;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.SetLiftPosition;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.SpinInIntakeMotor;
@@ -122,6 +123,10 @@ public class TeleopTree {
                  */
                 new DriveFieldRelative(),
                 new UpdateArmAndLift(),
+                new Sequence(
+                        new IfEjectButtonPressed(),
+                        new PlacePixels2()
+                ),
                 new Failover(
                         new Sequence(
                                 new HasLessThan2Pixels(),
