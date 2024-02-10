@@ -135,14 +135,16 @@ public class TeleopTree {
                 new ResetGyro(),
                 new UpdateClimber(),
                 new DriveFieldRelative(),
+
                 new UpdateArmAndLift(),
-                new Sequence( //distance sensor nodes
-                        new AreSlidesExtended(),
+                //Distance Sensor Rumbles when
+                new Sequence(
                         new IsBackboardInRange(),
                         new RumbleGamepad()
                 ),
-
+                /*
                 new Failover(
+
                         new Sequence(
                             new HasLessThan2Pixels(),
                                 new IfIntakeButtonPressed(),
@@ -151,8 +153,8 @@ public class TeleopTree {
                         ),
                         new Sequence( // moving lift down to grab pixels when there is 2 pixels
                                 new Has2Pixels(), // having more than 2 pixels is impossible
-                                new MoveLiftToPixelGrabPosition(),
-                                new ClampOnPixel(),
+                                //new MoveLiftToPixelGrabPosition(),
+
 
                                 new IfEjectButtonPressed() // might want to consider removing this and automatically ejecting
                                 //new SpinOutIntakeMotor() // X not using eject
@@ -170,18 +172,28 @@ public class TeleopTree {
 
                         ),
                         new StopIntakeMotor()
-                ),
+
+                 */
                 new Failover(
                         new Sequence(
-                                new SetLiftPosition()
-                        )
+                                new IfEjectButtonPressed(),
+                                new SpinOutIntakeMotor()
+                        ),
+                        new Sequence(
+                                new IfIntakeButtonPressed(),
+                                new SpinInIntakeMotor()
+                        ),
+                        new StopIntakeMotor()
                 ),
+
+                /*new Sequence(
+                                new SetLiftPosition()
+                ),*/
                 new Parallel(2,
                         new Failover(
                                 new Sequence(
                                         new IfLiftAtBottom(),
                                         new Has1or2Pixels(),
-                                        new AddTelemetry(),
                                         new Parallel(2,
 
                                                 new MoveArmAndLift(),
@@ -206,11 +218,11 @@ public class TeleopTree {
 
 
                         ),
-                        new Failover(
-                                new AreSlidesExtended(),
-                                new IsControllerDriving(),
-                                new MakeSlowDrive()
-                        ),
+                        //new Failover(
+                        //        new AreSlidesExtended(),
+                        //        new IsControllerDriving(),
+                        //        new MakeSlowDrive()
+                        //),
                         new Sequence(
                                 new AreNotSlidesExtended(),
                                 new Sequence(
