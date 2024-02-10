@@ -10,11 +10,15 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Drone implements Mechanism{
+    public static final double DRONE_RELEASE = 0.4;
     private Servo droneServo;
     @Override
     public void init(HardwareMap hwMap) {
         droneServo = hwMap.get(Servo.class,"drone_servo");
 
+    }
+    public void releaseDrone(){
+        droneServo.setPosition(DRONE_RELEASE);
     }
 
     @Override
