@@ -12,6 +12,7 @@ import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.MoveLiftToI
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.MoveLiftToPixelGrabPosition;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.PlacePixels;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.PlacePixels2;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.ResetGyro;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.RumbleGamepad;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.SetLiftPosition;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.SpinInIntakeMotor;
@@ -131,6 +132,7 @@ public class TeleopTree {
 
 
                 ),
+                new ResetGyro(),
                 new UpdateClimber(),
                 new DriveFieldRelative(),
                 new UpdateArmAndLift(),
@@ -152,8 +154,8 @@ public class TeleopTree {
                                 new MoveLiftToPixelGrabPosition(),
                                 new ClampOnPixel(),
 
-                                new IfEjectButtonPressed(), // might want to consider removing this and automatically ejecting
-                                new SpinOutIntakeMotor() // X not using eject
+                                new IfEjectButtonPressed() // might want to consider removing this and automatically ejecting
+                                //new SpinOutIntakeMotor() // X not using eject
 
 
                         ),
@@ -163,8 +165,8 @@ public class TeleopTree {
                                 new IfLiftToPixelGrabPosButtonPressed(),
                                 new MoveLiftToPixelGrabPosition(),
                                 new ClampOnPixel(),
-                                new IfEjectButtonPressed(),
-                                new SpinOutIntakeMotor() // X not using eject
+                                new IfEjectButtonPressed()
+                                //new SpinOutIntakeMotor() // X not using eject
 
                         ),
                         new StopIntakeMotor()
