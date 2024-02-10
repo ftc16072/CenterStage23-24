@@ -7,6 +7,7 @@ import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.BackDistanceSensor;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Camera;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Climber;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.ControlHub;
+import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Drone;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.HoldingCell;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Lift;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Intake;
@@ -35,6 +36,7 @@ public class Robot {
     public Arm arm;
     public Placement placement;
     public Climber climber;
+    public Drone drone;
 
 
 
@@ -51,6 +53,8 @@ public class Robot {
         arm = new Arm();
         placement = new Placement();
         climber = new Climber();
+        drone = new Drone();
+
 
 
         mechanisms = Arrays.asList(
@@ -63,7 +67,9 @@ public class Robot {
                 arm,
                 placement,
                 climber,
-                backDistanceSensor
+                backDistanceSensor,
+                drone
+
         );
     }
 
