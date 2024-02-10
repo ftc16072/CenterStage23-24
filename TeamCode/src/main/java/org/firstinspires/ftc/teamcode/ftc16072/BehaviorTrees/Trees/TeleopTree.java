@@ -37,6 +37,7 @@ import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IsContro
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.ifDroneReleaseButtonPressed;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Failover;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Node;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Not;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Parallel;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Sequence;
 
@@ -224,7 +225,9 @@ public class TeleopTree {
                         //        new MakeSlowDrive()
                         //),
                         new Sequence(
-                                new AreNotSlidesExtended(),
+                                new Not(
+                                      new AreSlidesExtended()
+                                        ),
                                 new Sequence(
                                         new IsControllerDriving(),
                                         new Failover(
