@@ -15,11 +15,14 @@ import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 @Config
 public class TeamPropDetector implements VisionProcessor {
+    public static final int SATURATION_THRESHOLD = 90;
     //makes "detection zones" for each tape zone
     TeamPropLocation location = TeamPropLocation.NOT_DETECTED;
-    public Rect leftTapeDetectionZone = new Rect(100,100,75,75);
-    public Rect middleTapeDetectionZone = new Rect(250,130,75,75);
-    public Rect rightTapeDetectionZone = new Rect(400,100,75,75);
+    public Rect leftTapeDetectionZone = new Rect(20,100,75,75);
+    public Rect middleTapeDetectionZone = new Rect(200,180,75,75);
+    public Rect rightTapeDetectionZone = new Rect(550,160,75,75);
+    public double middleSaturation;
+    public double rightSaturation;
 
     //submats are smaller portions of the frame that you can get values from
     Mat submat = new Mat();
@@ -34,23 +37,24 @@ public class TeamPropDetector implements VisionProcessor {
 
     @Override
     public Object processFrame(Mat frame, long captureTimeNanos) {
+
         Imgproc.cvtColor(frame, hsvMat, Imgproc.COLOR_RGB2HSV);
 
-        double leftSaturation =  getAvgSaturation(hsvMat, leftTapeDetectionZone);
-        double middleSaturation = getAvgSaturation(hsvMat, middleTapeDetectionZone);
-        double rightSaturation  = getAvgSaturation(hsvMat, rightTapeDetectionZone);
 
+        middleSaturation = getAvgSaturation(hsvMat, middleTapeDetectionZone);
+        rightSaturation  = getAvgSaturation(hsvMat, rightTapeDetectionZone);
 
-        if((leftSaturation>middleSaturation) && (leftSaturation>rightSaturation)) {
-            location = TeamPropLocation.LEFT_SPIKE;
-        } else if ((middleSaturation>leftSaturation) && (middleSaturation>rightSaturation)){
+        if(middleSaturation > SATURATION_THRESHOLD) {
             location = TeamPropLocation.MIDDLE_SPIKE;
-        }else if ((rightSaturation>middleSaturation) && (rightSaturation>leftSaturation)){
+        } else if (rightSaturation > SATURATION_THRESHOLD) {
             location = TeamPropLocation.RIGHT_SPIKE;
+        } else {
+            location = TeamPropLocation.LEFT_SPIKE;
         }
         return location;
 
     }
+
     public TeamPropLocation getPropLocation(){
         return location;
     }
@@ -63,6 +67,7 @@ public class TeamPropDetector implements VisionProcessor {
         Scalar color = Core.mean(submat);
         return color.val[1];
     }
+
 
     //scales rectangle to
     private android.graphics.Rect makeGraphicsRect (Rect rect, float scaleBmpPxToCanvasPx){

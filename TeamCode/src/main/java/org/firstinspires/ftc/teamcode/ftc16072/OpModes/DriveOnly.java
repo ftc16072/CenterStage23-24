@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 @TeleOp()
-@Disabled
+//@Disabled
 public class DriveOnly extends QQOpMode {
 
     @Override

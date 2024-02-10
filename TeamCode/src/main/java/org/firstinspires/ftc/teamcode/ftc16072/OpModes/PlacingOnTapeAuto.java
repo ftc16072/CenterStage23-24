@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.ftc16072.OpModes.RRTests;
+package org.firstinspires.ftc.teamcode.ftc16072.OpModes;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
@@ -9,23 +9,23 @@ import org.firstinspires.ftc.teamcode.ftc16072.Robot;
 import org.firstinspires.ftc.teamcode.ftc16072.Util.TeamPropLocation;
 
 @Autonomous
-public class PlacingOnTapeAuto extends OpMode {
-    Robot robot = new Robot();
+public class PlacingOnTapeAuto extends QQOpMode {
     Trajectory trajectory;
     private enum State {BEGIN, FORWARD,TURN,FORWARD_TO_TAPE, DONE}
     State state = State.BEGIN;
+    TeamPropLocation teamPropLocation;
+
     @Override
-    public void init() {
-        robot.makeDriveOnly();
-        robot.init(hardwareMap);
+    public void init_loop(){
+        TeamPropLocation teamPropLocation = robot.cameraBack.getTeamPropPosition();
+        telemetry.addData("team prop location: ", teamPropLocation);
     }
 
     @Override
     public void loop() {
         robot.nav.updatePoseEstimate();
         Pose2d currentPose = robot.nav.getPoseEstimate();
-        TeamPropLocation teamPropLocation = robot.cameraBack.getTeamPropPosition();
-
+        telemetry.addData("team prop location: ", teamPropLocation);
         telemetry.addData("STATE", state);
         telemetry.addData("POSE", "x = %.2f y = %.2f h = %.1f", currentPose.getX(), currentPose.getY(), Math.toDegrees(currentPose.getHeading()));
         switch (state) {

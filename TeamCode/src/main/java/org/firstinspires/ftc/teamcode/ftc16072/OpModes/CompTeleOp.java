@@ -7,7 +7,10 @@ public class CompTeleOp extends  QQOpMode{
     Node root = TeleopTree.root();
 
     boolean done;
-
+    public void init_loop(){
+        telemetry.addData("right saturation",robot.cameraBack.teamPropDetector.rightSaturation);
+        telemetry.addData("middle saturation", robot.cameraBack.teamPropDetector.middleSaturation);
+    }
 
     @Override
     public void loop() {
