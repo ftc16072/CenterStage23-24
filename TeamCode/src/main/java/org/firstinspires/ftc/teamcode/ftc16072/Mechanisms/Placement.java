@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Placement implements Mechanism{
-    public static final double LEFT_SERVO_GRAB_POSITION = 0.65;
+    public static final double LEFT_SERVO_GRAB_POSITION = 0.63;
     public static final double LEFT_SERVO_EJECT_POSITION = 0.4;
     public static final double RIGHT_SERVO_GRAB_POSITION = .4;
     public static final double RIGHT_SERVO_EJECT_POSITION = .7;
