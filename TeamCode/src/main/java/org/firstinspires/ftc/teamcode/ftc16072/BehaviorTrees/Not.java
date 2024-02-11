@@ -17,11 +17,13 @@ public class Not extends Node {
     @Override
     public State tick(QQOpMode opmode) {
         State state = child.tick(opmode);
+
         if (state == State.FAILURE) {
             return State.SUCCESS;
         } else if (state == State.SUCCESS) {
             return State.FAILURE;
         }
+
         return state;
     }
 }
