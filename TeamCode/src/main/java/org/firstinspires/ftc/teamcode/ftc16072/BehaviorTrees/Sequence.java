@@ -14,8 +14,13 @@ public class Sequence extends Node {
 
     @Override
     public State tick(QQOpMode opmode) {
+        opmode.debug.startParent(this);
+
         for (Node child : children) {
+            opmode.debug.addNode(child);
             State state = child.tick(opmode);
+            opmode.debug.updateNode(child, state);
+
             if (state == State.FAILURE) {
                 return State.FAILURE;
             } else if (state == State.RUNNING) {

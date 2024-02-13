@@ -15,14 +15,15 @@ public class CompTeleOp extends  QQOpMode{
     @Override
     public void loop() {
         if(!done){
+            debug.reset();
+            debug.addNode(root);
             Node.State state = root.tick(this);
+            debug.updateNode(root, state);
+            telemetry.addData("Tree", debug);
             if(state == Node.State.SUCCESS){
                 done = true;
             }
         }
-
     }
-
-
 
 }
