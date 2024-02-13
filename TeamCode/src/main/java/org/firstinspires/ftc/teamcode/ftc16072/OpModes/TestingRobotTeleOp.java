@@ -7,15 +7,6 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 @TeleOp
 @Config
 public class TestingRobotTeleOp extends QQOpMode {
-    FtcDashboard dashboard;
-
-    public void init(){
-        robot.init(hardwareMap);
-        dashboard = FtcDashboard.getInstance();
-        telemetry = dashboard.getTelemetry();
-
-
-    }
     @Override
     public void loop() {
         if (gamepad1.a){
@@ -53,7 +44,6 @@ public class TestingRobotTeleOp extends QQOpMode {
             robot.climber.stop();
         }
 
-        telemetry.addData("lift motor power ",robot.lift.getPower());
         telemetry.addData("lift desired Position", robot.lift.getDesiredPosition());
         telemetry.addData("lift current position", robot.lift.currentPosition());
         robot.lift.update(telemetry);
