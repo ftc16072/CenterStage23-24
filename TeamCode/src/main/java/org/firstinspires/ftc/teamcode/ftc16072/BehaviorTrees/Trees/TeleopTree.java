@@ -8,15 +8,11 @@ import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.MoveArmAndL
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.PlacePixels;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.ResetGyro;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.RumbleGamepad;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.SpinInIntakeMotor;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.SpinOutIntakeMotor;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.StopIntakeMotor;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.UpdateArmAndLift;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.UpdateClimber;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.UpdateIntake;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.AreSlidesExtended;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.Has1or2Pixels;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IfEjectButtonPressed;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IfIntakeButtonPressed;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IfLeftTriggerPressed;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IfLiftAtBottom;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IsBackboardInRange;
@@ -162,17 +158,7 @@ public class TeleopTree {
                         new StopIntakeMotor()
 
                  */
-                new Failover(
-                        new Sequence(
-                                new IfEjectButtonPressed(),
-                                new SpinOutIntakeMotor()
-                        ),
-                        new Sequence(
-                                new IfIntakeButtonPressed(),
-                                new SpinInIntakeMotor()
-                        ),
-                        new StopIntakeMotor()
-                ),
+                new UpdateIntake(),
 
                 /*new Sequence(
                                 new SetLiftPosition()

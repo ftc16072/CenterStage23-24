@@ -29,8 +29,8 @@ public class Intake implements Mechanism{
                 new TestMotor("Eject", EJECT_SPEED, intakeMotor));
 
     }
-    public void intake(){
-        intakeMotor.setPower(INTAKE_SPEED);
+    public void intake(double amount){
+        intakeMotor.setPower(INTAKE_SPEED * amount);
     }
     public void eject(){
         intakeMotor.setPower(EJECT_SPEED);

@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.ftc16072.QQTest.QQtest;
+import org.firstinspires.ftc.teamcode.ftc16072.QQTest.TestMotor;
 import org.firstinspires.ftc.teamcode.ftc16072.QQTest.TestTwoMotor;
 
 import java.util.Arrays;
@@ -38,7 +39,7 @@ public class Lift implements  Mechanism{
 
     private LiftPositions manipulatorPosition;
     private static final int LIFT_POSITION_SAFETY_BOTTOM = -50;
-    private static final int LIFT_POSITION_SAFETY_TOP = 343455; //TODO need to fix
+    private static final int LIFT_POSITION_SAFETY_TOP = 2600; //TODO: find actual
 
     private static final int PIXEL_GRAB_POSITION=0;
 
@@ -128,7 +129,9 @@ public class Lift implements  Mechanism{
     public List<QQtest> getTests() {
         return Arrays.asList(
                 new TestTwoMotor("lift", leftLiftMotor, rightLiftMotor, 0.5),
-                new TestTwoMotor("downLift", leftLiftMotor, rightLiftMotor, -0.5)
+                new TestTwoMotor("downLift", leftLiftMotor, rightLiftMotor, -0.5),
+                new TestMotor("right lift motor", 0.5, rightLiftMotor),
+                new TestMotor("left lift motor", 0.5, leftLiftMotor)
                 );
     }
 
