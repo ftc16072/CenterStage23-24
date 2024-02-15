@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trees;
 
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.PlacePurplePixel;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.Trajectories.FollowTrajectory;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.Trajectories.SetLeftSpikeTrajectory;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.Trajectories.SetMiddleSpikeTrajectory;
@@ -36,7 +37,8 @@ public class SpikeAutoTree {
                         ),
                         new SetMiddleSpikeTrajectory()
                 ),
-                new FollowTrajectory()
+                new FollowTrajectory(),
+                new PlacePurplePixel()
         );
     }
 }

@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.ftc16072.Mechanisms;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -8,9 +9,10 @@ import org.firstinspires.ftc.teamcode.ftc16072.QQTest.TestServo;
 
 import java.util.Collections;
 import java.util.List;
+@Config
 
 public class PixelServo implements Mechanism{
-    public static final double RELEASE_POSITION= 1; // needs to be tuned
+    public static double RELEASE_POSITION= .7; // needs to be tuned
     Servo pixelServo;
     @Override
     public void init(HardwareMap hwMap) {
@@ -24,6 +26,7 @@ public class PixelServo implements Mechanism{
 
     @Override
     public List<QQtest> getTests() {
-        return Collections.singletonList(new TestServo("Pixel Servo", 1, 0.5, pixelServo));
+        return Collections.singletonList(new TestServo("Pixel Servo", .8, 0.6
+                , pixelServo));
     }
 }   
