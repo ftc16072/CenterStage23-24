@@ -12,7 +12,7 @@ import java.util.List;
 @Config
 
 public class PixelServo implements Mechanism{
-    public static double RELEASE_POSITION= .7; // needs to be tuned
+    public static final double RELEASE_POSITION= .7; //Tuned
     Servo pixelServo;
     @Override
     public void init(HardwareMap hwMap) {
