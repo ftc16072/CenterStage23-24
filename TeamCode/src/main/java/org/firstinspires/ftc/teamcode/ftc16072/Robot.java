@@ -13,6 +13,7 @@ import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Lift;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Intake;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.MecanumDrive;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Mechanism;
+import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.PixelServo;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Placement;
 import org.firstinspires.ftc.teamcode.ftc16072.Util.Navigation;
 import org.firstinspires.ftc.vision.VisionPortal;
@@ -37,6 +38,7 @@ public class Robot {
     public Placement placement;
     public Climber climber;
     public Drone drone;
+    public PixelServo pixelservo;
 
 
 
@@ -54,6 +56,7 @@ public class Robot {
         placement = new Placement();
         climber = new Climber();
         drone = new Drone();
+        pixelservo = new PixelServo();
 
 
 
@@ -68,7 +71,8 @@ public class Robot {
                 placement,
                 climber,
                 backDistanceSensor,
-                drone
+                drone,
+                pixelservo
 
         );
     }
