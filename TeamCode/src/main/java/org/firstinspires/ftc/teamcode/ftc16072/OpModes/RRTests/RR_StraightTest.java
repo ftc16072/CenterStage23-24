@@ -11,7 +11,6 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.teamcode.ftc16072.Robot;
 
-@Disabled
 @Autonomous(group = "RR")
 public class RR_StraightTest extends OpMode {
     Robot robot = new Robot();

@@ -1,71 +1,78 @@
-package org.firstinspires.ftc.teamcode.ftc16072.OpModes.RRTests;
+package org.firstinspires.ftc.teamcode.ftc16072.OpModes;
 
-import com.acmerobotics.dashboard.FtcDashboard;
-import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.acmerobotics.roadrunner.util.NanoClock;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.teamcode.ftc16072.Robot;
 
-@Autonomous(group = "RR")
-public class RR_StrafeTest extends OpMode {
-
+@Autonomous
+public class MiddleSpikeToBackboard extends OpMode {
     Robot robot = new Robot();
-
-    private enum State {BEGIN, AWAY, DONE}
-
+    Trajectory trajectory;
+    private enum State {BEGIN, AWAY, PAUSE, RETURN, DONE}
     State state = State.BEGIN;
-
     NanoClock clock;
     double startPause;
-
-    Trajectory trajectory;
-
     @Override
     public void init() {
         robot.makeDriveOnly();
         robot.init(hardwareMap);
         clock = NanoClock.system();
-        telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
-        telemetry.addData("x", 0);
-        telemetry.addData("y", 0);
-        telemetry.addData("desired y", 48);
     }
-
 
     @Override
     public void loop() {
         robot.nav.updatePoseEstimate();
         Pose2d currentPose = robot.nav.getPoseEstimate();
-        telemetry.addData("x", currentPose.getX());
-        telemetry.addData("y", currentPose.getY());
-        telemetry.addData("desired y", 48);
 
+        //Trajectory to middle tape
+        Trajectory leftSpikeTrajectory = robot.nav.trajectoryBuilder(currentPose, false)
+                .back(25)
+                .strafeRight(25)
+                .build();
 
-
+        Trajectory trajectory2 = robot.nav.trajectoryBuilder(trajectory1.end(), false)
+                .strafeRight(25)
+                .build();
 
         telemetry.addData("STATE", state);
         telemetry.addData("POSE", "x = %.2f y = %.2f h = %.1f", currentPose.getX(), currentPose.getY(), Math.toDegrees(currentPose.getHeading()));
         switch (state) {
             case BEGIN:
                 state = State.AWAY;
-                trajectory = robot.nav.trajectoryBuilder(currentPose, false)
-                        .strafeLeft(48)
-                        .build();
-                robot.nav.follower.followTrajectory(trajectory);
+
+                robot.nav.setPoseEstimate(currentPose);
+                robot.nav.follower.followTrajectory(trajectory1);
                 break;
             case AWAY:
                 if (robot.nav.isDoneFollowing(currentPose)) {
-                    state = State.DONE;
+                    state = State.PAUSE;
                     startPause = clock.seconds();
                 }
                 break;
+            case PAUSE:
+                if ((clock.seconds() - startPause) > 2.0) {
+
+                    state = State.RETURN;
+
+                }
+                break;
+            case RETURN:
+                robot.nav.setPoseEstimate(trajectory1.end());
+                robot.nav.follower.followTrajectory(trajectory2);
+
+                break;
             case DONE:
+                if (robot.nav.isDoneFollowing(currentPose)) {
+                    state = State.DONE;
+                }
                 break;
         }
+
+
     }
 }

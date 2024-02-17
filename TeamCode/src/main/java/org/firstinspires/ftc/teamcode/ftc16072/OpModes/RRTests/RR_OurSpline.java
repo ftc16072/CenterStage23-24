@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.teamcode.ftc16072.Robot;
 
-@Disabled
+
 @Autonomous(group = "RR")
 public class RR_OurSpline extends OpMode {
 
@@ -39,6 +39,8 @@ public class RR_OurSpline extends OpMode {
 
         telemetry.addData("STATE", state);
         telemetry.addData("POSE", "x = %.2f y = %.2f h = %.1f", currentPose.getX(), currentPose.getY(), Math.toDegrees(currentPose.getHeading()));
+        telemetry.addData("Seconds Elapsed", clock.seconds());
+        telemetry.addData("Pause", (clock.seconds() - startPause));
         switch (state) {
             case BEGIN:
                 state = State.AWAY;
@@ -61,12 +63,12 @@ public class RR_OurSpline extends OpMode {
                 }
                 break;
             case PAUSE:
-                if ((clock.seconds() - startPause) > 2.0) {
+                if ((clock.seconds() - startPause) > 10.0) {
                     state = State.RETURN;
-                    trajectory = robot.nav.trajectoryBuilder(currentPose, true)
-                            .splineTo(new Vector2d(0, 0), Math.toRadians(180))
+                    Trajectory trajectory3 = robot.nav.trajectoryBuilder(currentPose, true)
+                            .back(24)
                             .build();
-                    robot.nav.follower.followTrajectory(trajectory);
+                    robot.nav.follower.followTrajectory(trajectory3);
                 }
                 break;
             case RETURN:
