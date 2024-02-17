@@ -30,7 +30,7 @@ public class MiddleSpikeToBackboard extends OpMode {
         Pose2d currentPose = robot.nav.getPoseEstimate();
 
         //Trajectory to middle tape
-        Trajectory leftSpikeTrajectory = robot.nav.trajectoryBuilder(currentPose, false)
+        Trajectory trajectory1 = robot.nav.trajectoryBuilder(currentPose, false)
                 .back(25)
                 .strafeRight(25)
                 .build();

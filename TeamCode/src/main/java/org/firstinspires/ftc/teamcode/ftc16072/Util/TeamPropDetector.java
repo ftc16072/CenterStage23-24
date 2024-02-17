@@ -31,6 +31,8 @@ public class TeamPropDetector implements VisionProcessor {
     @Override
     public void init(int width, int height, CameraCalibration calibration) {
 
+
+
     }
 
 
