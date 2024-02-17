@@ -17,12 +17,13 @@ import org.opencv.imgproc.Imgproc;
 public class TeamPropDetector implements VisionProcessor {
     public static final int SATURATION_THRESHOLD = 90;
     //makes "detection zones" for each tape zone
-    TeamPropLocation location = TeamPropLocation.NOT_DETECTED;
+
     public Rect leftTapeDetectionZone = new Rect(20,100,75,75);
     public Rect middleTapeDetectionZone = new Rect(200,180,75,75);
     public Rect rightTapeDetectionZone = new Rect(550,160,75,75);
     public double middleSaturation;
     public double rightSaturation;
+    TeamPropLocation location;
 
     //submats are smaller portions of the frame that you can get values from
     Mat submat = new Mat();
@@ -30,6 +31,8 @@ public class TeamPropDetector implements VisionProcessor {
 
     @Override
     public void init(int width, int height, CameraCalibration calibration) {
+        location = TeamPropLocation.NOT_DETECTED;
+
 
     }
 

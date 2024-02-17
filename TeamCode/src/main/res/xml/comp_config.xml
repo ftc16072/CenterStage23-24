@@ -4,6 +4,7 @@
         <LynxModule name="Expansion Hub 2" port="2">
             <DigitalDevice name="right_limit_switch" port="1" />
             <DigitalDevice name="left_limit_switch" port="3" />
+            <Servo name="pixel_servo" port="2" />
             <Servo name="drone_servo" port="0" />
             <goBILDA5202SeriesMotor name="left_lift_motor" port="0" />
             <goBILDA5202SeriesMotor name="right_lift_motor" port="1" />
