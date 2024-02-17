@@ -132,7 +132,7 @@ public class Camera implements Mechanism{
         return teamPropDetector.getPropLocation();
 
     }
-    public AprilTagDetection selectTag(List<AprilTagDetection> detections ){ // this method selects the april tag that is most straight on relative to the robot
+    /*public AprilTagDetection selectTag(List<AprilTagDetection> detections ){ // this method selects the april tag that is most straight on relative to the robot
         AprilTagDetection smallestDetection = detections.get(0);
         for (AprilTagDetection detection: detections){
             if (smallestDetection.ftcPose.yaw>detection.ftcPose.yaw){
@@ -143,11 +143,11 @@ public class Camera implements Mechanism{
     }
     public boolean isTagDetected(){
         return (aprilTag.getDetections().size() != 0);
-    }
+    }*/
 
     @Override
     public List<QQtest> getTests() {
-        return Collections.singletonList(new TestCamera(cameraName,webcamName ));
+        return Collections.singletonList(new TestCamera(cameraName,webcamName, teamPropDetector));
     }
     public void stopStreaming(){
         visionPortal.stopStreaming();

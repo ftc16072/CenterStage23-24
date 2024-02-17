@@ -12,9 +12,11 @@ abstract public class SpikeAutoBase extends VisionBase{
     boolean done;
     @Override
     public void init(){
-        //board.add("proploocation", robot.cameraBack.getTeamPropPosition());
-        robot.makeDriveOnly();
         super.init();
+        board.add("proploocation", robot.cameraBack.getTeamPropPosition());
+        robot.makeDriveOnly();
+
+        telemetry.addData("prop Location", robot.cameraBack.getTeamPropPosition());
     }
     @Override
     public void loop() {
