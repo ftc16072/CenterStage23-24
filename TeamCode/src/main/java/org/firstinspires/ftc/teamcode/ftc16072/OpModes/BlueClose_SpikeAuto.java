@@ -14,9 +14,16 @@ public class BlueClose_SpikeAuto extends SpikeAutoBase {
 
     @Override
     public void init(){
+        super.init();
         board.add("Alliance", Alliance.BLUE);
         board.add("StartPosition", StartPosition.CLOSE);
-        super.init();
+
+
     }
 
+    @Override
+    public void init_loop() {
+        super.init_loop();
+        telemetry.addData("Prop Location: ", robot.cameraBack.getTeamPropPosition());
+    }
 }
