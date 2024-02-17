@@ -31,7 +31,9 @@ public class SpikeAutoTree {
  */
     public static Node root(){
         return new Sequence(
+                //shows spike location
                 new SpikeLocationTelemetry(),
+                //checks and sets trajectory for each spike position
                 new Failover(
                         new Sequence(
                                 new IsLeftSpike(),
@@ -44,9 +46,13 @@ public class SpikeAutoTree {
                         new SetMiddleSpikeTrajectory()
                 ),
 
+                //follows trajectory set based on spike location
                 new FollowTrajectory(),
+                //Move servo to release purple pixel
                 new ReleaseAutoPixel(),
+                //set trajectory to backboard from tape location
                 new SetBackboardFromSpikeTrajectory(),
+                //follow backboard trajectory
                 new FollowTrajectory()
 
         );
