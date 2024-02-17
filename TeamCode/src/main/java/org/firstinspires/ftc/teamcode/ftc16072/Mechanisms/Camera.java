@@ -120,7 +120,7 @@ public class Camera implements Mechanism{
     // TODO this program takes the first april tag reading. it needs to be able to sort through multiple ones
     // TODO getY, getX, and getHeading functions are all aprilTag relavtive, not field. this needs to be changed
 
-    public Pose2d getPose(){
+    public Pose2d getPose(){ //DO NOT USE THIS UNLESS ADDING APRILTAGS
         List<AprilTagDetection> detections = aprilTag.getDetections();
         //AprilTagDetection detection = selectTag(detections);
         //Pose2d aprilTagLocation = aprilTagPositions.get(detection.id);
