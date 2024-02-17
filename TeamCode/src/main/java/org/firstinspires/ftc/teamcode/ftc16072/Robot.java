@@ -3,14 +3,17 @@ package org.firstinspires.ftc.teamcode.ftc16072;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Arm;
+import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.BackDistanceSensor;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Camera;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Climber;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.ControlHub;
+import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Drone;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.HoldingCell;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Lift;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Intake;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.MecanumDrive;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Mechanism;
+import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.PixelServo;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Placement;
 import org.firstinspires.ftc.teamcode.ftc16072.Util.Navigation;
 import org.firstinspires.ftc.vision.VisionPortal;
@@ -26,6 +29,7 @@ public class Robot {
     public ControlHub controlHub;
     //public LineDetector lineDetector;
     public Intake intake;
+    
     public BackDistanceSensor backDistanceSensor;
 
     public HoldingCell holdingCell;
@@ -36,7 +40,7 @@ public class Robot {
     public Placement placement;
     public Climber climber;
     public Drone drone;
-    public PixelServo pixelservo;
+
 
 
 
@@ -54,7 +58,7 @@ public class Robot {
         placement = new Placement();
         climber = new Climber();
         drone = new Drone();
-        pixelservo = new PixelServo();
+        pixelServo = new PixelServo();
 
 
 
@@ -70,7 +74,7 @@ public class Robot {
                 climber,
                 backDistanceSensor,
                 drone,
-                pixelservo
+                pixelServo
 
         );
     }
