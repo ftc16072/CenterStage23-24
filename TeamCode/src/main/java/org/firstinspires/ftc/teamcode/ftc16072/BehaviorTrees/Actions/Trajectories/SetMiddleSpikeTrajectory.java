@@ -8,13 +8,15 @@ import org.firstinspires.ftc.teamcode.rr_trajectorysequence.TrajectorySequenceBu
 
 public class SetMiddleSpikeTrajectory extends Node {
     public static final int FORWARD_DISTANCE_INCHES = 20;
+    public static final int BACKWARD_DISTANCE_INCHES = 20;
 
     @Override
     public State tick(QQOpMode opMode) {
         TrajectorySequenceBuilder builder = opMode.robot.nav.trajectorySequenceBuilder(opMode.robot.nav.getPoseEstimate());
-        TrajectorySequence sequence = builder.forward(FORWARD_DISTANCE_INCHES).
-                                            back(FORWARD_DISTANCE_INCHES).
-                                            build();
+        TrajectorySequence sequence = builder
+                .back(FORWARD_DISTANCE_INCHES)
+                .back(FORWARD_DISTANCE_INCHES).
+                build();
         if (sequence == null){
             return State.FAILURE;
         }

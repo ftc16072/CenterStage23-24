@@ -122,11 +122,11 @@ public class Camera implements Mechanism{
 
     public Pose2d getPose(){
         List<AprilTagDetection> detections = aprilTag.getDetections();
-        AprilTagDetection detection = selectTag(detections);
-        Pose2d aprilTagLocation = aprilTagPositions.get(detection.id);
+        //AprilTagDetection detection = selectTag(detections);
+        //Pose2d aprilTagLocation = aprilTagPositions.get(detection.id);
 
-        return new Pose2d(aprilTagLocation.getX()+detection.ftcPose.y, aprilTagLocation.getY()+detection.ftcPose.x,aprilTagLocation.getHeading()+detection.ftcPose.yaw);
-
+        //return new Pose2d(aprilTagLocation.getX()+detection.ftcPose.y, aprilTagLocation.getY()+detection.ftcPose.x,aprilTagLocation.getHeading()+detection.ftcPose.yaw);
+        return new Pose2d(1,2,2); //DONT USE THIS
     }
     public TeamPropLocation getTeamPropPosition(){
         return teamPropDetector.getPropLocation();
