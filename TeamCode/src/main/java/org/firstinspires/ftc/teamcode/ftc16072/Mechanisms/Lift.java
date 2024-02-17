@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.ftc16072.QQTest.QQtest;
+import org.firstinspires.ftc.teamcode.ftc16072.QQTest.TestMotor;
 import org.firstinspires.ftc.teamcode.ftc16072.QQTest.TestTwoMotor;
 
 import java.util.Arrays;
@@ -38,7 +39,7 @@ public class Lift implements  Mechanism{
 
     private LiftPositions manipulatorPosition;
     private static final int LIFT_POSITION_SAFETY_BOTTOM = -50;
-    private static final int LIFT_POSITION_SAFETY_TOP = 343455; //TODO need to fix
+    private static final int LIFT_POSITION_SAFETY_TOP = 2600; //TODO: find actual
 
     private static final int PIXEL_GRAB_POSITION=0;
 
@@ -58,11 +59,9 @@ public class Lift implements  Mechanism{
     private double desiredPosition;
     private double sumOfErrors;
     private double lastError;
-    public static double K_P = 0.007;
-    public static double K_I = 0.0001;
-    public static double K_D = 0.2;
-    public double motorPower;
-
+    public static double K_P = 0.002;
+    public static double K_I = 0;
+    public static double K_D = 0;
 
 
     @Override
@@ -84,6 +83,13 @@ public class Lift implements  Mechanism{
 
     }
     private void setDesiredPosition(double newPosition){
+        if(newPosition > LIFT_POSITION_SAFETY_TOP){
+            newPosition = LIFT_POSITION_SAFETY_TOP;
+        }
+        if(newPosition < LIFT_POSITION_SAFETY_BOTTOM){
+            newPosition = LIFT_POSITION_SAFETY_BOTTOM;
+        }
+
         desiredPosition = newPosition;
         sumOfErrors = 0;
         lastError = 0;
@@ -94,15 +100,26 @@ public class Lift implements  Mechanism{
 
         }
     public void update(Telemetry telemetry){
-
+        double motorPower;
         double error;
         error = getDesiredPosition() - currentPosition();
+        telemetry.addData("Desired Pos", getDesiredPosition());
+        telemetry.addData("Curr Pos", currentPosition());
+
         sumOfErrors = sumOfErrors + error;
 
-        //motorPower =K_P * error + K_I * sumOfErrors + K_D * (error - lastError);
-        motorPower = K_P *error;
+        motorPower =K_P * error + K_I * sumOfErrors + K_D * (error - lastError);
+
         lastError = error;
         telemetry.addData("error", error);
+
+        /*
+        if (Math.abs(motorPower) < 0.1){
+            motorPower = 0;
+        }
+        */
+
+        telemetry.addData("lift power: ",motorPower);
 
         rightLiftMotor.setPower(motorPower);
         leftLiftMotor.setPower(motorPower);
@@ -112,24 +129,17 @@ public class Lift implements  Mechanism{
     public List<QQtest> getTests() {
         return Arrays.asList(
                 new TestTwoMotor("lift", leftLiftMotor, rightLiftMotor, 0.5),
-                new TestTwoMotor("downLift", leftLiftMotor, rightLiftMotor, -0.5)
+                new TestTwoMotor("downLift", leftLiftMotor, rightLiftMotor, -0.5),
+                new TestMotor("right lift motor", 0.5, rightLiftMotor),
+                new TestMotor("left lift motor", 0.5, leftLiftMotor)
                 );
     }
 
     public void manualLiftUp(){
-        setDesiredPosition(currentPosition() + MANUAL_CHANGE);
-        if(getDesiredPosition() > LIFT_POSITION_SAFETY_TOP){
-            desiredPosition = LIFT_POSITION_SAFETY_TOP;
-        }
-    }public void manualLiftDown(){
-        setDesiredPosition(currentPosition()-MANUAL_CHANGE);
-        if(getDesiredPosition() < LIFT_POSITION_SAFETY_BOTTOM){
-            setDesiredPosition(LIFT_POSITION_SAFETY_BOTTOM);
-
-        }
+        setDesiredPosition(getDesiredPosition() + MANUAL_CHANGE);
     }
-    public double getPower(){
-        return motorPower;
+    public void manualLiftDown(){
+        setDesiredPosition(getDesiredPosition() - MANUAL_CHANGE);
     }
     public double getDesiredPosition(){
         return desiredPosition;

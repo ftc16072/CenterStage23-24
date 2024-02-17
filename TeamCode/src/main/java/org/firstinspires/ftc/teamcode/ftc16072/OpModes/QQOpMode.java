@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.ftc16072.OpModes;
 
+import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
@@ -22,6 +24,8 @@ abstract public class QQOpMode extends OpMode {
      * every opmode initializes robot with hardware map
       */
     public void init(){
+        FtcDashboard dashboard = FtcDashboard.getInstance();
+        telemetry = new MultipleTelemetry(telemetry, dashboard.getTelemetry());
         robot.init(hardwareMap);
     }
 

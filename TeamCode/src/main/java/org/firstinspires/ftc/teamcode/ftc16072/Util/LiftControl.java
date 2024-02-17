@@ -15,7 +15,8 @@ public class  LiftControl {
     }
     public void manualLiftUp(){
         lift.manualLiftUp();
-    }public void manualLiftDown(){
+    }
+    public void manualLiftDown(){
         lift.manualLiftDown();
     }
 
