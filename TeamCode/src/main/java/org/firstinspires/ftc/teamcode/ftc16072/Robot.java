@@ -29,7 +29,7 @@ public class Robot {
     public ControlHub controlHub;
     //public LineDetector lineDetector;
     public Intake intake;
-    
+
     public BackDistanceSensor backDistanceSensor;
 
     public HoldingCell holdingCell;
