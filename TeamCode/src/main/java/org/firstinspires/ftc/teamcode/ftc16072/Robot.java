@@ -23,22 +23,24 @@ import java.util.List;
 
 public class Robot {
     List<Mechanism> mechanisms;
+    public PixelServo pixelServo;
     public MecanumDrive mecanumDrive;
     public Navigation nav;
     public ControlHub controlHub;
     //public LineDetector lineDetector;
     public Intake intake;
+
     public BackDistanceSensor backDistanceSensor;
 
     public HoldingCell holdingCell;
-    //public Camera cameraFront;
+    public Camera cameraFront;
     public Camera cameraBack;
     public Lift lift;
     public Arm arm;
     public Placement placement;
     public Climber climber;
     public Drone drone;
-    public PixelServo pixelservo;
+
 
 
 
@@ -56,7 +58,7 @@ public class Robot {
         placement = new Placement();
         climber = new Climber();
         drone = new Drone();
-        pixelservo = new PixelServo();
+        pixelServo = new PixelServo();
 
 
 
@@ -72,7 +74,7 @@ public class Robot {
                 climber,
                 backDistanceSensor,
                 drone,
-                pixelservo
+                pixelServo
 
         );
     }

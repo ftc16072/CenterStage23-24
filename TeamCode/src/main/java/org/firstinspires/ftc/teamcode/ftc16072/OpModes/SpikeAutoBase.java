@@ -5,8 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Node;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trees.SpikeAutoTree;
 
-@Autonomous
-public class SpikeAuto extends VisionBase{
+abstract public class SpikeAutoBase extends VisionBase{
     Node root = SpikeAutoTree.root();
     boolean done;
     @Override

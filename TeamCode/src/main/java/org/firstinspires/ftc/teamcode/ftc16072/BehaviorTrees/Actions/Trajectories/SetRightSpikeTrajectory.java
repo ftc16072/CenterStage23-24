@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.Trajectori
 
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Node;
 import org.firstinspires.ftc.teamcode.ftc16072.OpModes.QQOpMode;
+import org.firstinspires.ftc.teamcode.ftc16072.Util.SpikePosition;
 import org.firstinspires.ftc.teamcode.rr_trajectorysequence.TrajectorySequence;
 import org.firstinspires.ftc.teamcode.rr_trajectorysequence.TrajectorySequenceBuilder;
 
@@ -21,6 +22,7 @@ public class SetRightSpikeTrajectory extends Node {
             return State.FAILURE;
         }
         opMode.board.add("TrajectorySequence", sequence);
+        opMode.board.add("SpikePosition", SpikePosition.RIGHT);
         return State.SUCCESS;
     }
 }
