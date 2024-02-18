@@ -1,5 +1,11 @@
 package org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trees;
 
+import org.checkerframework.checker.units.qual.A;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.SpikeLocationTelemetry;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.PlacePurplePixel;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.ReleaseAutoPixel;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.SetBackboardFromSpikeTrajectory;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.SpikeLocationTelemetry;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.Trajectories.FollowTrajectory;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.Trajectories.SetLeftSpikeTrajectory;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.Trajectories.SetMiddleSpikeTrajectory;
@@ -25,6 +31,7 @@ public class SpikeAutoTree {
  */
     public static Node root(){
         return new Sequence(
+                new SpikeLocationTelemetry(),
                 new Failover(
                         new Sequence(
                                 new IsLeftSpike(),
@@ -36,7 +43,12 @@ public class SpikeAutoTree {
                         ),
                         new SetMiddleSpikeTrajectory()
                 ),
+
+                new FollowTrajectory(),
+                new ReleaseAutoPixel(),
+                new SetBackboardFromSpikeTrajectory(),
                 new FollowTrajectory()
+
         );
     }
 }

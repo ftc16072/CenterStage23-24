@@ -8,7 +8,7 @@ public class UpdateIntake extends Node {
     @Override
     public State tick(QQOpMode opmode) {
         if (opmode.gamepad1.right_trigger > TRIGGER_THRESHOLD){
-            opmode.robot.intake.intake();
+            opmode.robot.intake.intake(opmode.gamepad1.right_trigger);
         }
         else if (opmode.gamepad1.x){
             opmode.robot.intake.eject();

@@ -13,7 +13,7 @@ import java.util.List;
 
 public class Intake implements Mechanism{
 
-    public static final double INTAKE_SPEED = -1;
+    public static final double INTAKE_SPEED = -0.7;
     public static final double EJECT_SPEED = 0.5;
     private DcMotor intakeMotor;
     @Override
@@ -29,8 +29,8 @@ public class Intake implements Mechanism{
                 new TestMotor("Eject", EJECT_SPEED, intakeMotor));
 
     }
-    public void intake(){
-        intakeMotor.setPower(INTAKE_SPEED);
+    public void intake(double amount){
+        intakeMotor.setPower(INTAKE_SPEED * amount);
     }
     public void eject(){
         intakeMotor.setPower(EJECT_SPEED);

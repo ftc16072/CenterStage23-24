@@ -120,19 +120,19 @@ public class Camera implements Mechanism{
     // TODO this program takes the first april tag reading. it needs to be able to sort through multiple ones
     // TODO getY, getX, and getHeading functions are all aprilTag relavtive, not field. this needs to be changed
 
-    public Pose2d getPose(){
+    public Pose2d getPose(){ //DO NOT USE THIS UNLESS ADDING APRILTAGS
         List<AprilTagDetection> detections = aprilTag.getDetections();
-        AprilTagDetection detection = selectTag(detections);
-        Pose2d aprilTagLocation = aprilTagPositions.get(detection.id);
+        //AprilTagDetection detection = selectTag(detections);
+        //Pose2d aprilTagLocation = aprilTagPositions.get(detection.id);
 
-        return new Pose2d(aprilTagLocation.getX()+detection.ftcPose.y, aprilTagLocation.getY()+detection.ftcPose.x,aprilTagLocation.getHeading()+detection.ftcPose.yaw);
-
+        //return new Pose2d(aprilTagLocation.getX()+detection.ftcPose.y, aprilTagLocation.getY()+detection.ftcPose.x,aprilTagLocation.getHeading()+detection.ftcPose.yaw);
+        return new Pose2d(1,2,2); //DONT USE THIS
     }
     public TeamPropLocation getTeamPropPosition(){
         return teamPropDetector.getPropLocation();
 
     }
-    public AprilTagDetection selectTag(List<AprilTagDetection> detections ){ // this method selects the april tag that is most straight on relative to the robot
+    /*public AprilTagDetection selectTag(List<AprilTagDetection> detections ){ // this method selects the april tag that is most straight on relative to the robot
         AprilTagDetection smallestDetection = detections.get(0);
         for (AprilTagDetection detection: detections){
             if (smallestDetection.ftcPose.yaw>detection.ftcPose.yaw){
@@ -143,11 +143,11 @@ public class Camera implements Mechanism{
     }
     public boolean isTagDetected(){
         return (aprilTag.getDetections().size() != 0);
-    }
+    }*/
 
     @Override
     public List<QQtest> getTests() {
-        return Collections.singletonList(new TestCamera(cameraName,webcamName ));
+        return Collections.singletonList(new TestCamera(cameraName,webcamName, teamPropDetector));
     }
     public void stopStreaming(){
         visionPortal.stopStreaming();

@@ -13,7 +13,6 @@ import org.firstinspires.ftc.robotcore.internal.system.Misc;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.MecanumDrive;
 import org.firstinspires.ftc.teamcode.ftc16072.Robot;
 
-@Disabled
 @Autonomous(group = "RR")
 public class RR_TrackWidthTuner extends OpMode {
     public static double TURN_ANGLE_DEGREES = 180;

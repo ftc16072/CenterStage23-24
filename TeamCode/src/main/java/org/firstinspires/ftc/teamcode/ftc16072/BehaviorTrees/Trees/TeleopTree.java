@@ -1,41 +1,26 @@
 package org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trees;
 
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.AddTelemetry;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.ClampOnPixel;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.DriveFieldRelative;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.DroneRelease;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.MakeFastDrive;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.MakeNormalDrive;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.MakeSlowDrive;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.MoveArmAndLift;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.MoveLiftToIntakePosition;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.MoveLiftToPixelGrabPosition;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.PlacePixels;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.PlacePixels2;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.ResetGyro;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.RumbleGamepad;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.SetLiftPosition;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.SpinInIntakeMotor;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.SpinOutIntakeMotor;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.StopIntakeMotor;
-
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.UpdateArmAndLift;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.UpdateClimber;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.AreNotSlidesExtended;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.UpdateIntake;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.AreSlidesExtended;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.Has1Pixel;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.Has1or2Pixels;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.Has2Pixels;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.HasLessThan2Pixels;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IfEjectButtonPressed;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IfIntakeButtonPressed;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IfLeftTriggerPressed;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IfLiftAtBottom;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IfLiftToPixelGrabPosButtonPressed;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IsBackboardInRange;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IsControllerDriving;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.ifDroneReleaseButtonPressed;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Failover;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Node;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Not;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Parallel;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Sequence;
 
@@ -131,17 +116,19 @@ public class TeleopTree {
 
 
                 ),
-
+                new ResetGyro(),
                 new UpdateClimber(),
                 new DriveFieldRelative(),
+
                 new UpdateArmAndLift(),
-                new Sequence( //distance sensor nodes
-                        new AreSlidesExtended(),
+                //Distance Sensor Rumbles when
+                new Sequence(
                         new IsBackboardInRange(),
                         new RumbleGamepad()
                 ),
-
+                /*
                 new Failover(
+
                         new Sequence(
                             new HasLessThan2Pixels(),
                                 new IfIntakeButtonPressed(),
@@ -150,11 +137,11 @@ public class TeleopTree {
                         ),
                         new Sequence( // moving lift down to grab pixels when there is 2 pixels
                                 new Has2Pixels(), // having more than 2 pixels is impossible
-                                new MoveLiftToPixelGrabPosition(),
-                                new ClampOnPixel(),
+                                //new MoveLiftToPixelGrabPosition(),
 
-                                new IfEjectButtonPressed(), // might want to consider removing this and automatically ejecting
-                                new SpinOutIntakeMotor() // X not using eject
+
+                                new IfEjectButtonPressed() // might want to consider removing this and automatically ejecting
+                                //new SpinOutIntakeMotor() // X not using eject
 
 
                         ),
@@ -164,23 +151,23 @@ public class TeleopTree {
                                 new IfLiftToPixelGrabPosButtonPressed(),
                                 new MoveLiftToPixelGrabPosition(),
                                 new ClampOnPixel(),
-                                new IfEjectButtonPressed(),
-                                new SpinOutIntakeMotor() // X not using eject
+                                new IfEjectButtonPressed()
+                                //new SpinOutIntakeMotor() // X not using eject
 
                         ),
                         new StopIntakeMotor()
-                ),
-                new Failover(
-                        new Sequence(
+
+                 */
+                new UpdateIntake(),
+
+                /*new Sequence(
                                 new SetLiftPosition()
-                        )
-                ),
+                ),*/
                 new Parallel(2,
                         new Failover(
                                 new Sequence(
                                         new IfLiftAtBottom(),
                                         new Has1or2Pixels(),
-                                        new AddTelemetry(),
                                         new Parallel(2,
 
                                                 new MoveArmAndLift(),
@@ -205,13 +192,15 @@ public class TeleopTree {
 
 
                         ),
-                        new Failover(
-                                new AreSlidesExtended(),
-                                new IsControllerDriving(),
-                                new MakeSlowDrive()
-                        ),
+                        //new Failover(
+                        //        new AreSlidesExtended(),
+                        //        new IsControllerDriving(),
+                        //        new MakeSlowDrive()
+                        //),
                         new Sequence(
-                                new AreNotSlidesExtended(),
+                                new Not(
+                                      new AreSlidesExtended()
+                                        ),
                                 new Sequence(
                                         new IsControllerDriving(),
                                         new Failover(
