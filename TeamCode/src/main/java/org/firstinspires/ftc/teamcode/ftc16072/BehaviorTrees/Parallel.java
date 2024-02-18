@@ -18,8 +18,12 @@ public class Parallel extends Node {
     public State tick(QQOpMode opmode) {
         int numSuccessful = 0;
         boolean anyRunning = false;
+        opmode.debug.startParent(this);
         for (Node child : children) {
+            opmode.debug.addNode(child);
             State state = child.tick(opmode);
+            opmode.debug.updateNode(child, state);
+
             if (state == State.SUCCESS) {
                 numSuccessful += 1;
                 if (numSuccessful >= requiredSuccesses){
