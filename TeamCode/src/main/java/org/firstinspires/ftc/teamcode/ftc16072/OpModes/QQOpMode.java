@@ -4,9 +4,9 @@ import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
-import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.ftc16072.Robot;
 import org.firstinspires.ftc.teamcode.ftc16072.Util.BlackBoard;
+import org.firstinspires.ftc.teamcode.ftc16072.Util.DebugTree;
 import org.firstinspires.ftc.teamcode.ftc16072.Util.LiftControl;
 
 /**
@@ -19,6 +19,8 @@ abstract public class QQOpMode extends OpMode {
     public LiftControl liftControl = new LiftControl(robot);
 
     public BlackBoard board = new BlackBoard();
+    public DebugTree debug = new DebugTree();
+
 
     /**
      * every opmode initializes robot with hardware map
