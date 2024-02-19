@@ -6,11 +6,14 @@ import org.firstinspires.ftc.teamcode.rr_trajectorysequence.TrajectorySequence;
 
 public class FollowTrajectory extends Node{
     boolean started;
+    TrajectorySequence trajectorySequence;
+    String trajectorySequenceString;
 
     @Override
     public State tick(QQOpMode opmode) {
         if(!started){
-            TrajectorySequence trajectorySequence = opmode.board.get(TrajectorySequence.class, "TrajectorySequence");
+            trajectorySequence = opmode.board.get(TrajectorySequence.class, "TrajectorySequence");
+            trajectorySequenceString = opmode.board.get(String.class, "TrajectorySequenceString");
             if(trajectorySequence == null){
                 return State.FAILURE;
             }
@@ -18,11 +21,15 @@ public class FollowTrajectory extends Node{
             started = true;
         }
         else{
+
             opmode.robot.nav.update();
             if (!opmode.robot.nav.isBusy()){
                 return State.SUCCESS;
             }
         }
+        opmode.telemetry.addData("Current trajectory:",  trajectorySequence);
+
+
         return State.RUNNING;
     }
 }

@@ -12,7 +12,8 @@ import java.util.List;
 @Config
 
 public class PixelServo implements Mechanism{
-    public static final double RELEASE_POSITION= .7; //Tuned
+    public static final double RELEASE_POSITION= .4; //Tuned
+
     Servo pixelServo;
     @Override
     public void init(HardwareMap hwMap) {
@@ -26,7 +27,7 @@ public class PixelServo implements Mechanism{
 
     @Override
     public List<QQtest> getTests() {
-        return Collections.singletonList(new TestServo("Pixel Servo", .8, 0.6
+        return Collections.singletonList(new TestServo("Pixel Servo", RELEASE_POSITION, 0.67
                 , pixelServo));
     }
 }   
