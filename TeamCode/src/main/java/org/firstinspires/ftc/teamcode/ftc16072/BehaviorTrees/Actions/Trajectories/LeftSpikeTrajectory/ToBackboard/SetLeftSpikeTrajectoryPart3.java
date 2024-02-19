@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.Trajectories.RightSpikeTrajectory;
+package org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.Trajectories.LeftSpikeTrajectory.ToBackboard;
 
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Node;
 import org.firstinspires.ftc.teamcode.ftc16072.OpModes.QQOpMode;
@@ -6,9 +6,10 @@ import org.firstinspires.ftc.teamcode.ftc16072.Util.SpikePosition;
 import org.firstinspires.ftc.teamcode.rr_trajectorysequence.TrajectorySequence;
 import org.firstinspires.ftc.teamcode.rr_trajectorysequence.TrajectorySequenceBuilder;
 
-public class SetRightSpikeTrajectory extends Node {
-    public static final int FORWARD_DISTANCE_INCHES = 20;
+public class SetLeftSpikeTrajectoryPart3 extends Node {
 
+    //EDIT (as of 2/18)
+    public static final int FORWARD_DISTANCE_INCHES=20;
 
     @Override
     public State tick(QQOpMode opMode) {

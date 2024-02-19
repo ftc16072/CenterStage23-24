@@ -2,13 +2,15 @@ package org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trees;
 
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.SpikeLocationTelemetry;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.ReleaseAutoPixel;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.SetBackboardFromSpikeTrajectory;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.Trajectories.FollowTrajectory;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.Trajectories.LeftSpikeTrajectory.SetLeftSpikeTrajectory;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.Trajectories.LeftSpikeTrajectory.SetLeftSpikeTrajectoryPart2;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.Trajectories.RightSpikeTrajectory.SetRightSpikeTrajectoryPart2;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.Trajectories.SetMiddleSpikeTrajectory;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.Trajectories.RightSpikeTrajectory.SetRightSpikeTrajectory;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.Trajectories.LeftSpikeTrajectory.Spike.SetLeftSpikeTrajectory;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.Trajectories.LeftSpikeTrajectory.Spike.SetLeftSpikeTrajectoryPart2;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.Trajectories.LeftSpikeTrajectory.ToBackboard.SetLeftSpikeTrajectoryPart3;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.Trajectories.MiddleSpikeTrajectory.ToBackboard.SetMiddleSpikeTrajectoryPart2;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.Trajectories.RightSpikeTrajectory.Spike.SetRightSpikeTrajectoryPart2;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.Trajectories.MiddleSpikeTrajectory.Spike.SetMiddleSpikeTrajectory;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.Trajectories.RightSpikeTrajectory.Spike.SetRightSpikeTrajectory;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.Trajectories.RightSpikeTrajectory.ToBackboard.SetRightSpikeTrajectoryPart3;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IsLeftSpike;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IsRightSpike;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Failover;
@@ -33,6 +35,7 @@ public class SpikeAutoTree {
                 //shows spike location
                 new SpikeLocationTelemetry(),
                 //checks and sets trajectory for each spike position
+                //goes to tape
                 new Failover(
                         new Sequence(
                                 new IsLeftSpike(),
@@ -58,7 +61,22 @@ public class SpikeAutoTree {
                 //Move servo to release purple pixel
                 new ReleaseAutoPixel(),
                 //set trajectory to backboard from tape location
-                new SetBackboardFromSpikeTrajectory(),
+                new Failover(
+                        new Sequence(
+                                new IsLeftSpike(),
+                                new SetLeftSpikeTrajectoryPart3(),
+                                new FollowTrajectory()
+                        ),
+                        new Sequence(
+                                new IsRightSpike(),
+                                new SetRightSpikeTrajectoryPart3(),
+                                new FollowTrajectory()
+                        ),
+                        new Sequence(
+                                new SetMiddleSpikeTrajectoryPart2(),
+                                new FollowTrajectory()
+                        )
+                ),
                 //follow backboard trajectory
                 new FollowTrajectory()
 
