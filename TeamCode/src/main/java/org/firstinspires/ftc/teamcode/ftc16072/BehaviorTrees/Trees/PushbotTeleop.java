@@ -4,8 +4,8 @@ import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.DriveFieldR
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.ResetGyro;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.UpdateClimber;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.UpdateIntake;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Node;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Parallel;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.BaseNodes.Node;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.BaseNodes.Parallel;
 
 /*
 http://behaviortrees.ftcteams.com/

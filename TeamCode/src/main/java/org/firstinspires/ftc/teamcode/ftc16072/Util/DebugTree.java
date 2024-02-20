@@ -2,7 +2,7 @@ package org.firstinspires.ftc.teamcode.ftc16072.Util;
 
 import androidx.annotation.NonNull;
 
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Node;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.BaseNodes.Node;
 
 import java.util.LinkedList;
 import java.util.List;

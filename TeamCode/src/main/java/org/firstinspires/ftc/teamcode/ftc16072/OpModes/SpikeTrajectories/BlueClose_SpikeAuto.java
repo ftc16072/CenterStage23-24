@@ -2,9 +2,6 @@ package org.firstinspires.ftc.teamcode.ftc16072.OpModes.SpikeTrajectories;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Node;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trees.SpikeAutoTree;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trees.TeleopTree;
 import org.firstinspires.ftc.teamcode.ftc16072.OpModes.SpikeAutoBase;
 import org.firstinspires.ftc.teamcode.ftc16072.Util.Alliance;
 import org.firstinspires.ftc.teamcode.ftc16072.Util.StartPosition;

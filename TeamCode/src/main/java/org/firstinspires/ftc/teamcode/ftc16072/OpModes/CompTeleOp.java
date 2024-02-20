@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode.ftc16072.OpModes;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Node;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trees.PushbotTeleop;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.BaseNodes.Node;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trees.TeleopTree;
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp
 public class CompTeleOp extends  QQOpMode{

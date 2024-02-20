@@ -18,11 +18,11 @@ import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IfLiftAt
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IsBackboardInRange;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.IsControllerDriving;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Conditions.ifDroneReleaseButtonPressed;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Failover;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Node;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Not;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Parallel;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Sequence;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.BaseNodes.Failover;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.BaseNodes.Node;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.BaseNodes.Not;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.BaseNodes.Parallel;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.BaseNodes.Sequence;
 
 /*
 http://behaviortrees.ftcteams.com/
