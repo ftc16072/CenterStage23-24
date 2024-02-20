@@ -63,7 +63,6 @@ public class Lift implements  Mechanism{
     public static double K_I = 0;
     public static double K_D = 0;
 
-
     @Override
     public void init(HardwareMap hwMap) {
         rightLiftMotor = hwMap.get(DcMotorEx.class, "right_lift_motor");
@@ -170,7 +169,12 @@ public class Lift implements  Mechanism{
         setDesiredPosition(currentPosition() - PIXEL_HEIGHT);
     }
     public double currentPosition(){
-        return ((rightLiftMotor.getCurrentPosition() + leftLiftMotor.getCurrentPosition())/2.0);
+            return ((rightLiftMotor.getCurrentPosition() + leftLiftMotor.getCurrentPosition())/2.0);
+        }
+    public void resetLiftPosition(){
+    leftLiftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    leftLiftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    rightLiftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    rightLiftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
-
 }

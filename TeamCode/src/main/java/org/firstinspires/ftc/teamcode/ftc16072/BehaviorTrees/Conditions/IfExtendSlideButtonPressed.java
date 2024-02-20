@@ -13,9 +13,9 @@ public class IfExtendSlideButtonPressed extends Node {
         if(opmode.gamepad1.left_bumper){
             return State.SUCCESS;
         }
-        if(opmode.gamepad1.y){
-            return State.SUCCESS;
-        }
+        //if(opmode.gamepad1.y){
+          //  return State.SUCCESS;
+        //}
         if(opmode.gamepad1.b){
             return State.SUCCESS;
         }

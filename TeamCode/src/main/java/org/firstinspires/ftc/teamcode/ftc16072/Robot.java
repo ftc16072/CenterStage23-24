@@ -13,7 +13,6 @@ import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Lift;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Intake;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.MecanumDrive;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Mechanism;
-import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.PixelServo;
 import org.firstinspires.ftc.teamcode.ftc16072.Mechanisms.Placement;
 import org.firstinspires.ftc.teamcode.ftc16072.Util.Navigation;
 import org.firstinspires.ftc.vision.VisionPortal;
@@ -23,24 +22,21 @@ import java.util.List;
 
 public class Robot {
     List<Mechanism> mechanisms;
-    public PixelServo pixelServo;
     public MecanumDrive mecanumDrive;
     public Navigation nav;
     public ControlHub controlHub;
     //public LineDetector lineDetector;
     public Intake intake;
-
     public BackDistanceSensor backDistanceSensor;
 
     public HoldingCell holdingCell;
-    public Camera cameraFront;
+    //public Camera cameraFront;
     public Camera cameraBack;
     public Lift lift;
     public Arm arm;
     public Placement placement;
     public Climber climber;
     public Drone drone;
-
 
 
 
@@ -58,7 +54,6 @@ public class Robot {
         placement = new Placement();
         climber = new Climber();
         drone = new Drone();
-        pixelServo = new PixelServo();
 
 
 
@@ -73,8 +68,7 @@ public class Robot {
                 placement,
                 climber,
                 backDistanceSensor,
-                drone,
-                pixelServo
+                drone
 
         );
     }

@@ -4,6 +4,7 @@ import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.DriveFieldR
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.DroneRelease;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.MakeFastDrive;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.MakeNormalDrive;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.MakeSlowDrive;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.MoveArmAndLift;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.PlacePixels;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.ResetGyro;
@@ -207,7 +208,7 @@ public class TeleopTree {
                                                 new MakeNormalDrive(),
                                                 new Sequence(
                                                         new IfLeftTriggerPressed(),
-                                                        new MakeFastDrive()
+                                                        new MakeSlowDrive()
 
                                                 )
 
