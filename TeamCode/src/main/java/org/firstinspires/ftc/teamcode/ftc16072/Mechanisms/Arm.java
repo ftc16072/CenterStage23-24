@@ -11,7 +11,7 @@ import java.util.List;
 
 public class Arm implements Mechanism {
     private static final double LEFT_SERVO_PLACING_ARM_POS = 0;
-    private static final double LEFT_SERVO_INTAKE_ARM_POS = 1;
+    private static final double LEFT_SERVO_INTAKE_ARM_POS = 0.42;
 
     public enum ArmPositions {
         PLACING_POSITION,
