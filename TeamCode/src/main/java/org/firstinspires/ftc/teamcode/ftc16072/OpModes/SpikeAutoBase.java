@@ -1,10 +1,10 @@
 package org.firstinspires.ftc.teamcode.ftc16072.OpModes;
 
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Node;
-import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trees.SpikeAndStopAutoTree;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trees.SpikeAutoTree;
 
 abstract public class SpikeAutoBase extends VisionBase {
-    Node root = SpikeAndStopAutoTree.root();
+    Node root = SpikeAutoTree.root();
 
     boolean done;
 
