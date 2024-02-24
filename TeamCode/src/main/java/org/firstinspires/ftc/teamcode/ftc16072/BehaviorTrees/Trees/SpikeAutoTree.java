@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trees;
 
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.MoveLiftToAutoPlacingPosition;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.ReleaseAutoPixel;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.SpikeLocationTelemetry;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions.Trajectories.FollowTrajectory;
@@ -144,8 +145,8 @@ public class SpikeAutoTree {
                                                 new RC4MiddleSpikeTrajectory(),
                                                 new FollowTrajectory()
                                         )
-                                )
-                                //TODO ADd lift code
+                                ),
+                                new MoveLiftToAutoPlacingPosition()
                                 //TODO Add Pixel drop code
                         ),
 
@@ -231,8 +232,8 @@ public class SpikeAutoTree {
                                                 new BC4MiddleSpikeTrajectory(),
                                                 new FollowTrajectory()
                                         )
-                                )
-                            //TODO Add lift up code
+                                ),
+                            new MoveLiftToAutoPlacingPosition()
                             //TODO Add pixel drop code
 
                         )
