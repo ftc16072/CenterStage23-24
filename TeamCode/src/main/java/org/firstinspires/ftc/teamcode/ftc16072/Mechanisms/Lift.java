@@ -16,6 +16,9 @@ import java.util.List;
 
 @Config
 public class Lift implements Mechanism {
+
+
+
     public enum LiftPositions {
         FLOOR_POSITION,
         LOW_POSITION,
@@ -25,6 +28,8 @@ public class Lift implements Mechanism {
     }
 
     public static final int ARE_SLIDES_EXTENDED_BOUNDARY = 800;
+
+    public static final int AUTO_PLACE_POSITION = 300;
 
     private LiftPositions manipulatorPosition;
     private static final int LIFT_POSITION_SAFETY_BOTTOM = -50;
@@ -140,6 +145,10 @@ public class Lift implements Mechanism {
                 new TestMotor("right lift motor", 0.5, rightLiftMotor),
                 new TestMotor("left lift motor", 0.5, leftLiftMotor)
         );
+    }
+
+    public void GoToAutoPlacePosition() {
+        setDesiredPosition(AUTO_PLACE_POSITION);
     }
 
     public void manualLiftUp() {
