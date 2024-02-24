@@ -7,7 +7,7 @@ import org.firstinspires.ftc.teamcode.rr_trajectorysequence.TrajectorySequence;
 import org.firstinspires.ftc.teamcode.rr_trajectorysequence.TrajectorySequenceBuilder;
 
 public class BC3RightSpikeTrajectory extends Node {
-    public static final int RIGHT_DISTANCE_INCHES = 20;
+    public static final int RIGHT_DISTANCE_INCHES = 30;
 
     @Override
     public State tick(QQOpMode opMode) {
