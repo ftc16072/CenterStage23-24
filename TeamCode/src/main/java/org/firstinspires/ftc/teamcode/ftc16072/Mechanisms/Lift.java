@@ -15,8 +15,16 @@ import java.util.Arrays;
 import java.util.List;
 @Config
 public class Lift implements  Mechanism{
+    public enum LiftPositions{
+        FLOOR_POSITION,
+        LOW_POSITION,
+        MIDDLE_POSITION,
+        TOP_POSITION
+
+    }
     public static final int ARE_SLIDES_EXTENDED_BOUNDARY = 800;
 
+    private LiftPositions manipulatorPosition;
     private static final int LIFT_POSITION_SAFETY_BOTTOM = -50;
     private static final int LIFT_POSITION_SAFETY_TOP = 2600; //TODO: find actual
 
@@ -42,7 +50,27 @@ public class Lift implements  Mechanism{
     public static double K_I = 0;
     public static double K_D = 0;
 
+    public LiftPositions getManipulatorPosition() {
+        return manipulatorPosition;
+    }
 
+    public void setManipulatorPosition(LiftPositions manipulatorPosition) {
+        this.manipulatorPosition = manipulatorPosition;
+        switch(manipulatorPosition){
+            case FLOOR_POSITION:
+                goToFloor();
+                break;
+            case LOW_POSITION:
+                goToLow();
+                break;
+            case MIDDLE_POSITION:
+                goToMiddle();
+                break;
+            case TOP_POSITION:
+                goToTop();
+                break;
+        }
+    }
     @Override
     public void init(HardwareMap hwMap) {
         rightLiftMotor = hwMap.get(DcMotorEx.class, "right_lift_motor");
@@ -55,7 +83,7 @@ public class Lift implements  Mechanism{
         leftLiftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         leftLiftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         leftLiftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        desiredPosition = leftLiftMotor.getCurrentPosition();
+        setManipulatorPosition(LiftPositions.FLOOR_POSITION);
     }
     private void setDesiredPosition(double newPosition){
         if(newPosition > LIFT_POSITION_SAFETY_TOP){
