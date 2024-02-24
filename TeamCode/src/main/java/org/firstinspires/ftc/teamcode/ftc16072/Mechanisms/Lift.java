@@ -15,29 +15,8 @@ import java.util.Arrays;
 import java.util.List;
 @Config
 public class Lift implements  Mechanism{
-    public LiftPositions getManipulatorPosition() {
-        return manipulatorPosition;
-    }
-
-    public void setManipulatorPosition(LiftPositions manipulatorPosition) {
-        this.manipulatorPosition = manipulatorPosition;
-    }
-
-
-
-
-
-
-    public enum LiftPositions{
-        FLOOR_POSITION,
-        LOW_POSITION,
-        MIDDLE_POSITION,
-        TOP_POSITION
-
-    }
     public static final int ARE_SLIDES_EXTENDED_BOUNDARY = 800;
 
-    private LiftPositions manipulatorPosition;
     private static final int LIFT_POSITION_SAFETY_BOTTOM = -50;
     private static final int LIFT_POSITION_SAFETY_TOP = 2600; //TODO: find actual
 
@@ -76,11 +55,7 @@ public class Lift implements  Mechanism{
         leftLiftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         leftLiftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         leftLiftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        setManipulatorPosition(LiftPositions.FLOOR_POSITION);
         desiredPosition = leftLiftMotor.getCurrentPosition();
-
-
-
     }
     private void setDesiredPosition(double newPosition){
         if(newPosition > LIFT_POSITION_SAFETY_TOP){
@@ -102,6 +77,7 @@ public class Lift implements  Mechanism{
     public void update(Telemetry telemetry){
         double motorPower;
         double error;
+
         error = getDesiredPosition() - currentPosition();
         telemetry.addData("Desired Pos", getDesiredPosition());
         telemetry.addData("Curr Pos", currentPosition());
@@ -171,6 +147,13 @@ public class Lift implements  Mechanism{
     }
     public double currentPosition(){
         return ((rightLiftMotor.getCurrentPosition() + leftLiftMotor.getCurrentPosition())/2.0);
+    }
+
+    public void resetLiftPosition(){
+        leftLiftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftLiftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightLiftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightLiftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
 }

@@ -9,6 +9,10 @@ public class UpdateArmAndLift extends Node {
     public State tick(QQOpMode opmode) {
         armControl.updateArm(opmode.robot);
 
+        if(opmode.robot.holdingCell.isLimitSwitchDetected()){
+            opmode.robot.lift.resetLiftPosition();
+        }
+
         opmode.robot.lift.update(opmode.telemetry);
 
         return State.RUNNING;
