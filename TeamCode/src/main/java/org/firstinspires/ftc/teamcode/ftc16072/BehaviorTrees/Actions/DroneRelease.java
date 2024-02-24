@@ -7,7 +7,7 @@ public class DroneRelease extends Node {
 
     @Override
     public State tick(QQOpMode opmode) {
-        opmode.robot.drone.releaseDrone();
+        opmode.robot.drone.release();
         return State.SUCCESS;
     }
 }
