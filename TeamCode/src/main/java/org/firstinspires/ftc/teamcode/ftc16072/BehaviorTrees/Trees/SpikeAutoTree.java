@@ -22,14 +22,32 @@ import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Node;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Sequence;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trajectories.BlueClose.LeftSpike.BC1LeftSpikeTrajectory;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trajectories.BlueClose.LeftSpike.BC2LeftSpikeTrajectory;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trajectories.BlueClose.LeftSpike.BC3LeftSpikeTrajectory;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trajectories.BlueClose.LeftSpike.BC4LeftSpikeTrajectory;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trajectories.BlueClose.LeftSpike.BC5LeftSpikeTrajectory;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trajectories.BlueClose.MiddleSpike.BC1MiddleSpikeTrajectory;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trajectories.BlueClose.MiddleSpike.BC2MiddleSpikeTrajectory;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trajectories.BlueClose.MiddleSpike.BC3MiddleSpikeTrajectory;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trajectories.BlueClose.MiddleSpike.BC4MiddleSpikeTrajectory;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trajectories.BlueClose.RightSpike.BC1RightSpikeTrajectory;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trajectories.BlueClose.RightSpike.BC2RightSpikeTrajectory;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trajectories.BlueClose.RightSpike.BC3RightSpikeTrajectory;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trajectories.BlueClose.RightSpike.BC4RightSpikeTrajectory;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trajectories.BlueClose.RightSpike.BC5RightSpikeTrajectory;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trajectories.RedClose.LeftSpike.RC1LeftSpikeTrajectory;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trajectories.RedClose.LeftSpike.RC2LeftSpikeTrajectory;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trajectories.RedClose.LeftSpike.RC3LeftSpikeTrajectory;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trajectories.RedClose.LeftSpike.RC4LeftSpikeTrajectory;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trajectories.RedClose.LeftSpike.RC5LeftSpikeTrajectory;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trajectories.RedClose.MiddleSpike.RC1MiddleSpikeTrajectory;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trajectories.RedClose.MiddleSpike.RC2MiddleSpikeTrajectory;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trajectories.RedClose.MiddleSpike.RC3MiddleSpikeTrajectory;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trajectories.RedClose.MiddleSpike.RC4MiddleSpikeTrajectory;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trajectories.RedClose.RightSpike.RC1RightSpikeTrajectory;
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trajectories.RedClose.RightSpike.RC2RightSpikeTrajectory;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trajectories.RedClose.RightSpike.RC3RightSpikeTrajectory;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trajectories.RedClose.RightSpike.RC4RightSpikeTrajectory;
+import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Trajectories.RedClose.RightSpike.RC5RightSpikeTrajectory;
 
 public class SpikeAutoTree {
     /*
@@ -60,25 +78,77 @@ public class SpikeAutoTree {
                                 new Failover(
                                         new Sequence(
                                                 new IsLeftSpike(),
+                                                //drive forwards
                                                 new RC1LeftSpikeTrajectory(),
                                                 new FollowTrajectory(),
+                                                //strafe to tape
                                                 new RC2LeftSpikeTrajectory(),
                                                 new FollowTrajectory()
 
                                         ),
                                         new Sequence(
                                                 new IsRightSpike(),
+                                                //drive forwards
                                                 new RC1RightSpikeTrajectory(),
                                                 new FollowTrajectory(),
+                                                //strafe to tape
                                                 new RC2RightSpikeTrajectory(),
                                                 new FollowTrajectory()
                                         ),
                                         new Sequence(
+                                                //drive forwards
                                                 new RC1MiddleSpikeTrajectory(),
                                                 new FollowTrajectory()
                                         )
+                                ),
+                            new ReleaseAutoPixel(),
+                                //set trajectory to backboard from tape location
+                                new Failover(
+                                        new Sequence(
+                                                new IsLeftSpike(),
+                                                new RC3LeftSpikeTrajectory(),
+                                                new FollowTrajectory(),
+                                                new RC4LeftSpikeTrajectory(),
+                                                new FollowTrajectory()
+                                        ),
+                                        new Sequence(
+                                                new IsRightSpike(),
+                                                new RC3RightSpikeTrajectory(),
+                                                new FollowTrajectory(),
+                                                new RC4RightSpikeTrajectory(),
+                                                new FollowTrajectory()
+                                        ),
+                                        new Sequence(
+                                                new RC2MiddleSpikeTrajectory(),
+                                                new FollowTrajectory(),
+                                                new RC3MiddleSpikeTrajectory(),
+                                                new FollowTrajectory()
+                                        )
+                                ),
+
+                                //follow actions at backboard
+                                //Adjust according to spike
+                                new Failover(
+                                        new Sequence(
+                                                new IsLeftSpike(),
+                                                new RC5LeftSpikeTrajectory(),
+                                                new FollowTrajectory()
+
+                                        ),
+                                        new Sequence(
+                                                new IsRightSpike(),
+                                                new RC5RightSpikeTrajectory(),
+                                                new FollowTrajectory()
+                                        ),
+                                        new Sequence(
+                                                new RC4MiddleSpikeTrajectory(),
+                                                new FollowTrajectory()
+                                        )
                                 )
+                                //TODO ADd lift code
+                                //TODO Add Pixel drop code
                         ),
+
 
                         //check alliance
                         new Sequence(
@@ -90,8 +160,10 @@ public class SpikeAutoTree {
                                     //left spike tree
                                     new Sequence(
                                             new IsLeftSpike(),
+                                            //drive forwards
                                             new BC1LeftSpikeTrajectory(),
                                             new FollowTrajectory(),
+                                            //strafe to tape
                                             new BC2LeftSpikeTrajectory(),
                                             new FollowTrajectory()
 
@@ -100,22 +172,70 @@ public class SpikeAutoTree {
                                     //right spike tree
                                     new Sequence(
                                             new IsRightSpike(),
+                                            //drive forwards
                                             new BC1RightSpikeTrajectory(),
                                             new FollowTrajectory(),
+                                            //strafe to tape
                                             new BC2RightSpikeTrajectory(),
                                             new FollowTrajectory()
                                     ),
 
                                     //middle spike tree
                                     new Sequence(
+                                            //drive forwards
                                             new BC1MiddleSpikeTrajectory(),
                                             new FollowTrajectory()
                                     )
 
-                            )
-                        ),
+                            ),
+                                new ReleaseAutoPixel(),
 
-                        new ReleaseAutoPixel()
+                                //trajectory to backboard
+                                new Failover(
+                                        new Sequence(
+                                                new IsLeftSpike(),
+                                                new BC3LeftSpikeTrajectory(),
+                                                new FollowTrajectory(),
+                                                new BC4LeftSpikeTrajectory(),
+                                                new FollowTrajectory()
+                                        ),
+                                        new Sequence(
+                                                new IsRightSpike(),
+                                                new BC3RightSpikeTrajectory(),
+                                                new FollowTrajectory(),
+                                                new BC4RightSpikeTrajectory(),
+                                                new FollowTrajectory()
+                                        ),
+                                        new Sequence(
+                                                new BC2MiddleSpikeTrajectory(),
+                                                new FollowTrajectory(),
+                                                new BC3MiddleSpikeTrajectory(),
+                                                new FollowTrajectory()
+                                        )
+                                ),
+                                //follow actions at backboard
+                                //Adjust left/right according to spike
+                                new Failover(
+                                        new Sequence(
+                                                new IsLeftSpike(),
+                                                new BC5LeftSpikeTrajectory(),
+                                                new FollowTrajectory()
+
+                                        ),
+                                        new Sequence(
+                                                new IsRightSpike(),
+                                                new BC5RightSpikeTrajectory(),
+                                                new FollowTrajectory()
+                                        ),
+                                        new Sequence(
+                                                new BC4MiddleSpikeTrajectory(),
+                                                new FollowTrajectory()
+                                        )
+                                )
+                            //TODO Add lift up code
+                            //TODO Add pixel drop code
+
+                        )
 
 
 
