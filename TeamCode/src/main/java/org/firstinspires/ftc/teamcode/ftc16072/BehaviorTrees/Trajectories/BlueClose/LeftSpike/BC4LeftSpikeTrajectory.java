@@ -17,7 +17,7 @@ public class BC4LeftSpikeTrajectory extends Node {
             return State.FAILURE;
         }
         opMode.board.add("TrajectorySequence", turn);
-        opMode.board.add("SpikePosition", SpikePosition.MIDDLE);
+        opMode.board.add("SpikePosition", SpikePosition.LEFT);
         return State.SUCCESS;
     }
 }
