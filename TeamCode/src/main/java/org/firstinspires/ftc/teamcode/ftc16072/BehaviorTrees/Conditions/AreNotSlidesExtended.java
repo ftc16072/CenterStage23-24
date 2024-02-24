@@ -7,8 +7,8 @@ public class AreNotSlidesExtended extends Node {
 
     @Override
     public State tick(QQOpMode opmode) {
-        if (opmode.robot.lift.areSlidesExtendedPastBoundary()){
-            return  State.FAILURE;
+        if (opmode.robot.lift.areSlidesExtendedPastBoundary()) {
+            return State.FAILURE;
         }
         return State.SUCCESS;
     }

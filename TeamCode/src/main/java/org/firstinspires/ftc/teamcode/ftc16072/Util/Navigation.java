@@ -51,7 +51,7 @@ public class Navigation extends com.acmerobotics.roadrunner.drive.MecanumDrive {
     ));
     public TrajectoryAccelerationConstraint accelConstraint = new ProfileAccelerationConstraint(MecanumDrive.MAX_ACCELERATION);
 
-    public TrajectoryFollower follower; 
+    public TrajectoryFollower follower;
 
     public Navigation(ControlHub controlHub, MecanumDrive mecanumDrive, Camera cameraBack) {
         super(kV, kA, kStatic, MecanumDrive.TRACK_WIDTH_IN);
@@ -107,6 +107,7 @@ public class Navigation extends com.acmerobotics.roadrunner.drive.MecanumDrive {
         }
         return false;
     }
+
     public TrajectorySequenceBuilder trajectorySequenceBuilder(Pose2d startPose) {
         return new TrajectorySequenceBuilder(
                 startPose,
@@ -122,7 +123,8 @@ public class Navigation extends com.acmerobotics.roadrunner.drive.MecanumDrive {
                         .build()
         );
     }
-    public void startNewTrajectorySequence(TrajectorySequence trajectorySequence){
+
+    public void startNewTrajectorySequence(TrajectorySequence trajectorySequence) {
         trajectorySequenceRunner.followTrajectorySequenceAsync(trajectorySequence);
     }
 

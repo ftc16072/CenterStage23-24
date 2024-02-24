@@ -1,8 +1,5 @@
 package org.firstinspires.ftc.teamcode.ftc16072.QQTest;
 
-import android.graphics.Color;
-
-import com.qualcomm.hardware.rev.RevColorSensorV3;
 import com.qualcomm.robotcore.hardware.ColorRangeSensor;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;

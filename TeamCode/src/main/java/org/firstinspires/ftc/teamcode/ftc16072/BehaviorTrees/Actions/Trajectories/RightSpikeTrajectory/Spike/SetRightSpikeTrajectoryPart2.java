@@ -14,8 +14,8 @@ public class SetRightSpikeTrajectoryPart2 extends Node {
     public State tick(QQOpMode opMode) {
         TrajectorySequenceBuilder builder = opMode.robot.nav.trajectorySequenceBuilder(opMode.robot.nav.getPoseEstimate());
         TrajectorySequence sequence = builder.strafeLeft(RIGHT_DISTANCE_INCHES)
-                        .build();
-        if (sequence == null){
+                .build();
+        if (sequence == null) {
             return State.FAILURE;
         }
         opMode.board.add("TrajectorySequence", sequence);

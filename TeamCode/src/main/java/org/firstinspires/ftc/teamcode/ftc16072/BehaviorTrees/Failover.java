@@ -8,7 +8,7 @@ import java.util.List;
 public class Failover extends Node {
     List<Node> children;
 
-    public Failover(Node ... a) {
+    public Failover(Node... a) {
         this.children = Arrays.asList(a);
     }
 

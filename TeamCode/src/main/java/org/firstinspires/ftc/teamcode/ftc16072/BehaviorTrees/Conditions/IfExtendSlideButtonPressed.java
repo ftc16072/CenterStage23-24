@@ -7,18 +7,18 @@ public class IfExtendSlideButtonPressed extends Node {
 
     @Override
     public State tick(QQOpMode opmode) {
-        if(opmode.gamepad1.right_bumper){
+        if (opmode.gamepad1.right_bumper) {
             return State.SUCCESS;
         }
-        if(opmode.gamepad1.left_bumper){
+        if (opmode.gamepad1.left_bumper) {
             return State.SUCCESS;
         }
-        if(opmode.gamepad1.y){
+        if (opmode.gamepad1.y) {
             return State.SUCCESS;
         }
-        if(opmode.gamepad1.b){
+        if (opmode.gamepad1.b) {
             return State.SUCCESS;
         }
-        return  State.FAILURE;
+        return State.FAILURE;
     }
 }

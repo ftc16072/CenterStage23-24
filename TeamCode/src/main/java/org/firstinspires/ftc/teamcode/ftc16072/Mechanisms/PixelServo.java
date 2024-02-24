@@ -9,18 +9,21 @@ import org.firstinspires.ftc.teamcode.ftc16072.QQTest.TestServo;
 
 import java.util.Collections;
 import java.util.List;
+
 @Config
 
-public class PixelServo implements Mechanism{
-    public static final double RELEASE_POSITION= .4; //Tuned
+public class PixelServo implements Mechanism {
+    public static final double RELEASE_POSITION = .4; //Tuned
 
     Servo pixelServo;
+
     @Override
     public void init(HardwareMap hwMap) {
         pixelServo = hwMap.get(Servo.class, "pixel_servo");
 
     }
-    public void releasePixel(){
+
+    public void releasePixel() {
         pixelServo.setPosition(RELEASE_POSITION);
     }
 

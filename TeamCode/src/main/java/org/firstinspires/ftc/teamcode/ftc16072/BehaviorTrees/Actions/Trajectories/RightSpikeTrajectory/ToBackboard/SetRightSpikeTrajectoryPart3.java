@@ -8,14 +8,14 @@ import org.firstinspires.ftc.teamcode.rr_trajectorysequence.TrajectorySequenceBu
 
 public class SetRightSpikeTrajectoryPart3 extends Node {
     //EDIT (as of 2/18)
-    public static final int FORWARD_DISTANCE_INCHES=20;
+    public static final int FORWARD_DISTANCE_INCHES = 20;
 
     @Override
     public State tick(QQOpMode opMode) {
         TrajectorySequenceBuilder builder = opMode.robot.nav.trajectorySequenceBuilder(opMode.robot.nav.getPoseEstimate());
         TrajectorySequence sequence = builder.back(FORWARD_DISTANCE_INCHES).
-                                            build();
-        if (sequence == null){
+                build();
+        if (sequence == null) {
             return State.FAILURE;
         }
         opMode.board.add("TrajectorySequence", sequence);

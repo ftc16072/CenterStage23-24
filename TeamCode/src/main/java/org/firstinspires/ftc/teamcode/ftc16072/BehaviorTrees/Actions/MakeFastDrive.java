@@ -7,6 +7,6 @@ public class MakeFastDrive extends Node {
     @Override
     public State tick(QQOpMode opmode) {
         opmode.robot.mecanumDrive.setFastDrive();
-        return  State.SUCCESS;
+        return State.SUCCESS;
     }
 }

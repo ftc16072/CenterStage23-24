@@ -8,11 +8,10 @@ public class Has1or2Pixels extends Node {
     public State tick(QQOpMode opmode) {
 
         opmode.telemetry.addData("num pixels", opmode.robot.holdingCell.getNumPixels());
-        if (opmode.robot.holdingCell.getNumPixels()>=1){
+        if (opmode.robot.holdingCell.getNumPixels() >= 1) {
             return State.SUCCESS;
         }
-        return  State.FAILURE;
-
+        return State.FAILURE;
 
 
     }

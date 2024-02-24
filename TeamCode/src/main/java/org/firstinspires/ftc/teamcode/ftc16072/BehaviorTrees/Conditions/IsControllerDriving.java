@@ -8,15 +8,15 @@ public class IsControllerDriving extends Node {
 
     @Override
     public State tick(QQOpMode opmode) {
-        if (Math.abs(opmode.gamepad1.left_stick_x)>TRIGGER_CONSTANT){
+        if (Math.abs(opmode.gamepad1.left_stick_x) > TRIGGER_CONSTANT) {
             return State.SUCCESS;
         }
-        if (Math.abs(opmode.gamepad1.left_stick_y)>TRIGGER_CONSTANT){
+        if (Math.abs(opmode.gamepad1.left_stick_y) > TRIGGER_CONSTANT) {
             return State.SUCCESS;
         }
-        if (Math.abs(opmode.gamepad1.right_stick_x)> TRIGGER_CONSTANT){
+        if (Math.abs(opmode.gamepad1.right_stick_x) > TRIGGER_CONSTANT) {
             return State.SUCCESS;
         }
-        return  State.FAILURE;
+        return State.FAILURE;
     }
 }

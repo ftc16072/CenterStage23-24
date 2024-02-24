@@ -8,18 +8,18 @@ public class PlacementControl {
     Placement placement;
     Lift lift;
 
-    public PlacementControl(Robot robot){
+    public PlacementControl(Robot robot) {
         placement = robot.placement;
         lift = robot.lift;
     }
 
 
-    public void updatePlacement(){
-        if (lift.currentPosition()>100){
+    public void updatePlacement() {
+        if (lift.currentPosition() > 100) {
             placement.rightServoGrab();
             placement.leftServoGrab();
 
-        } else{
+        } else {
             //
         }
 

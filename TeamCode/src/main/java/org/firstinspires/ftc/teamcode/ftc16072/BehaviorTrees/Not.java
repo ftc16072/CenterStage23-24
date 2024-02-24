@@ -2,10 +2,6 @@ package org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees;
 
 import org.firstinspires.ftc.teamcode.ftc16072.OpModes.QQOpMode;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 //Not reverses a value
 public class Not extends Node {
     Node child;

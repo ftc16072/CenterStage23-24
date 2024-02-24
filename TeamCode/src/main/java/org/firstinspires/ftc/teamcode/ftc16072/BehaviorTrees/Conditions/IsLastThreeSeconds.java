@@ -9,7 +9,7 @@ public class IsLastThreeSeconds extends Node {
 
     @Override
     public State tick(QQOpMode opmode) {
-        if(opmode.time > LAST_THREE_SECONDS){
+        if (opmode.time > LAST_THREE_SECONDS) {
             return State.SUCCESS;
         }
         return State.FAILURE;

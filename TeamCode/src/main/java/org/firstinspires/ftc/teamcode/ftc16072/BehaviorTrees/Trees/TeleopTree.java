@@ -81,7 +81,7 @@ http://behaviortrees.ftcteams.com/
 
  */
 public class TeleopTree {
-    public static Node root(){
+    public static Node root() {
         return new Parallel(5,
                 /*
                 new Sequence(
@@ -175,8 +175,6 @@ public class TeleopTree {
                                         )
 
 
-
-
                                 ),
                                 new Failover(
                                         new IfLiftAtBottom(),
@@ -189,8 +187,6 @@ public class TeleopTree {
                                 )
 
 
-
-
                         ),
                         //new Failover(
                         //        new AreSlidesExtended(),
@@ -199,8 +195,8 @@ public class TeleopTree {
                         //),
                         new Sequence(
                                 new Not(
-                                      new AreSlidesExtended()
-                                        ),
+                                        new AreSlidesExtended()
+                                ),
                                 new Sequence(
                                         new IsControllerDriving(),
                                         new Failover(

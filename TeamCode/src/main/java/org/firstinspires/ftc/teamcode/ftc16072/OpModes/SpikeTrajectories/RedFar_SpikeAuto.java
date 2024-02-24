@@ -9,7 +9,7 @@ import org.firstinspires.ftc.teamcode.ftc16072.Util.StartPosition;
 @Autonomous
 public class RedFar_SpikeAuto extends SpikeAutoBase {
     @Override
-    public void init(){
+    public void init() {
         board.add("Alliance", Alliance.RED);
         board.add("StartPosition", StartPosition.FAR);
         super.init();

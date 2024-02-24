@@ -55,7 +55,8 @@ public class ControlHub implements Mechanism {
         double newDegrees = angles.getYaw(AngleUnit.DEGREES) - offsetDegrees;
         return angleUnit.fromDegrees(newDegrees);
     }
-    public void resetHeading(double angle, AngleUnit angleUnit){
+
+    public void resetHeading(double angle, AngleUnit angleUnit) {
         offsetDegrees = angleUnit.toDegrees(angle);
         gyro.resetYaw();
     }

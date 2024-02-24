@@ -7,6 +7,6 @@ public class MakeSlowDrive extends Node {
     @Override
     public State tick(QQOpMode opmode) {
         opmode.robot.mecanumDrive.setSlowDrive();
-        return  State.SUCCESS;
+        return State.SUCCESS;
     }
 }

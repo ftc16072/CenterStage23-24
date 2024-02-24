@@ -7,6 +7,6 @@ public class MakeNormalDrive extends Node {
     @Override
     public State tick(QQOpMode opmode) {
         opmode.robot.mecanumDrive.setNormalDrive();
-        return  State.SUCCESS;
+        return State.SUCCESS;
     }
 }

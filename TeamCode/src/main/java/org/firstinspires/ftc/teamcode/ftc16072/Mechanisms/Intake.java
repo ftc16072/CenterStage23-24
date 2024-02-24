@@ -8,14 +8,14 @@ import org.firstinspires.ftc.teamcode.ftc16072.QQTest.QQtest;
 import org.firstinspires.ftc.teamcode.ftc16072.QQTest.TestMotor;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
-public class Intake implements Mechanism{
+public class Intake implements Mechanism {
 
     public static final double INTAKE_SPEED = -0.7;
     public static final double EJECT_SPEED = 0.5;
     private DcMotor intakeMotor;
+
     @Override
     public void init(HardwareMap hwMap) {
         intakeMotor = hwMap.get(DcMotor.class, "Intake_Motor");
@@ -29,13 +29,16 @@ public class Intake implements Mechanism{
                 new TestMotor("Eject", EJECT_SPEED, intakeMotor));
 
     }
-    public void intake(double amount){
+
+    public void intake(double amount) {
         intakeMotor.setPower(INTAKE_SPEED * amount);
     }
-    public void eject(){
+
+    public void eject() {
         intakeMotor.setPower(EJECT_SPEED);
     }
-    public void stop(){
+
+    public void stop() {
         intakeMotor.setPower(0);
     }
 

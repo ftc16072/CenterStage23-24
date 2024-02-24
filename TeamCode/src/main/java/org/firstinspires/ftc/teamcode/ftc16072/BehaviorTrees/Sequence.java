@@ -8,7 +8,7 @@ import java.util.List;
 public class Sequence extends Node {
     List<Node> children;
 
-    public Sequence(Node ... a) {
+    public Sequence(Node... a) {
         this.children = Arrays.asList(a);
     }
 

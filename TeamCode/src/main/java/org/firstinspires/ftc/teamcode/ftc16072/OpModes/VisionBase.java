@@ -1,8 +1,6 @@
 package org.firstinspires.ftc.teamcode.ftc16072.OpModes;
 
-abstract public class VisionBase extends QQOpMode{
-
-
+abstract public class VisionBase extends QQOpMode {
 
 
     @Override
@@ -10,17 +8,14 @@ abstract public class VisionBase extends QQOpMode{
         super.init();
 
 
-
     }
 
-    public void init_loop(){
-
-
+    public void init_loop() {
 
 
     }
 
-    public void start(){
+    public void start() {
     } // need to stop camera streaming
 
 }

@@ -9,7 +9,7 @@ public class Parallel extends Node {
     List<Node> children;
     int requiredSuccesses;
 
-    public Parallel(int requiredSuccesses, Node ... a) {
+    public Parallel(int requiredSuccesses, Node... a) {
         this.children = Arrays.asList(a);
         this.requiredSuccesses = requiredSuccesses;
     }
@@ -26,14 +26,14 @@ public class Parallel extends Node {
 
             if (state == State.SUCCESS) {
                 numSuccessful += 1;
-                if (numSuccessful >= requiredSuccesses){
+                if (numSuccessful >= requiredSuccesses) {
                     return State.SUCCESS;
                 }
             } else if (state == State.RUNNING) {
                 anyRunning = true;
             }
         }
-        if (anyRunning){
+        if (anyRunning) {
             return State.RUNNING;
         }
         return State.FAILURE;

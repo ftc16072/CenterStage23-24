@@ -8,9 +8,9 @@ public class IfLeftTriggerPressed extends Node {
 
     @Override
     public State tick(QQOpMode opmode) {
-        if (opmode.gamepad1.left_trigger> TRIGGER_THRESHOLD){
+        if (opmode.gamepad1.left_trigger > TRIGGER_THRESHOLD) {
             return State.SUCCESS;
         }
-        return  State.FAILURE;
+        return State.FAILURE;
     }
 }

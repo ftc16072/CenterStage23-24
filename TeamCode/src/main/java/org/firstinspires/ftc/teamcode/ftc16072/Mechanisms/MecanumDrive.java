@@ -15,8 +15,8 @@ import java.util.List;
 @Config
 public class MecanumDrive implements Mechanism {
     public static final double FAST_DRIVE_MULTIPLIER = 1.0;
-    public boolean doSlowDrive=false;
-    public final double SLOW_DRIVE_MULTIPLIER= 0.4;
+    public boolean doSlowDrive = false;
+    public final double SLOW_DRIVE_MULTIPLIER = 0.4;
     public final double REGULAR_DRIVE_MULTIPLIER = 0.6;
     DcMotor backLeftMotor;
     DcMotor backRightMotor;
@@ -78,13 +78,15 @@ public class MecanumDrive implements Mechanism {
         return "MecanumDrive";
     }
 
-    public void setSlowDrive(){
+    public void setSlowDrive() {
         speedMultiplier = SLOW_DRIVE_MULTIPLIER;
     }
-    public void setFastDrive(){
+
+    public void setFastDrive() {
         speedMultiplier = FAST_DRIVE_MULTIPLIER;
     }
-    public void setNormalDrive(){
+
+    public void setNormalDrive() {
         speedMultiplier = REGULAR_DRIVE_MULTIPLIER;
     }
 
@@ -99,10 +101,10 @@ public class MecanumDrive implements Mechanism {
 
     public void setPowers(double frontLeftPower, double frontRightPower, double backLeftPower, double backRightPower) {
 
-        frontLeftPower*=speedMultiplier;
-        frontRightPower*=speedMultiplier;
-        backLeftPower*=speedMultiplier;
-        backRightPower*=speedMultiplier;
+        frontLeftPower *= speedMultiplier;
+        frontRightPower *= speedMultiplier;
+        backLeftPower *= speedMultiplier;
+        backRightPower *= speedMultiplier;
 
 
         double maxSpeed = 1.0;
@@ -123,8 +125,9 @@ public class MecanumDrive implements Mechanism {
         backRightMotor.setPower(backRightPower);
 
     }
-    public double getAverageDrivetrainPower(){
-        return (frontLeftPower+frontRightPower+backLeftPower+backRightPower)/4;
+
+    public double getAverageDrivetrainPower() {
+        return (frontLeftPower + frontRightPower + backLeftPower + backRightPower) / 4;
 
     }
 
@@ -141,8 +144,6 @@ public class MecanumDrive implements Mechanism {
         wheelPositions.add(ticksToInches(frontRightMotor.getCurrentPosition()));
         return wheelPositions;
     }
-
-
 
 
 }

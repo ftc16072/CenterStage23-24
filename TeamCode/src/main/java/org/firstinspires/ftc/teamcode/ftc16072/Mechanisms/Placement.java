@@ -9,7 +9,7 @@ import org.firstinspires.ftc.teamcode.ftc16072.QQTest.TestServo;
 import java.util.Arrays;
 import java.util.List;
 
-public class Placement implements Mechanism{
+public class Placement implements Mechanism {
     public static final double LEFT_SERVO_GRAB_POSITION = 0.63;
     public static final double LEFT_SERVO_EJECT_POSITION = 0.4;
     public static final double RIGHT_SERVO_GRAB_POSITION = .4;
@@ -17,20 +17,26 @@ public class Placement implements Mechanism{
 
     Servo rightPlacementServo;
     Servo leftPlacementServo;
+
     @Override
     public void init(HardwareMap hwMap) {
-        leftPlacementServo = hwMap.get(Servo.class,"left_placement");
-        rightPlacementServo = hwMap.get(Servo.class,"right_placement");
+        leftPlacementServo = hwMap.get(Servo.class, "left_placement");
+        rightPlacementServo = hwMap.get(Servo.class, "right_placement");
     }
-    public void leftServoGrab(){
+
+    public void leftServoGrab() {
         leftPlacementServo.setPosition(LEFT_SERVO_GRAB_POSITION);
     }
-    public void rightServoGrab(){
+
+    public void rightServoGrab() {
         rightPlacementServo.setPosition(RIGHT_SERVO_GRAB_POSITION);
     }
-    public void leftServoEject(){
+
+    public void leftServoEject() {
         leftPlacementServo.setPosition(LEFT_SERVO_EJECT_POSITION);
-    } public void rightServoEject(){
+    }
+
+    public void rightServoEject() {
         rightPlacementServo.setPosition(RIGHT_SERVO_EJECT_POSITION);
     }
 

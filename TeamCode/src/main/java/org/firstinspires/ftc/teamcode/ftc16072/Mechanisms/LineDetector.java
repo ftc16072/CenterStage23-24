@@ -13,7 +13,6 @@ public class LineDetector implements Mechanism {
     RevColorSensorV3 colorSensor;
 
 
-
     @Override
     public void init(HardwareMap hwMap) {
         colorSensor = hwMap.get(RevColorSensorV3.class, "line_detector");

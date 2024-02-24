@@ -5,7 +5,6 @@ import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.acmerobotics.roadrunner.util.NanoClock;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.teamcode.ftc16072.Robot;
@@ -45,9 +44,9 @@ public class RR_OurSpline extends OpMode {
             case BEGIN:
                 state = State.AWAY;
                 trajectory = robot.nav.trajectoryBuilder(new Pose2d(-36.69, -70.87, Math.toRadians(90)), false)
-                        .splineTo(new Vector2d(-36.48,-24.27), Math.toRadians(90.39))
-                        .splineTo(new Vector2d(9.80,-8.68), Math.toRadians(18.61))
-                        .splineTo(new Vector2d(10.61,11.73), Math.toRadians(87.75))
+                        .splineTo(new Vector2d(-36.48, -24.27), Math.toRadians(90.39))
+                        .splineTo(new Vector2d(9.80, -8.68), Math.toRadians(18.61))
+                        .splineTo(new Vector2d(10.61, 11.73), Math.toRadians(87.75))
 //                        .splineTo(new Vector2d(-15.96,-14.82), Math.toRadians(90.73))
 //                        .splineTo(new Vector2d(-5.75,-12.39), Math.toRadians(-5.25))
 //                        .splineTo(new Vector2d(8.34,-12.39), Math.toRadians(5.71))

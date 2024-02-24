@@ -20,9 +20,9 @@ public class OutreachDriveOnly extends QQOpMode {
     @Override
     public void loop() {
         double speed_multiplier = OUTREACH_SPEED;
-        if(gamepad1.right_trigger > TRIGGER_THRESHOLD){
+        if (gamepad1.right_trigger > TRIGGER_THRESHOLD) {
             speed_multiplier = OUTREACH_TURBO_SPEED;
-            if(gamepad1.right_bumper && gamepad1.left_bumper){
+            if (gamepad1.right_bumper && gamepad1.left_bumper) {
                 speed_multiplier = MAX_SPEED;
             }
         }

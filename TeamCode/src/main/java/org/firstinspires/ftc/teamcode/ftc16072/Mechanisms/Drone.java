@@ -6,25 +6,27 @@ import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.teamcode.ftc16072.QQTest.QQtest;
 import org.firstinspires.ftc.teamcode.ftc16072.QQTest.TestServo;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
-public class Drone implements Mechanism{
+public class Drone implements Mechanism {
     public static final double DRONE_RELEASE = 0.4;
     private Servo droneServo;
+
     @Override
     public void init(HardwareMap hwMap) {
-        droneServo = hwMap.get(Servo.class,"drone_servo");
+        droneServo = hwMap.get(Servo.class, "drone_servo");
 
     }
-    public void releaseDrone(){
+
+    public void releaseDrone() {
         droneServo.setPosition(DRONE_RELEASE);
     }
 
     @Override
     public List<QQtest> getTests() {
-        return Arrays.asList(
-                new TestServo("droneServo",0.5,0,droneServo)
+        return Collections.singletonList(
+                new TestServo("droneServo", 0.5, 0, droneServo)
         );
     }
 }

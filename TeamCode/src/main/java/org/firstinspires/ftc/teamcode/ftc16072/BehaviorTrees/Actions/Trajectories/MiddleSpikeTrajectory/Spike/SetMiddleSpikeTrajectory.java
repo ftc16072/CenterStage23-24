@@ -16,7 +16,7 @@ public class SetMiddleSpikeTrajectory extends Node {
         TrajectorySequence sequence = builder
                 .back(FORWARD_DISTANCE_INCHES).
                 build();
-        if (sequence == null){
+        if (sequence == null) {
             return State.FAILURE;
         }
         opMode.board.add("TrajectorySequence", sequence);

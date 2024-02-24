@@ -9,7 +9,7 @@ public class IsEndgame extends Node {
 
     @Override
     public State tick(QQOpMode opmode) {
-        if(opmode.time > ENDGAME_TIME){
+        if (opmode.time > ENDGAME_TIME) {
             return State.SUCCESS;
         }
         return State.FAILURE;

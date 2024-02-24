@@ -9,23 +9,23 @@ public class MoveArmAndLift extends Node {
     public State tick(QQOpMode opmode) {
         if (opmode.gamepad1.y) {
             opmode.liftControl.goToFloor();
-        } else if (opmode.gamepad1.b){
-            if (opmode.liftControl.atPosition(Lift.LiftPositions.LOW_POSITION)){
+        } else if (opmode.gamepad1.b) {
+            if (opmode.liftControl.atPosition(Lift.LiftPositions.LOW_POSITION)) {
                 opmode.liftControl.goToLow();
-            } else if (opmode.liftControl.atPosition(Lift.LiftPositions.MIDDLE_POSITION)){
+            } else if (opmode.liftControl.atPosition(Lift.LiftPositions.MIDDLE_POSITION)) {
                 opmode.liftControl.goToMiddle();
-            } else if (opmode.liftControl.atPosition(Lift.LiftPositions.TOP_POSITION)){
+            } else if (opmode.liftControl.atPosition(Lift.LiftPositions.TOP_POSITION)) {
                 opmode.liftControl.goToTop();
-            } else if (opmode.liftControl.atPosition(Lift.LiftPositions.FLOOR_POSITION)){
+            } else if (opmode.liftControl.atPosition(Lift.LiftPositions.FLOOR_POSITION)) {
                 opmode.liftControl.goToFloor();
             }
-        } else  if (opmode.gamepad1.dpad_down){
+        } else if (opmode.gamepad1.dpad_down) {
             opmode.liftControl.downOnePixel();
-        } else if (opmode.gamepad1.dpad_up){
+        } else if (opmode.gamepad1.dpad_up) {
             opmode.liftControl.upOnePixel();
-        } else if (opmode.gamepad1.right_bumper){
+        } else if (opmode.gamepad1.right_bumper) {
             opmode.liftControl.manualLiftUp();
-        } else if (opmode.gamepad1.left_bumper){
+        } else if (opmode.gamepad1.left_bumper) {
             opmode.liftControl.manualLiftDown();
 
         }

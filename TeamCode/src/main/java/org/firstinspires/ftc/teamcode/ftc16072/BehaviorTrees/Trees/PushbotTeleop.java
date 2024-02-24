@@ -64,7 +64,7 @@ http://behaviortrees.ftcteams.com/
 
  */
 public class PushbotTeleop {
-    public static Node root(){
+    public static Node root() {
         return new Parallel(5,
                 new UpdateIntake(),
                 new ResetGyro(),

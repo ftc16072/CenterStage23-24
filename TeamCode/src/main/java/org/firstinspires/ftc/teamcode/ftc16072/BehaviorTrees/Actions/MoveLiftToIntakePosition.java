@@ -7,6 +7,6 @@ public class MoveLiftToIntakePosition extends Node {
     @Override
     public State tick(QQOpMode opmode) {
         opmode.robot.lift.goToIntake();
-        return  State.SUCCESS;
+        return State.SUCCESS;
     }
 }

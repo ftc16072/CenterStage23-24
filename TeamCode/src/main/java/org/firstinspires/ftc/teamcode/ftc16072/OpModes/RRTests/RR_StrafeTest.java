@@ -6,7 +6,6 @@ import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.acmerobotics.roadrunner.util.NanoClock;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.teamcode.ftc16072.Robot;
@@ -44,8 +43,6 @@ public class RR_StrafeTest extends OpMode {
         telemetry.addData("x", currentPose.getX());
         telemetry.addData("y", currentPose.getY());
         telemetry.addData("desired y", 48);
-
-
 
 
         telemetry.addData("STATE", state);

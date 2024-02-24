@@ -17,7 +17,7 @@ public class SetLeftSpikeTrajectoryPart2 extends Node {
                 //right because robot is facing backward
                 .strafeRight(LEFT_DISTANCE_INCHES)
                 .build();
-        if (sequence == null){
+        if (sequence == null) {
             return State.FAILURE;
         }
         opMode.board.add("TrajectorySequence", sequence);

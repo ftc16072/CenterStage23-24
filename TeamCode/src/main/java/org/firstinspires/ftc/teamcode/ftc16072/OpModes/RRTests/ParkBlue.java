@@ -4,16 +4,18 @@ import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.robotcore.external.State;
 import org.firstinspires.ftc.teamcode.ftc16072.Robot;
+
 @Autonomous
 public class ParkBlue extends OpMode {
     Robot robot = new Robot();
     Trajectory trajectory;
+
     private enum State {BEGIN, MOVING, DONE}
+
     State state = State.BEGIN;
+
     @Override
     public void init() {
         robot.makeDriveOnly();
@@ -38,7 +40,7 @@ public class ParkBlue extends OpMode {
                 break;
             case MOVING:
                 if (robot.nav.isDoneFollowing(currentPose)) {
-                    state =State.DONE;
+                    state = State.DONE;
                 }
                 break;
 

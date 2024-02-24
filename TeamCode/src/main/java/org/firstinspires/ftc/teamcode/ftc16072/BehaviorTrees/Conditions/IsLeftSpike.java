@@ -8,7 +8,7 @@ public class IsLeftSpike extends Node {
     @Override
     public State tick(QQOpMode opmode) {
         TeamPropLocation location = opmode.board.get(TeamPropLocation.class, "proplocation");
-        if (location == TeamPropLocation.LEFT_SPIKE){
+        if (location == TeamPropLocation.LEFT_SPIKE) {
             return State.SUCCESS;
         }
         return State.FAILURE;

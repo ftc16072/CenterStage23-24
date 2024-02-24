@@ -6,40 +6,45 @@ import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.teamcode.ftc16072.QQTest.QQtest;
 import org.firstinspires.ftc.teamcode.ftc16072.QQTest.TestServo;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
-public class Arm implements Mechanism{
+public class Arm implements Mechanism {
     private static final double LEFT_SERVO_PLACING_ARM_POS = 0;
     private static final double LEFT_SERVO_INTAKE_ARM_POS = 1;
 
-    public enum ArmPositions{
+    public enum ArmPositions {
         PLACING_POSITION,
         INTAKE_POSITION
     }
+
     private Servo leftArmServo;
     public ArmPositions armPosition;
+
     @Override
     public void init(HardwareMap hwMap) {
-        leftArmServo = hwMap.get(Servo.class,"left_arm_servo");
+        leftArmServo = hwMap.get(Servo.class, "left_arm_servo");
         goToIntakePosition();
     }
- 
+
     @Override
     public List<QQtest> getTests() {
-        return Arrays.asList(
+        return Collections.singletonList(
                 new TestServo("left_arm_servo", LEFT_SERVO_PLACING_ARM_POS, LEFT_SERVO_INTAKE_ARM_POS, leftArmServo)
         );
     }
-    public void goToIntakePosition(){
+
+    public void goToIntakePosition() {
         leftArmServo.setPosition(LEFT_SERVO_INTAKE_ARM_POS);
-        armPosition= ArmPositions.INTAKE_POSITION;
+        armPosition = ArmPositions.INTAKE_POSITION;
     }
-    public void goToPlacingPosition(){
+
+    public void goToPlacingPosition() {
         leftArmServo.setPosition(LEFT_SERVO_PLACING_ARM_POS);
-        armPosition= ArmPositions.PLACING_POSITION;
+        armPosition = ArmPositions.PLACING_POSITION;
     }
-    public ArmPositions getArmPosition(){
+
+    public ArmPositions getArmPosition() {
         return armPosition;
     }
 }

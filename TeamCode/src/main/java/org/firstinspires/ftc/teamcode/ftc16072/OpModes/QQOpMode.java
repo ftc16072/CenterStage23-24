@@ -24,8 +24,8 @@ abstract public class QQOpMode extends OpMode {
 
     /**
      * every opmode initializes robot with hardware map
-      */
-    public void init(){
+     */
+    public void init() {
         FtcDashboard dashboard = FtcDashboard.getInstance();
         telemetry = new MultipleTelemetry(telemetry, dashboard.getTelemetry());
         robot.init(hardwareMap);

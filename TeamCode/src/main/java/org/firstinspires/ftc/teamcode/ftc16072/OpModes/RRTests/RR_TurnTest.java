@@ -36,7 +36,7 @@ public class RR_TurnTest extends OpMode {
         Pose2d currentPose = robot.nav.getPoseEstimate();
 
         telemetry.addData("angle", robot.controlHub.getHeading(AngleUnit.RADIANS));
-        telemetry.addData("desired angle",  Math.PI);
+        telemetry.addData("desired angle", Math.PI);
         telemetry.addData("STATE", state);
         telemetry.addData("POSE", "x = %.2f y = %.2f h = %.1f", currentPose.getX(), currentPose.getY(), Math.toDegrees(currentPose.getHeading()));
         switch (state) {
@@ -46,7 +46,7 @@ public class RR_TurnTest extends OpMode {
                 break;
             case TURNING:
                 robot.nav.update();
-                if (!robot.nav.isBusy()){
+                if (!robot.nav.isBusy()) {
                     state = State.DONE;
                 }
                 break;

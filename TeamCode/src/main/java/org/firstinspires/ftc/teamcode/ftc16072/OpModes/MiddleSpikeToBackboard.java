@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode.ftc16072.OpModes;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
-import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.acmerobotics.roadrunner.util.NanoClock;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -13,10 +12,13 @@ import org.firstinspires.ftc.teamcode.ftc16072.Robot;
 public class MiddleSpikeToBackboard extends OpMode {
     Robot robot = new Robot();
     Trajectory trajectory;
+
     private enum State {BEGIN, AWAY, PAUSE, RETURN, DONE}
+
     State state = State.BEGIN;
     NanoClock clock;
     double startPause;
+
     @Override
     public void init() {
         robot.makeDriveOnly();

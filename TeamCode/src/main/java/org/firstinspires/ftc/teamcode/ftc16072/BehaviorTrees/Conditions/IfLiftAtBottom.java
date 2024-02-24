@@ -7,7 +7,7 @@ public class IfLiftAtBottom extends Node {
     @Override
     public State tick(QQOpMode opmode) {
         opmode.telemetry.addData("limit switch", opmode.robot.holdingCell.isLimitSwitchDetected());
-        if(opmode.robot.holdingCell.isLimitSwitchDetected()){
+        if (opmode.robot.holdingCell.isLimitSwitchDetected()) {
             return State.SUCCESS;
 
 

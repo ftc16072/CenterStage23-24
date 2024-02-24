@@ -1,10 +1,9 @@
 package org.firstinspires.ftc.teamcode.ftc16072.Mechanisms;
 
+import android.util.Size;
+
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-
-
-import android.util.Size;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
@@ -17,25 +16,25 @@ import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Hashtable;
 import java.util.List;
 
 //TODO: Get to work with multiple cameras
-public class Camera implements Mechanism{
+public class Camera implements Mechanism {
     public static final int FRONT_CAMERA_X = 5;
     public static final int FRONT_CAMERA_Y = 4;
     public static final int FRONT_CAMERA_Z = 3;
     public static final int BACK_CAMERA_X = 1;
     public static final int BACK_CAMERA_Y = 2;
     public static final int BACK_CAMERA_Z = 3;
-    public enum TeamColor{
+
+    public enum TeamColor {
         BLUE,
         RED,
     }
-    public enum AprilTagIds{
+
+    public enum AprilTagIds {
         TAG1,
         TAG2,
         TAG3,
@@ -44,28 +43,30 @@ public class Camera implements Mechanism{
         TAG6,
 
     }
-    public void fillPositions(TeamColor teamColor){
-        if (teamColor == TeamColor.RED){
+
+    public void fillPositions(TeamColor teamColor) {
+        if (teamColor == TeamColor.RED) {
             aprilTagPositions.clear();
-            aprilTagPositions.put(1, new Pose2d(1,2,3));
-            aprilTagPositions.put(2, new Pose2d(1,2,3));
-            aprilTagPositions.put(3, new Pose2d(1,2,3));
-            aprilTagPositions.put(4, new Pose2d(1,2,3));
-            aprilTagPositions.put(5, new Pose2d(1,2,3));
-            aprilTagPositions.put(5, new Pose2d(1,2,3));
+            aprilTagPositions.put(1, new Pose2d(1, 2, 3));
+            aprilTagPositions.put(2, new Pose2d(1, 2, 3));
+            aprilTagPositions.put(3, new Pose2d(1, 2, 3));
+            aprilTagPositions.put(4, new Pose2d(1, 2, 3));
+            aprilTagPositions.put(5, new Pose2d(1, 2, 3));
+            aprilTagPositions.put(5, new Pose2d(1, 2, 3));
 
         } else {
             aprilTagPositions.clear();
-            aprilTagPositions.put(1, new Pose2d(1,2,3));
-            aprilTagPositions.put(2, new Pose2d(1,2,3));
-            aprilTagPositions.put(3, new Pose2d(1,2,3));
-            aprilTagPositions.put(4, new Pose2d(1,2,3));
-            aprilTagPositions.put(5, new Pose2d(1,2,3));
-            aprilTagPositions.put(5, new Pose2d(1,2,3));
+            aprilTagPositions.put(1, new Pose2d(1, 2, 3));
+            aprilTagPositions.put(2, new Pose2d(1, 2, 3));
+            aprilTagPositions.put(3, new Pose2d(1, 2, 3));
+            aprilTagPositions.put(4, new Pose2d(1, 2, 3));
+            aprilTagPositions.put(5, new Pose2d(1, 2, 3));
+            aprilTagPositions.put(5, new Pose2d(1, 2, 3));
 
         }
 
     }
+
     Hashtable<Integer, Pose2d> aprilTagPositions = new Hashtable<>();
 
     private AprilTagProcessor aprilTag;
@@ -81,16 +82,18 @@ public class Camera implements Mechanism{
     public enum CameraPosition {
         FRONT, BACK
     }
-    public Camera(CameraPosition position){
-        if(position==CameraPosition.FRONT){
+
+    public Camera(CameraPosition position) {
+        if (position == CameraPosition.FRONT) {
             cameraName = "FrontCamera";
             this.position = new Position(DistanceUnit.CM, FRONT_CAMERA_X, FRONT_CAMERA_Y, FRONT_CAMERA_Z, 0);
-        } else{
+        } else {
             cameraName = "BackCamera";
             this.position = new Position(DistanceUnit.CM, BACK_CAMERA_X, BACK_CAMERA_Y, BACK_CAMERA_Z, 0);
         }
     }
-    public void setViewPortID(int viewPortID){
+
+    public void setViewPortID(int viewPortID) {
         this.viewPortID = viewPortID;
     }
 
@@ -103,32 +106,33 @@ public class Camera implements Mechanism{
                 .setLensIntrinsics(825.125, 825.125, 287.391, 219.223)
                 //.setLensIntrinsics(191.894,191.894, 319.827,245.493)
                 .build();
-        teamPropDetector  = new TeamPropDetector();
+        teamPropDetector = new TeamPropDetector();
 
-        webcamName= hwMap.get(WebcamName.class,cameraName);
+        webcamName = hwMap.get(WebcamName.class, cameraName);
         visionPortal = new VisionPortal.Builder().setCamera(hwMap.get(WebcamName.class, cameraName))
-                            .setCameraResolution(new Size(640, 480))
-                            .setLiveViewContainerId(viewPortID)
-                            .addProcessor(aprilTag)
-                            .addProcessor(teamPropDetector)
-                            .build();
+                .setCameraResolution(new Size(640, 480))
+                .setLiveViewContainerId(viewPortID)
+                .addProcessor(aprilTag)
+                .addProcessor(teamPropDetector)
+                .build();
     }
 
-    public List<AprilTagDetection> getAprilTagDetections(){ // return robot position
+    public List<AprilTagDetection> getAprilTagDetections() { // return robot position
         return aprilTag.getDetections();
     }
     // TODO this program takes the first april tag reading. it needs to be able to sort through multiple ones
     // TODO getY, getX, and getHeading functions are all aprilTag relavtive, not field. this needs to be changed
 
-    public Pose2d getPose(){ //DO NOT USE THIS UNLESS ADDING APRILTAGS
+    public Pose2d getPose() { //DO NOT USE THIS UNLESS ADDING APRILTAGS
         List<AprilTagDetection> detections = aprilTag.getDetections();
         //AprilTagDetection detection = selectTag(detections);
         //Pose2d aprilTagLocation = aprilTagPositions.get(detection.id);
 
         //return new Pose2d(aprilTagLocation.getX()+detection.ftcPose.y, aprilTagLocation.getY()+detection.ftcPose.x,aprilTagLocation.getHeading()+detection.ftcPose.yaw);
-        return new Pose2d(1,2,2); //DONT USE THIS
+        return new Pose2d(1, 2, 2); //DONT USE THIS
     }
-    public TeamPropLocation getTeamPropPosition(){
+
+    public TeamPropLocation getTeamPropPosition() {
         return teamPropDetector.getPropLocation();
 
     }
@@ -147,9 +151,10 @@ public class Camera implements Mechanism{
 
     @Override
     public List<QQtest> getTests() {
-        return Collections.singletonList(new TestCamera(cameraName,webcamName, teamPropDetector));
+        return Collections.singletonList(new TestCamera(cameraName, webcamName, teamPropDetector));
     }
-    public void stopStreaming(){
+
+    public void stopStreaming() {
         visionPortal.stopStreaming();
     }
 }

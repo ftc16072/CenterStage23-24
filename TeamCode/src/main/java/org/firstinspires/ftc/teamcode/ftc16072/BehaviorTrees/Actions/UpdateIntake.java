@@ -1,4 +1,5 @@
 package org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Actions;
+
 import org.firstinspires.ftc.teamcode.ftc16072.BehaviorTrees.Node;
 import org.firstinspires.ftc.teamcode.ftc16072.OpModes.QQOpMode;
 
@@ -7,13 +8,11 @@ public class UpdateIntake extends Node {
 
     @Override
     public State tick(QQOpMode opmode) {
-        if (opmode.gamepad1.right_trigger > TRIGGER_THRESHOLD){
+        if (opmode.gamepad1.right_trigger > TRIGGER_THRESHOLD) {
             opmode.robot.intake.intake(opmode.gamepad1.right_trigger);
-        }
-        else if (opmode.gamepad1.x){
+        } else if (opmode.gamepad1.x) {
             opmode.robot.intake.eject();
-        }
-        else{
+        } else {
             opmode.robot.intake.stop();
         }
         return State.RUNNING;

@@ -5,7 +5,6 @@ import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.util.Angle;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.util.MovingStatistics;
 
@@ -40,7 +39,7 @@ public class RR_TrackWidthTuner extends OpMode {
     }
 
     @Override
-    public void start(){
+    public void start() {
         telemetry.clearAll();
         telemetry.addLine("Running...");
         telemetry.update();
@@ -59,7 +58,7 @@ public class RR_TrackWidthTuner extends OpMode {
 
         switch (state) {
             case BEGIN:
-                if(getRuntime() > nextTurnTime) {
+                if (getRuntime() > nextTurnTime) {
                     robot.nav.setPoseEstimate(new Pose2d());
 
                     // it is important to handle heading wraparounds
@@ -72,11 +71,10 @@ public class RR_TrackWidthTuner extends OpMode {
                 break;
             case TURNING:
                 robot.nav.update();
-                if(robot.nav.isBusy()){
+                if (robot.nav.isBusy()) {
                     headingAccumulator += Angle.normDelta(currentPose.getHeading() - lastHeading);
                     lastHeading = currentPose.getHeading();
-                }
-                else{
+                } else {
                     state = State.DONE_TURNING;
                 }
                 break;
@@ -84,11 +82,10 @@ public class RR_TrackWidthTuner extends OpMode {
                 double trackWidth = MecanumDrive.TRACK_WIDTH_IN * Math.toRadians(TURN_ANGLE_DEGREES) / headingAccumulator;
                 trackWidthStats.add(trackWidth);
                 trial++;
-                if(trial < NUM_TRIALS){
+                if (trial < NUM_TRIALS) {
                     state = State.BEGIN;
                     nextTurnTime = getRuntime() + DELAY_SEC;
-                }
-                else{
+                } else {
                     state = State.FINISHED;
                 }
                 break;
